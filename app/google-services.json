@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "7435931097",
+    "firebase_url": "https://beertime-7d543.firebaseio.com",
+    "project_id": "beertime-7d543",
+    "storage_bucket": "beertime-7d543.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7435931097:android:4ebf44de6ff9319b",
+        "android_client_info": {
+          "package_name": "com.example.gebruiker.beertimerefactor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "7435931097-t8canq4onv5nahagn5qq49vlohs45tsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrCAe89GvjT1gqgWMiuYOxvRx6X20b6Vg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
