@@ -13,10 +13,10 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
-class RegisterActivity : DaggerAppCompatActivity(),RegisterView,View.OnClickListener {
+class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickListener {
 
     @Inject
-    lateinit var  presenter: RegisterPresenter
+    lateinit var presenter: RegisterPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +32,28 @@ class RegisterActivity : DaggerAppCompatActivity(),RegisterView,View.OnClickList
 
     override fun onClick(p0: View) {
 
-        when(p0.id){
-            R.id.register_button ->  presenter.register(email_et.text.toString(),password_et.text.toString())
+        when (p0.id) {
+            R.id.register_button -> presenter.register(email_et.text.toString(), password_et.text.toString())
             R.id.login_clickable_text -> openLoginActivity()
 
         }
-
     }
 
     override fun loginFailure() {
-        Toast.makeText(this,"Ooops, something went wrong.", Toast.LENGTH_LONG).show()
+       showLoginFailureToast()
+    }
+
+    private fun showLoginFailureToast() {
+        Toast.makeText(this, "Ooops, something went wrong !", Toast.LENGTH_LONG).show()
     }
 
     override fun loginSuccessFull() {
-       Toast.makeText(this,"Your account has been created.", Toast.LENGTH_LONG).show()
+        showLoginSuccessFullToast()
         openLoginActivity()
+    }
+
+    private fun showLoginSuccessFullToast() {
+        Toast.makeText(this, "Your account has been created.", Toast.LENGTH_LONG).show()
     }
 
     private fun openLoginActivity() {
