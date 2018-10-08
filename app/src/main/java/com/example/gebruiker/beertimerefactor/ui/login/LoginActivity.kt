@@ -9,6 +9,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
+import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -54,8 +55,17 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActi
 
     }
 
+    private fun openMainActivity() {
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
+    }
+
     override fun loginSuccessFull() {
+        openMainActivity()
         Toast.makeText(this,"Login succeed",Toast.LENGTH_LONG).show()
+
     }
 
     override fun loginFailure() {

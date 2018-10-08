@@ -8,9 +8,10 @@ import dagger.android.DaggerApplication
 class MyApp : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out MyApp> {
+        FirebaseApp.initializeApp(applicationContext)
+
         return DaggerAppComponent.builder().create(this)
 
-        FirebaseApp.initializeApp(applicationContext)
     }
 
 }
