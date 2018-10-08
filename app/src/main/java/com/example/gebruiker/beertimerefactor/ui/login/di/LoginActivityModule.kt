@@ -10,8 +10,8 @@ import dagger.Provides
 class LoginActivityModule {
 
     @Provides
-    fun providePresenter(loginActivity: LoginActivity, fireBaseAuthHelper: FireBaseAuthHelper) : LoginPresenter {
-        return LoginPresenter(loginActivity, fireBaseAuthHelper)
+    fun providePresenter(fireBaseAuthHelper: FireBaseAuthHelper) : LoginPresenter {
+        return LoginPresenter(fireBaseAuthHelper)
     }
 
 }

@@ -31,61 +31,36 @@ class FireBaseAuthHelper(var context: Context) {
         fun error()
     }
 
-
     private var fireBaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var mAwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
 
-    private val regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}"
-
-    fun registerUser(registerActivity: RegisterActivity, email: String, password: String, callBackListener: CallBackListener) {
+    fun registerUser(email: String, password: String, callBackListener: CallBackListener) {
 
         fireBaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(registerActivity) { task ->
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        saveUserToSharedPreferences(registerActivity.getSharedPreferences(
-                                "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
+//                        saveUserToSharedPreferences(registerActivity.getSharedPreferences(
+//                                "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
 
                         callBackListener.success()
                     } else {
-                        Log.d("TEST", "error" + task.exception )
+                        Log.d("TEST", "error" + task.exception)
                         callBackListener.error()
                     }
                 }
     }
 
-    fun loginUser(loginActivity: LoginActivity, email: String, password: String, callback: CallBackListener) {
+    fun loginUser(email: String, password: String, callback: CallBackListener) {
 
         fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                saveUserToSharedPreferences(loginActivity.getSharedPreferences(
-                        "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
+//              //  saveUserToSharedPreferences(loginActivity.getSharedPreferences(
+//                        "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
 
                 callback.success()
             } else {
                 callback.error()
             }
         }
-    }
-
-    fun validateLogin(loginActivity: LoginActivity): Boolean {
-
-        mAwesomeValidation.addValidation(loginActivity, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
-        mAwesomeValidation.addValidation(loginActivity, R.id.password_input, regexPassword, R.string.err_password)
-
-        return mAwesomeValidation.validate()
-    }
-
-    fun validateRegister(registerActivity: RegisterActivity): Boolean {
-
-        mAwesomeValidation.addValidation(registerActivity, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
-        mAwesomeValidation.addValidation(registerActivity, R.id.password_et, regexPassword, R.string.err_password)
-        mAwesomeValidation.addValidation(registerActivity, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
-
-        return mAwesomeValidation.validate()
-    }
-
-    private fun saveUserToSharedPreferences(sharedPreferences: SharedPreferences, user: FirebaseUser?) {
-        sharedPreferences.edit().putString(user!!.displayName, user.uid).apply()
     }
 
 }

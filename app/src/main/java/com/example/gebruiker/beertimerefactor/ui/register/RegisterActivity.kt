@@ -2,9 +2,12 @@ package com.example.gebruiker.beertimerefactor.ui.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.example.gebruiker.beertimerefactor.R
+import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper
+import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
@@ -19,11 +22,22 @@ class RegisterActivity : DaggerAppCompatActivity(),RegisterView,View.OnClickList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        setUpValidator()
+
         register_button.setOnClickListener(this)
+
+        presenter.attachView(this)
+
     }
 
-    override fun onClick(p0: View?) {
-        presenter.register(email_et.text.toString(),password_et.text.toString())
+    override fun onClick(p0: View) {
+
+        when(p0.id){
+            R.id.register_button ->  presenter.register(email_et.text.toString(),password_et.text.toString())
+            R.id.login_clickable_text -> openLoginActivity()
+
+        }
+
     }
 
     override fun loginFailure() {
@@ -40,4 +54,12 @@ class RegisterActivity : DaggerAppCompatActivity(),RegisterView,View.OnClickList
         startActivity(intent)
     }
 
+
+    private fun setUpValidator() {
+
+        presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
+        presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
+        presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
+
+    }
 }
