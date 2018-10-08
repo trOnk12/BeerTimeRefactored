@@ -10,8 +10,8 @@ import dagger.Provides
 class RegisterModule {
 
     @Provides
-    fun provideRegisterPresenter(registerActivity: RegisterActivity,fireBaseAuthHelper: FireBaseAuthHelper) : RegisterPresenter{
-        return RegisterPresenter(registerActivity,fireBaseAuthHelper)
+    fun provideRegisterPresenter(fireBaseAuthHelper: FireBaseAuthHelper) : RegisterPresenter{
+        return RegisterPresenter(fireBaseAuthHelper)
     }
 
 }

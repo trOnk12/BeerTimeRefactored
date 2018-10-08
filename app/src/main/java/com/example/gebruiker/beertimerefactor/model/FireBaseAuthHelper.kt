@@ -20,11 +20,7 @@ import android.R.attr.password
 import android.util.Log
 
 
-class FireBaseAuthHelper(var context: Context) {
-
-    init {
-        FirebaseApp.initializeApp(context)
-    }
+class FireBaseAuthHelper(var sharedPreferencesRepository : SharedPreferencesRepository) {
 
     interface CallBackListener {
         fun success()
@@ -34,13 +30,9 @@ class FireBaseAuthHelper(var context: Context) {
     private var fireBaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     fun registerUser(email: String, password: String, callBackListener: CallBackListener) {
-
         fireBaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-//                        saveUserToSharedPreferences(registerActivity.getSharedPreferences(
-//                                "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
-
                         callBackListener.success()
                     } else {
                         Log.d("TEST", "error" + task.exception)
@@ -49,13 +41,12 @@ class FireBaseAuthHelper(var context: Context) {
                 }
     }
 
+
     fun loginUser(email: String, password: String, callback: CallBackListener) {
 
         fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-//              //  saveUserToSharedPreferences(loginActivity.getSharedPreferences(
-//                        "com.example.MyApp", Context.MODE_PRIVATE), fireBaseAuth.currentUser)
-
+                sharedPreferencesRepository.userLoggedIn(fireBaseAuth.currentUser)
                 callback.success()
             } else {
                 callback.error()

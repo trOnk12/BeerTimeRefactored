@@ -11,18 +11,26 @@ import javax.inject.Inject
 
 class LoginPresenter(private var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<LoginActivityView>() {
 
-    var mAwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
+    private var mAwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
 
-    fun login(email: String, password: String) {
+    private var UserLoggedIn: Boolean? = null
+
+    fun loggedIn(): Boolean? {
+        return UserLoggedIn
+    }
+
+    fun login(email: String, password: String){
 
         if (validateCredentials()) {
             fireBaseAuthHelper.loginUser(email, password, object : FireBaseAuthHelper.CallBackListener {
 
                 override fun success() {
+                    UserLoggedIn = true
                     getView().loginSuccessFull()
                 }
 
                 override fun error() {
+                    UserLoggedIn = false
                     getView().loginFailure()
                 }
             })

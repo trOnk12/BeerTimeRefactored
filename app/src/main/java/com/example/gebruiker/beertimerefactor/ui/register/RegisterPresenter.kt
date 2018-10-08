@@ -5,7 +5,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.FireBaseAuthHelper
 
-class RegisterPresenter(var registerActivity: RegisterActivity,var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<RegisterView>() {
+class RegisterPresenter(var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<RegisterView>() {
 
     var mAwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
 
