@@ -15,7 +15,9 @@ class MainActivity : DaggerAppCompatActivity(), MainActivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         mainActivityPresenter.attachView(this)
         mainActivityPresenter.getUserAndDisplay()

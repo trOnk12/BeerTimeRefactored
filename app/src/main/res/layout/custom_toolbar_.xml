@@ -10,6 +10,7 @@
     android:layout_height="wrap_content">
 
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -23,52 +24,74 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"/>
 
+    <com.example.gebruiker.beertimerefactor.ui.CustomChatIcon
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        app:animateJump="true"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintRight_toRightOf="@id/toolbar"
+
+        >
+
+    </com.example.gebruiker.beertimerefactor.ui.CustomChatIcon>
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_baseline_account_circle_24px"
         app:civ_border_color="#FFF"
         app:civ_border_width="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar"/>
 
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_if_message_01_186393"
-        app:layout_constraintEnd_toStartOf="@+id/profile_image"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
         android:text="trOnk12"
         android:textColor="#FFF"
-        app:layout_constraintEnd_toEndOf="@+id/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/profile_image"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/profile_image"
+        app:layout_constraintRight_toRightOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@id/profile_image"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#ffffff"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="@id/textView7"
+        app:layout_constraintRight_toRightOf="@id/textView7"
+        app:layout_constraintTop_toBottomOf="@id/textView7"/>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="Chat"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
+        android:lineSpacingExtra="12sp"
+        android:text="Beer Time"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
         android:textColor="#FFF"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>
