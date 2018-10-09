@@ -9,9 +9,8 @@ import dagger.Provides
 @Module
 class MainActivityModule {
 
-
     @Provides
-    fun provideMainActivityPresenter(sharedPreferencesRepository: SharedPreferencesRepository){
+    fun provideMainActivityPresenter(sharedPreferencesRepository: SharedPreferencesRepository) : MainActivityPresenter{
         return MainActivityPresenter(sharedPreferencesRepository)
     }
 }
