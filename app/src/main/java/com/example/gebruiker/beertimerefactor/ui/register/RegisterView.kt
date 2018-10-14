@@ -4,7 +4,7 @@ import com.example.gebruiker.beertimerefactor.baseMVP.BaseView
 
 interface RegisterView : BaseView {
 
-    fun loginSuccessFull()
-    fun loginFailure()
+    fun registerSuccessFull()
+    fun registerFailure()
 
 }

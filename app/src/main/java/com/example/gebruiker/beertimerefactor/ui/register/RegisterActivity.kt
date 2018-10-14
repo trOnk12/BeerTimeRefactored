@@ -6,7 +6,6 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.example.gebruiker.beertimerefactor.R
-import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper
 import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -39,20 +38,20 @@ class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickLi
         }
     }
 
-    override fun loginFailure() {
-       showLoginFailureToast()
+    override fun registerFailure() {
+       showRegisterFailureToast()
     }
 
-    private fun showLoginFailureToast() {
+    private fun showRegisterFailureToast() {
         Toast.makeText(this, "Ooops, something went wrong !", Toast.LENGTH_LONG).show()
     }
 
-    override fun loginSuccessFull() {
-        showLoginSuccessFullToast()
+    override fun registerSuccessFull() {
+        showRegisterSuccesFull()
         openLoginActivity()
     }
 
-    private fun showLoginSuccessFullToast() {
+    private fun showRegisterSuccesFull() {
         Toast.makeText(this, "Your account has been created.", Toast.LENGTH_LONG).show()
     }
 

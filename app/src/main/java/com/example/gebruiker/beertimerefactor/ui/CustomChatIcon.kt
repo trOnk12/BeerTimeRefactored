@@ -1,6 +1,7 @@
 package com.example.gebruiker.beertimerefactor.ui
 
 import android.content.Context
+import android.os.Handler
 import android.support.animation.DynamicAnimation
 import android.support.animation.SpringAnimation
 import android.support.animation.SpringForce
@@ -40,13 +41,31 @@ class CustomChatIcon(context : Context, attrs: AttributeSet) : ConstraintLayout(
 
         if(isAnimate){
 
-            val springAnim = SpringAnimation(this, DynamicAnimation.TRANSLATION_Y, -20f)
+            val springUp = SpringAnimation(this, DynamicAnimation.TRANSLATION_Y, -3f)
 
-            springAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
+            val springDown = SpringAnimation(this, DynamicAnimation.TRANSLATION_Y, 3f)
 
-            springAnim.start()
+            springUp.spring.dampingRatio = SpringForce.DAMPING_RATIO_HIGH_BOUNCY
+
+            springDown.addEndListener { p0, p1, p2, p3 ->
+                Handler().postDelayed({
+                    springUp.start()
+                }, 100)
+            }
+
+            springUp.addEndListener { p0, p1, p2, p3 ->
+                Handler().postDelayed({
+                    springDown.start()
+                }, 100)
+            }
+
+            springUp.start()
 
         }
+
+    }
+
+    fun setMessageCount(messageCount : Int){
 
     }
 

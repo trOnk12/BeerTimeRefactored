@@ -15,11 +15,11 @@ class RegisterPresenter(var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresen
             fireBaseAuthHelper.registerUser(email, password, object : FireBaseAuthHelper.CallBackListener {
 
                 override fun success() {
-                    getView().loginSuccessFull()
+                    getView().registerSuccessFull()
                 }
 
                 override fun error() {
-                    getView().loginFailure()
+                    getView().registerFailure()
                 }
             })
         }
