@@ -22,10 +22,23 @@ class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickLi
         setContentView(R.layout.activity_register)
 
         setUpValidator()
-
-        register_button.setOnClickListener(this)
+        setUpListeners()
 
         presenter.attachView(this)
+
+    }
+
+    private fun setUpListeners() {
+
+        register_button.setOnClickListener(this)
+    }
+
+
+    private fun setUpValidator() {
+
+        presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
+        presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
+        presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
 
     }
 
@@ -38,8 +51,14 @@ class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickLi
         }
     }
 
+    private fun openLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+
     override fun registerFailure() {
-       showRegisterFailureToast()
+        showRegisterFailureToast()
     }
 
     private fun showRegisterFailureToast() {
@@ -55,17 +74,5 @@ class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickLi
         Toast.makeText(this, "Your account has been created.", Toast.LENGTH_LONG).show()
     }
 
-    private fun openLoginActivity() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
 
-
-    private fun setUpValidator() {
-
-        presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
-        presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
-        presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
-
-    }
 }

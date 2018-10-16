@@ -1,26 +1,11 @@
-package com.example.gebruiker.beertimerefactor.model
+package com.example.gebruiker.beertimerefactor.model.repo
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.util.Patterns
 import com.google.firebase.auth.FirebaseAuth
-import com.basgeekball.awesomevalidation.AwesomeValidation
-import com.basgeekball.awesomevalidation.ValidationStyle
-import com.example.gebruiker.beertimerefactor.R
-import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
-import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseUser
-import android.widget.Toast
-import com.google.firebase.auth.AuthResult
-import com.google.android.gms.tasks.Task
-import android.support.annotation.NonNull
-import com.google.android.gms.tasks.OnCompleteListener
-import android.R.attr.password
 import android.util.Log
+import com.example.gebruiker.beertimerefactor.model.User
 
 
-class FireBaseAuthHelper(var sharedPreferencesRepository : SharedPreferencesRepository) {
+class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var sharedPreferencesRepository: SharedPreferencesRepository) {
 
     interface CallBackListener {
         fun success()
@@ -33,6 +18,12 @@ class FireBaseAuthHelper(var sharedPreferencesRepository : SharedPreferencesRepo
         fireBaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        val user = fireBaseAuth.currentUser
+
+                        if (user != null) {
+                            fireBaseRepo.addUser(User("null", user.email.toString(), user.uid))
+                        }
+
                         callBackListener.success()
                     } else {
                         Log.d("TEST", "error" + task.exception)

@@ -17,11 +17,15 @@ class CustomChatIcon(context : Context, attrs: AttributeSet) : ConstraintLayout(
 
     var chatCount : Int = 0
     var isAnimate : Boolean = false
-    var mVelocityTracker : VelocityTracker = VelocityTracker.obtain()
+    var view : View = inflate(context, R.layout.chat_icon, this)
+
+    interface OnChatClickListener {
+        fun onChatClick()
+    }
+
+    lateinit var listener : OnChatClickListener
 
     init {
-
-        inflate(context, R.layout.chat_icon, this)
 
         val chatIcon: ImageView = findViewById(R.id.chat_icon)
         val messageCount: TextView = findViewById(R.id.message_count)
@@ -63,10 +67,18 @@ class CustomChatIcon(context : Context, attrs: AttributeSet) : ConstraintLayout(
 
         }
 
+        view.setOnClickListener {
+            listener.onChatClick()
+        }
+
     }
 
     fun setMessageCount(messageCount : Int){
 
+    }
+
+    fun setOnChatClickListener(listener: OnChatClickListener){
+        this.listener = listener
     }
 
 }

@@ -25,16 +25,18 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActi
         setContentView(R.layout.activity_login)
 
         setUpValidator()
-
-        login_button.setOnClickListener(this)
-        login_clickable_text.setOnClickListener(this)
+        setUpListeners()
 
         presenter.attachView(this)
 
     }
 
-    private fun setUpValidator() {
+    private fun setUpListeners() {
+        login_button.setOnClickListener(this)
+        login_clickable_text.setOnClickListener(this)
+    }
 
+    private fun setUpValidator() {
         presenter.getValidator().addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
         presenter.getValidator().addValidation(this, R.id.password_input, regexPassword, R.string.err_password)
 
@@ -42,10 +44,10 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActi
 
     override fun onClick(view: View) {
 
-            when (view.id) {
-                R.id.login_clickable_text -> openRegisterActivity()
-                R.id.login_button ->  presenter.login(nickname_input.text.toString(),password_input.text.toString())
-            }
+        when (view.id) {
+            R.id.login_clickable_text -> openRegisterActivity()
+            R.id.login_button ->  presenter.login(nickname_input.text.toString(),password_input.text.toString())
+        }
     }
 
     private fun openRegisterActivity() {
@@ -69,7 +71,11 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActi
     }
 
     override fun loginFailure() {
-       Toast.makeText(this,"Login failure",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Login failure",Toast.LENGTH_SHORT).show()
     }
+
+
+
+
 
 }

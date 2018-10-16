@@ -1,13 +1,9 @@
 package com.example.gebruiker.beertimerefactor.ui.login
 
-import android.util.Patterns
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
-import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
-import javax.inject.Inject
+import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
 
 class LoginPresenter(private var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<LoginActivityView>() {
 

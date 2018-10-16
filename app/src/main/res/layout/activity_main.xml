@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-
     <include layout="@layout/custom_toolbar_"/>
 
 

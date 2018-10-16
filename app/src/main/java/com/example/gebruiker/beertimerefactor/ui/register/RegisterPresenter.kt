@@ -3,7 +3,7 @@ package com.example.gebruiker.beertimerefactor.ui.register
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
 
 class RegisterPresenter(var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<RegisterView>() {
 

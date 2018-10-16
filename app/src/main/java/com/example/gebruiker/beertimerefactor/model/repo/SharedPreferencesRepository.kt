@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.model
+package com.example.gebruiker.beertimerefactor.model.repo
 
 import android.content.Context
 import com.google.firebase.auth.FirebaseUser
