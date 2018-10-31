@@ -1,5 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
+import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
@@ -15,7 +17,12 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
-class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActivityView {
+class LoginActivity : BaseActivity(), View.OnClickListener, LoginActivityView {
+companion object {
+    fun createLoginActivity(context: Context): Intent {
+        return Intent(context, LoginActivity::class.java)
+    }
+}
 
     @Inject
     lateinit var presenter: LoginPresenter
@@ -46,36 +53,27 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener, LoginActi
 
         when (view.id) {
             R.id.login_clickable_text -> openRegisterActivity()
-            R.id.login_button ->  presenter.login(nickname_input.text.toString(),password_input.text.toString())
+            R.id.login_button -> presenter.login(nickname_input.text.toString(), password_input.text.toString())
         }
     }
 
     private fun openRegisterActivity() {
-
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
+        startActivity(RegisterActivity.createRegisterActivity(this))
 
     }
 
     private fun openMainActivity() {
-
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-
+        startActivity(MainActivity.createMainActivity(this))
     }
 
     override fun loginSuccessFull() {
         openMainActivity()
-        Toast.makeText(this,"Login succeed",Toast.LENGTH_LONG).show()
+        showToast("Login successfull")
 
     }
 
     override fun loginFailure() {
-        Toast.makeText(this,"Login failure",Toast.LENGTH_SHORT).show()
+        showToast("Login failure")
     }
-
-
-
-
 
 }

@@ -1,10 +1,12 @@
 package com.example.gebruiker.beertimerefactor.ui.register
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
@@ -12,7 +14,12 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
-class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickListener {
+class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
+companion object {
+    fun createRegisterActivity(context: Context): Intent {
+        return  Intent(context, RegisterActivity::class.java)
+    }
+}
 
     @Inject
     lateinit var presenter: RegisterPresenter
@@ -51,28 +58,23 @@ class RegisterActivity : DaggerAppCompatActivity(), RegisterView, View.OnClickLi
         }
     }
 
-    private fun openLoginActivity() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
-
 
     override fun registerFailure() {
-        showRegisterFailureToast()
-    }
-
-    private fun showRegisterFailureToast() {
-        Toast.makeText(this, "Ooops, something went wrong !", Toast.LENGTH_LONG).show()
+        showToast("Register failure !")
     }
 
     override fun registerSuccessFull() {
-        showRegisterSuccesFull()
+        showToast("Register succesfull")
+
         openLoginActivity()
     }
 
-    private fun showRegisterSuccesFull() {
-        Toast.makeText(this, "Your account has been created.", Toast.LENGTH_LONG).show()
+
+    private fun openLoginActivity() {
+        startActivity(RegisterActivity.createRegisterActivity(this))
     }
+
+
 
 
 }

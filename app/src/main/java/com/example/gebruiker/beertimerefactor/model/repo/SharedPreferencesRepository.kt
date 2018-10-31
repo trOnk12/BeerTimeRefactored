@@ -24,7 +24,7 @@ class SharedPreferencesRepository(var context: Context) {
     }
 
     fun getUser(): String? {
-        return sharedPref.getString(R.string.user_logged_id_key.toString(), "")
+        return sharedPref.getString(context.getString(R.string.user_logged_id_key), "")
     }
 
     fun userLogOut(){

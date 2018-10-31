@@ -21,7 +21,11 @@ class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var sharedPreferencesRe
                         val user = fireBaseAuth.currentUser
 
                         if (user != null) {
-                            fireBaseRepo.addUser(User("null", user.email.toString(), user.uid))
+                            val userShared = User()
+                            userShared.id = user.uid
+                            userShared.avatar = "null"
+                            userShared.name = "trOnk12"
+                            fireBaseRepo.addUser(userShared)
                         }
 
                         callBackListener.success()

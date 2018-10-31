@@ -1,7 +1,9 @@
 package com.example.gebruiker.beertimerefactor.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.CustomChatIcon
 import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityPresenter
@@ -11,7 +13,12 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.custom_toolbar_.*
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(), MainActivityView, CustomChatIcon.OnChatClickListener {
+class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClickListener {
+    companion object {
+        fun createMainActivity(context: Context): Intent {
+            return  Intent(context, MainActivity::class.java)
+        }
+    }
 
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
@@ -40,7 +47,6 @@ class MainActivity : DaggerAppCompatActivity(), MainActivityView, CustomChatIcon
     }
 
     override fun onChatClick() {
-
         val intent = Intent(this, MessagesActivity::class.java)
         startActivity(intent)
 
