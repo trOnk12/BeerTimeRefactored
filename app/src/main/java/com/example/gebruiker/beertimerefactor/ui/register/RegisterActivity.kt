@@ -15,11 +15,11 @@ import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
 class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
-companion object {
-    fun createRegisterActivity(context: Context): Intent {
-        return  Intent(context, RegisterActivity::class.java)
+    companion object {
+        fun createRegisterActivity(context: Context): Intent {
+            return Intent(context, RegisterActivity::class.java)
+        }
     }
-}
 
     @Inject
     lateinit var presenter: RegisterPresenter
@@ -27,26 +27,21 @@ companion object {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        presenter.attachView(this)
 
         setUpValidator()
         setUpListeners()
-
-        presenter.attachView(this)
-
     }
 
     private fun setUpListeners() {
-
         register_button.setOnClickListener(this)
     }
 
 
     private fun setUpValidator() {
-
         presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
         presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
         presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
-
     }
 
     override fun onClick(p0: View) {
@@ -65,7 +60,6 @@ companion object {
 
     override fun registerSuccessFull() {
         showToast("Register succesfull")
-
         openLoginActivity()
     }
 
@@ -73,8 +67,5 @@ companion object {
     private fun openLoginActivity() {
         startActivity(RegisterActivity.createRegisterActivity(this))
     }
-
-
-
 
 }

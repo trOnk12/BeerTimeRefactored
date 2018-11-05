@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.Dialog
+import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.User
 import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
 import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
@@ -18,7 +19,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 
-class MessagesActivity : BaseActivity(){
+class MessagesActivity : BaseActivity() {
 
     @Inject
     lateinit var firebaseRepo: FirebaseRepo
@@ -32,14 +33,14 @@ class MessagesActivity : BaseActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messages)
 
-        android.util.Log.d("TEST", "id" + sharedPreferencesRepository.getUser())
+        android.util.Log.d("TEST", "id " + sharedPreferencesRepository.getUser())
 
         val user1 = User()
         user1.avatar = ""
         user1.name = "trOnk12"
         user1.id = sharedPreferencesRepository.getUser()!!
 
-        firebaseRepo.addUser(user1)
+      //  firebaseRepo.addUser(user1)
 
         val user2 = User()
         user2.avatar = ""
@@ -50,31 +51,47 @@ class MessagesActivity : BaseActivity(){
         dialog.id = firebaseRepo.fireBaseDataBase.reference.push().key
         dialog.dialogPhoto = ""
         dialog.dialogName = "test"
-        dialog.users = arrayListOf(user1, user2)
+       // dialog.users = arrayListOf(user1, user2)
 
         //  dialog.lastMessage = null
         //dialog.setUnreadcount(2)
 
-        firebaseRepo.addDialog(dialog)
+    //    firebaseRepo.addDialog(dialog)
 
         val dialogsAdapter: DialogsListAdapter<Dialog>
 
         firebaseRepo.getDialogs(object : ValueEventListener {
 
             override fun onCancelled(p0: DatabaseError) {
-
+            android.util.Log.d("TEST","error" + p0.code +p0.details)
             }
 
             override fun onDataChange(p0: DataSnapshot) {
 
-                for (data in p0.children) {
 
-                    val mDialog = data.getValue(Dialog::class.java)!!
+                android.util.Log.d("TEST", "" + p0.children)
 
-
-               //     dialogList.add(mDialog)
+                val t = object : GenericTypeIndicator<HashMap<String,Message>>() {
 
                 }
+
+                val messages = p0.getValue(t)!!.toList()
+
+
+               android.util.Log.d("TEST","" +
+                       messages.get(1) )
+
+
+//                p0.children.forEach{ android.util.Log.d("TEST", "test" + it.value )
+//
+//                var dialog = it.getValue() as Dialog
+//
+//                    android.util.Log.d("TEST", "" + dialog.dialogName)
+//
+//
+//
+//                }
+//
             }
 
         })

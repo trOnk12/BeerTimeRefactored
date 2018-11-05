@@ -46,9 +46,9 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.16'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-auth:16.0.4'
-    implementation 'com.google.firebase:firebase-database:16.0.2'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.4'
 
     //Validate
     implementation 'com.basgeekball:awesome-validation:4.2'

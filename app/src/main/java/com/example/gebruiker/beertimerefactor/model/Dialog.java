@@ -4,14 +4,14 @@ import com.stfalcon.chatkit.commons.models.IDialog;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.IUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Dialog implements IDialog {
+public class Dialog implements IDialog<Message> {
 
 	public Dialog(){
 
 	}
-
 
 	public void setId(String id) {
 		Id = id;
@@ -25,14 +25,14 @@ public class Dialog implements IDialog {
 		DialogName = dialogName;
 	}
 
-	public void setUsers(List<? extends IUser> users) {
+	public void setUsers(ArrayList<User> users) {
 		Users = users;
 	}
 
 	private String Id;
 	private String DialogPhoto;
 	private String DialogName;
-	private List<? extends IUser> Users;
+	private ArrayList<User> Users;
 	private Message LastMessage;
 	private int unreadcount;
 
@@ -52,19 +52,20 @@ public class Dialog implements IDialog {
 	}
 
 	@Override
-	public List<? extends IUser> getUsers() {
+	public List<User> getUsers() {
 		return Users;
 	}
 
 	@Override
-	public IMessage getLastMessage() {
+	public Message getLastMessage() {
 		return LastMessage;
 	}
 
 	@Override
-	public void setLastMessage(IMessage message) {
+	public void setLastMessage(Message message) {
 		LastMessage = (Message) message;
 	}
+
 
 	@Override
 	public int getUnreadCount() {
