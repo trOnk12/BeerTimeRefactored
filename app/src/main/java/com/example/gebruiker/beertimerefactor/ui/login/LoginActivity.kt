@@ -45,8 +45,7 @@ companion object {
 
     private fun setUpValidator() {
         presenter.getValidator().addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
-        presenter.getValidator().addValidation(this, R.id.password_input, regexPassword, R.string.err_password)
-
+       // presenter.getValidator().addValidation(this, R.id.password_input, regexPassword, R.string.err_password)
     }
 
     override fun onClick(view: View) {
@@ -59,7 +58,6 @@ companion object {
 
     private fun openRegisterActivity() {
         startActivity(RegisterActivity.createRegisterActivity(this))
-
     }
 
     private fun openMainActivity() {

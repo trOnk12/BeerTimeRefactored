@@ -6,7 +6,7 @@ import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesReposi
 class MainActivityPresenter(var sharedPreferencesRepository: SharedPreferencesRepository)  : BasePresenter<MainActivityView>() {
 
     fun getUserAndDisplay() {
-      getView().displayUser(sharedPreferencesRepository.getUser())
+      getView().displayUser(sharedPreferencesRepository.getUser()!!)
     }
 
 }

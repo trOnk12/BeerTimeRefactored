@@ -40,8 +40,8 @@ class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
 
     private fun setUpValidator() {
         presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
-        presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
-        presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
+    //    presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
+     //   presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
     }
 
     override fun onClick(p0: View) {
@@ -49,7 +49,6 @@ class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
         when (p0.id) {
             R.id.register_button -> presenter.register(email_et.text.toString(), password_et.text.toString())
             R.id.login_clickable_text -> openLoginActivity()
-
         }
     }
 

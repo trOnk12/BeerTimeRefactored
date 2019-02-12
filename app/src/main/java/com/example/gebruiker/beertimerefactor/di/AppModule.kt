@@ -33,8 +33,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFireBaseRepo(): FirebaseRepo {
-        return FirebaseRepo()
+    fun provideFireBaseRepo(sharedPreferencesRepository: SharedPreferencesRepository): FirebaseRepo {
+        return FirebaseRepo(sharedPreferencesRepository)
     }
 
 }

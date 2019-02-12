@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "7435931097-c53htvcplmjj1ncp89un87km0ihhm8o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gebruiker.beertimerefactor",
+            "certificate_hash": "dba659559f4ad4ab496b48fddf7d9cdaf608a770"
+          }
+        },
+        {
           "client_id": "7435931097-t8canq4onv5nahagn5qq49vlohs45tsj.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "7435931097-t8canq4onv5nahagn5qq49vlohs45tsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

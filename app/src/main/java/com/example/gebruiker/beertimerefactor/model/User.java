@@ -2,6 +2,8 @@ package com.example.gebruiker.beertimerefactor.model;
 
 import com.stfalcon.chatkit.commons.models.IUser;
 
+import java.util.ArrayList;
+
 public class User implements IUser {
 
 	public User(){
@@ -12,6 +14,16 @@ public class User implements IUser {
 	private String Name;
 
 	private String Avatar;
+
+	private ArrayList<String> dialogs;
+
+	public ArrayList<String> getDialogs() {
+		return dialogs;
+	}
+
+	public void setDialogs(ArrayList<String> dialogs) {
+		this.dialogs = dialogs;
+	}
 
 	public void setId(String id) {
 		Id = id;

@@ -1,75 +1,82 @@
 package com.example.gebruiker.beertimerefactor.model;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.stfalcon.chatkit.commons.models.IDialog;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.IUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dialog implements IDialog<Message> {
+@IgnoreExtraProperties
+public class Dialog implements IDialog<Message>,Serializable {
 
 	public Dialog(){
 
 	}
 
+	private  String id;
+	private  String dialogPhoto;
+	private  String dialogName;
+	private  ArrayList<User> users;
+	private  Message lastMessage;
+	private  int unreadCount;
+
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public void setDialogPhoto(String dialogPhoto) {
-		DialogPhoto = dialogPhoto;
+		this.dialogPhoto = dialogPhoto;
 	}
 
 	public void setDialogName(String dialogName) {
-		DialogName = dialogName;
+		this.dialogName = dialogName;
 	}
 
+	public void setUnreadCount(int unreadCount){
+		this.unreadCount = unreadCount;
+	}
 	public void setUsers(ArrayList<User> users) {
-		Users = users;
+		this.users = users;
 	}
-
-	private String Id;
-	private String DialogPhoto;
-	private String DialogName;
-	private ArrayList<User> Users;
-	private Message LastMessage;
-	private int unreadcount;
 
 	@Override
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	@Override
 	public String getDialogPhoto() {
-		return DialogPhoto;
+		return dialogPhoto;
 	}
 
 	@Override
 	public String getDialogName() {
-		return DialogName;
+		return dialogName;
 	}
 
 	@Override
 	public List<User> getUsers() {
-		return Users;
+		return users;
 	}
 
+	@Exclude
 	@Override
 	public Message getLastMessage() {
-		return LastMessage;
+		return lastMessage;
 	}
 
 	@Override
-	public void setLastMessage(Message message) {
-		LastMessage = (Message) message;
+	public void setLastMessage(Message lastMessage) {
+		this.lastMessage = lastMessage;
 	}
-
 
 	@Override
 	public int getUnreadCount() {
-		return unreadcount;
+		return unreadCount;
 	}
 
 }

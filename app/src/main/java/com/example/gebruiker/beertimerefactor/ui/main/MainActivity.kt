@@ -5,18 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
+import com.example.gebruiker.beertimerefactor.model.User
 import com.example.gebruiker.beertimerefactor.ui.CustomChatIcon
 import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityPresenter
 import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityView
-import com.example.gebruiker.beertimerefactor.ui.messages.MessagesActivity
-import dagger.android.support.DaggerAppCompatActivity
+import com.example.gebruiker.beertimerefactor.ui.dialogs.DialogsActivity
 import kotlinx.android.synthetic.main.custom_toolbar_.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClickListener {
     companion object {
         fun createMainActivity(context: Context): Intent {
-            return  Intent(context, MainActivity::class.java)
+            return Intent(context, MainActivity::class.java)
         }
     }
 
@@ -36,18 +36,16 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
     }
 
     private fun setUpToolbar() {
-
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-
     }
 
-    override fun displayUser(user: String?) {
-        android.util.Log.d("TEST","user is"  +user)
+    override fun displayUser(user: User) {
+        user_name.text = user.name
     }
 
     override fun onChatClick() {
-        val intent = Intent(this, MessagesActivity::class.java)
+        val intent = Intent(this, DialogsActivity::class.java)
         startActivity(intent)
 
     }

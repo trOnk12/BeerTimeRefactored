@@ -1,15 +1,23 @@
 package com.example.gebruiker.beertimerefactor.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.IUser;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message implements IMessage {
+@IgnoreExtraProperties
+public class Message implements IMessage,Serializable {
 
 	public Message(){
 
 	}
+
+	private String id;
+	private String text;
+	private User user;
+	private Date createdAt;
 
 	public void setId(String id) {
 		this.id = id;
@@ -26,11 +34,6 @@ public class Message implements IMessage {
 	public void setCreaedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-
-	private String id;
-	private String text;
-	private User user;
-	private Date createdAt;
 
 	@Override
 	public String getId() {
