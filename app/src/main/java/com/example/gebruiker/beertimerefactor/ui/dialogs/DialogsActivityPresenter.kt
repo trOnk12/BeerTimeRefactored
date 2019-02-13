@@ -37,28 +37,5 @@ class DialogsActivityPresenter(var sharedPreferencesRepository: SharedPreference
 
     }
 
-    fun openDialogMessages(dialogID: String?) {
-
-        firebaseRepo.getDialogMessages(dialogID, object : ValueEventListener {
-
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                var messageList : ArrayList<Message> =  ArrayList()
-
-                for (children in p0.children) {
-                    var message = children.getValue(Message::class.java)
-                    messageList.add(message!!)
-                }
-
-                getView().openChatActivity(messageList)
-            }
-
-        })
-
-    }
-
 
 }

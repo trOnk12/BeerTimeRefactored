@@ -23,6 +23,6 @@ class FirebaseRepo(var sharedPreferencesRepository: SharedPreferencesRepository)
 
     fun getUser(uid: String, listener: ValueEventListener) = fireBaseDataBase.getReference("users").child(uid).addListenerForSingleValueEvent(listener)
 
-    fun getDialogMessages(dialogID: String?, valueEventListener: ValueEventListener) {}
+    fun getDialogMessages(dialogID: String?, listener: ValueEventListener) = fireBaseDataBase.getReference("chats").child(dialogID!!).addListenerForSingleValueEvent(listener)
 
 }

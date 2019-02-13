@@ -6,5 +6,4 @@ import com.example.gebruiker.beertimerefactor.model.Message
 
 interface DialogsView : BaseView {
     fun displayViews(list: ArrayList<Dialog>)
-    fun openChatActivity(messageList: ArrayList<Message>)
 }

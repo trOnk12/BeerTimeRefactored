@@ -1,29 +1,30 @@
 package com.example.gebruiker.beertimerefactor.ui.dialogs
 
 import android.os.Bundle
-import android.widget.ImageView
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.Dialog
-import com.example.gebruiker.beertimerefactor.model.Message
-import com.example.gebruiker.beertimerefactor.model.User
 import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
 import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
 import com.example.gebruiker.beertimerefactor.ui.chat.ChatActivity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter
 import javax.inject.Inject
 
 import com.stfalcon.chatkit.commons.ImageLoader
 import kotlinx.android.synthetic.main.activity_messages.*
+import java.util.*
 
 
 class DialogsActivity : BaseActivity(), DialogsView {
 
     @Inject
     lateinit var presenter: DialogsActivityPresenter
+
+    @Inject
+    lateinit var  firebaseRepo: FirebaseRepo
+
+    @Inject
+    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
 
     lateinit var dialogsAdapterr: DialogsListAdapter<Dialog>
 
@@ -37,35 +38,32 @@ class DialogsActivity : BaseActivity(), DialogsView {
     }
 
     private fun init() {
-
         presenter.attachView(this)
+
         dialogsAdapterr = DialogsListAdapter(ImageLoader { imageView, url, payload -> })
 
         dialogsAdapterr.setOnDialogClickListener {
 
-//            val user1 = User()
-//            user1.avatar = ""
-//            user1.name = "trOnk12"
-//            //  user1.id = sharedPreferencesRepository.getUser()!!.id
-//
-//            //  firebaseRepo.addUser(user1)
-//
-//            val user2 = User()
-//            user2.avatar = ""
-//            user2.name = "Jurek Owsiak"
-//            user2.id = "TEST ID"
-//
-//
 //            val message = Message()
-//            message.setUser(user1)
+//            val user = User()
+//            user.id= sharedPreferencesRepository.getUser()!!.id
+//            user.name = "trOnk12"
+//            user.avatar= "null"
+//
+//            message.setUser(user)
+//
+//            val date = Date()
+//            date.time = System.currentTimeMillis()
+//            message.setCreaedAt(date)
+//            message.text = "DUPA JASIA TEST"
 //            message.id = firebaseRepo.fireBaseDataBase.reference.push().key
-//            message.text= "Lorem ipsum."
+//
 //
 //            firebaseRepo.addMessage(it.id,message)
+          //  presenter.openDialogMessages(it.id)
 
-            presenter.openDialogMessages(it.id)
+            openChatActivity(it.id)
         }
-
 
     }
 
@@ -74,9 +72,11 @@ class DialogsActivity : BaseActivity(), DialogsView {
         dialogsList.setAdapter(dialogsAdapterr)
     }
 
-    override fun openChatActivity(messageList: ArrayList<Message>) {
-      val intent = ChatActivity.createChatActivity(this)
-        intent.putExtra(ChatActivity.MESSAGES, messageList)
+     private fun openChatActivity(dialogID: String) {
+        val intent = ChatActivity.createChatActivity(this)
+        intent.putExtra(ChatActivity.EXTRA_DIALOG_ID,dialogID)
+
+        startActivity(intent)
     }
 
 

@@ -1,5 +1,8 @@
 package com.example.gebruiker.beertimerefactor.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.IUser;
@@ -8,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Message implements IMessage,Serializable {
+public class Message implements IMessage,Parcelable {
 
 	public Message(){
 
@@ -18,6 +21,23 @@ public class Message implements IMessage,Serializable {
 	private String text;
 	private User user;
 	private Date createdAt;
+
+	protected Message(Parcel in) {
+		id = in.readString();
+		text = in.readString();
+	}
+
+	public static final Creator<Message> CREATOR = new Creator<Message>() {
+		@Override
+		public Message createFromParcel(Parcel in) {
+			return new Message(in);
+		}
+
+		@Override
+		public Message[] newArray(int size) {
+			return new Message[size];
+		}
+	};
 
 	public void setId(String id) {
 		this.id = id;
@@ -31,7 +51,7 @@ public class Message implements IMessage,Serializable {
 		this.user = user;
 	}
 
-	public void setCreaedAt(Date createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -53,5 +73,16 @@ public class Message implements IMessage,Serializable {
 	@Override
 	public Date getCreatedAt() {
 		return createdAt;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(id);
+		dest.writeString(text);
 	}
 }
