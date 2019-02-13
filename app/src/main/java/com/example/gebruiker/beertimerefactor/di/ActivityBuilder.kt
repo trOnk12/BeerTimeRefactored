@@ -1,5 +1,6 @@
 package com.example.gebruiker.beertimerefactor.di
 
+import com.example.gebruiker.beertimerefactor.ui.SplashActivity
 import com.example.gebruiker.beertimerefactor.ui.chat.ChatActivity
 import com.example.gebruiker.beertimerefactor.ui.chat.di.ChatActivityModule
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
@@ -15,6 +16,9 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilder {
+
+    @ContributesAndroidInjector
+    abstract fun bindSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector(modules = [LoginActivityModule::class])
     abstract fun bindLoginActivity(): LoginActivity

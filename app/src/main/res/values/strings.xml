@@ -4,4 +4,5 @@
     <string name="err_password">Wrong password form</string>
     <string name="err_password_confirmation">Passwords are not the same</string>
     <string name="user_logged_id_key">USER_ID</string>
+    <string name="user_logged_in">LOGGED_IN</string>
 </resources>
