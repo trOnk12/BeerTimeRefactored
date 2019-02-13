@@ -5,4 +5,9 @@
     <string name="err_password_confirmation">Passwords are not the same</string>
     <string name="user_logged_id_key">USER_ID</string>
     <string name="user_logged_in">LOGGED_IN</string>
+    <string name="text_people">People</string>
+    <string name="text_events">Events</string>
+    <string name="text_feed">Feed</string>
+    <string name="find_event">Are you looking for a specific event ? . \nFill in your criteria and what is intereseting to you .\nWe will take care of the rest . </string>
+    <string name="find_map_event">Explore events by looking on the map. \nClick to see nearby event or explore other places. </string>
 </resources>
