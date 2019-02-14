@@ -10,4 +10,12 @@
     <string name="text_feed">Feed</string>
     <string name="find_event">Are you looking for a specific event ? . \nFill in your criteria and what is intereseting to you .\nWe will take care of the rest . </string>
     <string name="find_map_event">Explore events by looking on the map. \nClick to see nearby event or explore other places. </string>
+    <string name="event_option1_title">Find events on map</string>
+    <string name="event_option1_body">Explore events by looking on the map. \nClick to see nearby event or explore other places. </string>
+    <string name="event_option2_title">Find events that fit your criteria </string>
+    <string name="event_option2_body">Are you looking for a specific event ?\nFill in your criteria and what is intereseting to you .\nWe will take care of the rest .</string>
+    <string name="people_option1_title">Find people on map.</string>
+    <string name="people_option1_body">Are you looking for a new friend in town ?\n Maybe you are just on holiday and want grab a beer ?\n Find people near you.</string>
+    <string name="people_option2_title">Find people with specific criteria</string>
+    <string name="people_option2_body">Are you looking for someone interested in music ? Or maybe hiking ?\nFind your match </string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.ui
+package com.example.gebruiker.beertimerefactor.ui.custom
 
 import android.content.Context
 import android.os.Handler
@@ -7,7 +7,6 @@ import android.support.animation.SpringAnimation
 import android.support.animation.SpringForce
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-import android.view.VelocityTracker
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

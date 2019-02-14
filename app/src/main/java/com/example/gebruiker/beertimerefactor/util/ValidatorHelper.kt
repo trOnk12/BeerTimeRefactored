@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.ui
+package com.example.gebruiker.beertimerefactor.util
 
 class ValidatorHelper{
 companion object {

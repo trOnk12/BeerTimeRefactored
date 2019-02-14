@@ -3,10 +3,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#91FFA726"
+
     android:orientation="vertical"
     android:weightSum="2">
-
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -17,6 +16,7 @@
         card_view:cardElevation="8dp">
 
         <LinearLayout
+            android:id="@+id/option_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/background_image"
+                    android:id="@+id/option1_background_image"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
@@ -35,23 +35,25 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
-                    android:layout_alignBottom="@id/background_image"
+                    android:layout_alignBottom="@id/option1_background_image"
                     android:background="#4D000000" />
 
                 <TextView
+                    android:id="@+id/option1_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/background_image"
+                    android:layout_alignBottom="@id/option1_background_image"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="6dp"
                     android:text="Search events"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/option1_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#AA3F51B5"
@@ -73,17 +75,17 @@
         card_view:cardElevation="8dp">
 
         <LinearLayout
+            android:id="@+id/option_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/background_image1"
+                    android:id="@+id/option_2_background_image"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
@@ -92,23 +94,25 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
-                    android:layout_alignBottom="@id/background_image1"
+                    android:layout_alignBottom="@id/option_2_background_image"
                     android:background="#4D000000" />
 
                 <TextView
+                    android:id="@+id/option2_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/background_image1"
+                    android:layout_alignBottom="@id/option_2_background_image"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="6dp"
                     android:text="Look on map"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/option2_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#AA3F51B5"

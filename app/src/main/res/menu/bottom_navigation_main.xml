@@ -10,19 +10,18 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_event"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_account_circle_24px"
+        android:icon="@drawable/ic_event_black_24dp"
         android:title="@string/text_events"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_schedules"
+        android:id="@+id/action_people"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_account_circle_24px"
         android:title="@string/text_people"
         app:showAsAction="ifRoom" />
-
 
 
 </menu>

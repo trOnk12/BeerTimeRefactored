@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/custom_two_option_cards"/>
+    <com.example.gebruiker.beertimerefactor.ui.custom.TwoOptionCardView
+        android:id="@+id/event_options"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.example.gebruiker.beertimerefactor.ui.custom.TwoOptionCardView>
 
 </android.support.constraint.ConstraintLayout>

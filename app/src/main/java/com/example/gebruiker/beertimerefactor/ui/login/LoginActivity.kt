@@ -5,15 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
-import com.basgeekball.awesomevalidation.AwesomeValidation
-import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
-import com.example.gebruiker.beertimerefactor.ui.ValidatorHelper.Companion.regexPassword
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
