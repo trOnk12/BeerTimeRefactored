@@ -4,9 +4,9 @@
     package="com.example.gebruiker.beertimerefactor">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-
         android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,32 +19,28 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/AppThemeNoActionBar">
-
         </activity>
-
 
         <activity
             android:name=".ui.register.RegisterActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
-
+            android:theme="@style/AppThemeNoActionBar" />
 
         <activity
             android:name=".ui.chat.ChatActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
-
+            android:theme="@style/AppThemeNoActionBar" />
 
         <activity
             android:name=".ui.dialogs.DialogsActivity"
             android:theme="@style/AppThemeNoActionBar">
-
         </activity>
 
-
-        <activity android:name=".ui.SplashActivity"
+        <activity
+            android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -52,6 +48,17 @@
             android:name=".ui.login.LoginActivity"
             android:theme="@style/AppThemeNoActionBar">
         </activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".ui.map.MapsActivity"
+            android:label="@string/title_activity_maps">
+        </activity>
+
     </application>
 
 </manifest>

@@ -39,9 +39,9 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
     }
 
     private fun init() {
-        mainActivityPresenter.attachView(this)
-
         setUpToolbar()
+
+        mainActivityPresenter.attachView(this)
 
         custom_chat.setOnChatClickListener(this)
         bottom_navigation.setOnNavigationItemSelectedListener(this)

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.R
+import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
 import dagger.android.support.DaggerAppCompatDialogFragment
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_event_main.*
@@ -29,6 +30,9 @@ class EventsMainFragment : DaggerFragment() {
 
         event_options.setOption1Listener(View.OnClickListener {
             it.id = R.id.option_1
+
+            val intent = MapsActivity.createMapActivity(activity!!.applicationContext)
+             startActivity(intent)
         })
 
 
