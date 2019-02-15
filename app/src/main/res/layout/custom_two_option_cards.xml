@@ -3,7 +3,6 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     android:weightSum="2">
 
@@ -36,7 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_alignBottom="@id/option1_background_image"
-                    android:background="#4D000000" />
+                    android:background="#AA000000"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/option1_title"
@@ -47,7 +47,8 @@
                     android:layout_marginBottom="6dp"
                     android:text="Search events"
                     android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
@@ -56,7 +57,7 @@
                 android:id="@+id/option1_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#AA3F51B5"
+                android:background="@color/colorPrimaryLight"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="8dp"
                 android:text="@string/find_event"
@@ -95,7 +96,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_alignBottom="@id/option_2_background_image"
-                    android:background="#4D000000" />
+                    android:background="#4D000000"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/option2_title"
@@ -106,7 +108,8 @@
                     android:layout_marginBottom="6dp"
                     android:text="Look on map"
                     android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
@@ -115,7 +118,7 @@
                 android:id="@+id/option2_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#AA3F51B5"
+                android:background="@color/colorPrimaryLight"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="8dp"
                 android:text="@string/find_map_event"
