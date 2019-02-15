@@ -7,9 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <com.example.gebruiker.beertimerefactor.ui.custom.CustomSearchBar
         android:id="@+id/search_toolbar"
-        layout="@layout/custom_search_toolbar" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <fragment xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -19,6 +20,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_toolbar"
         tools:context=".ui.map.MapsActivity" />
-
 
 </android.support.constraint.ConstraintLayout>

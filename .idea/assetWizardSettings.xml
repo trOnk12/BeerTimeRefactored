@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_event_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\Gebruiker\Pobrane\baseline-account_circle-24px.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_beer" />
+                            <entry key="sourceFile" value="C:\Users\Gebruiker\Desktop\beertime\beer.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -65,7 +65,7 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
 
         when (item.itemId) {
             R.id.action_feed -> {
-               val feedFragment = FeedMainFragment.newInstance()
+                val feedFragment = FeedMainFragment.newInstance()
                 openFragment(feedFragment)
                 return true
             }
