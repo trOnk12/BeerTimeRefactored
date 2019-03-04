@@ -10,6 +10,8 @@ import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityModule
 import com.example.gebruiker.beertimerefactor.ui.dialogs.DialogsActivity
 import com.example.gebruiker.beertimerefactor.ui.dialogs.di.DialogsActivityModule
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.di.FragmenstProvider
+import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
+import com.example.gebruiker.beertimerefactor.ui.map.di.MapModule
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
 import com.example.gebruiker.beertimerefactor.ui.register.di.RegisterModule
 import dagger.Module
@@ -20,6 +22,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindSplashActivity(): SplashActivity
+
+    @ContributesAndroidInjector(modules = [MapModule::class])
+    abstract fun bindMapsActivity(): MapsActivity
 
     @ContributesAndroidInjector(modules = [LoginActivityModule::class])
     abstract fun bindLoginActivity(): LoginActivity
@@ -35,7 +40,6 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ChatActivityModule::class])
     abstract fun bindChatActivity(): ChatActivity
-
 
 }
 

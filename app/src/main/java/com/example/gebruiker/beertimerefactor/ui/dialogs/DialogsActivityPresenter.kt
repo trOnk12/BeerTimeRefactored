@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 class DialogsActivityPresenter(var sharedPreferencesRepository: SharedPreferencesRepository, var firebaseRepo: FirebaseRepo) : BasePresenter<DialogsView>() {
 
     fun getDialogsForUser() {
+
         val dialogsList: ArrayList<Dialog> = ArrayList()
         val dialogsID = sharedPreferencesRepository.getUser()!!.dialogs
 
@@ -33,9 +34,6 @@ class DialogsActivityPresenter(var sharedPreferencesRepository: SharedPreference
             })
 
         }
-
-
     }
-
 
 }

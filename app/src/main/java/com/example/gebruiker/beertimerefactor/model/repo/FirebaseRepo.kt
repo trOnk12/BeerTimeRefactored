@@ -1,6 +1,7 @@
 package com.example.gebruiker.beertimerefactor.model.repo
 
 import com.example.gebruiker.beertimerefactor.model.Dialog
+import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.User
 import com.google.firebase.database.FirebaseDatabase
@@ -24,5 +25,9 @@ class FirebaseRepo(var sharedPreferencesRepository: SharedPreferencesRepository)
     fun getUser(uid: String, listener: ValueEventListener) = fireBaseDataBase.getReference("users").child(uid).addListenerForSingleValueEvent(listener)
 
     fun getDialogMessages(dialogID: String?, listener: ValueEventListener) = fireBaseDataBase.getReference("chats").child(dialogID!!).addListenerForSingleValueEvent(listener)
+
+    fun getEvents(listener : ValueEventListener) = fireBaseDataBase.getReference("events").addListenerForSingleValueEvent(listener)
+
+    fun addEvent(event: Event) = fireBaseDataBase.getReference("events").child(event.id).setValue(event)
 
 }
