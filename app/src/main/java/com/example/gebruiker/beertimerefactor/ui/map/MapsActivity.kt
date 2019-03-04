@@ -1,8 +1,9 @@
 package com.example.gebruiker.beertimerefactor.ui.map
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
-import android.graphics.PorterDuff
+import android.graphics.*
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,13 +14,20 @@ import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.view.MenuInflater
+import com.example.gebruiker.beertimerefactor.R.id.search_toolbar
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.custom_search_toolbar.*
 import javax.inject.Inject
+import android.support.v4.content.ContextCompat
+import android.graphics.drawable.Drawable
+import com.google.android.gms.maps.model.BitmapDescriptor
+
+
 
 class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
     companion object {
@@ -74,7 +82,7 @@ class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
         for(event in eventList){
             val eventPosition = LatLng(event.coordinate!!.longtitude, event.coordinate!!.latitude)
             latLngBounds.include(eventPosition)
-            mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name))
+            mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
         }
 
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds.build(),200,
@@ -90,5 +98,17 @@ class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
 
         mapsPresenter.getAllEvents()
 
+    }
+
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        vectorDrawable!!.setBounds(10, 10, vectorDrawable.intrinsicWidth-10, vectorDrawable.intrinsicHeight-10)
+        val bitmap = Bitmap.createBitmap(vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val paint = Paint()
+        paint.color = Color.parseColor("#536dfe")
+        canvas.drawCircle(vectorDrawable.intrinsicWidth.toFloat()/2, vectorDrawable.intrinsicHeight.toFloat()/2, 35.0F, paint)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 }
