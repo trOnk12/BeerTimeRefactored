@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="2dp">
+
+        <LinearLayout
+            android:id="@+id/option_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/option1_background_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/event2" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_alignBottom="@id/option1_background_image"
+                    android:background="#AA000000"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/option1_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/option1_background_image"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Search events"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/option1_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="8dp"
+                android:text="@string/find_event"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="2dp">
+
+        <LinearLayout
+            android:id="@+id/option_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/option_2_background_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/people1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_alignBottom="@id/option_2_background_image"
+                    android:background="#4D000000"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/option2_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/option_2_background_image"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Look on map"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/option2_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="8dp"
+                android:text="@string/find_map_event"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.register.di
 
-import com.example.gebruiker.beertimerefactor.model.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
+import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterPresenter
 import dagger.Module
 import dagger.Provides
@@ -10,8 +9,8 @@ import dagger.Provides
 class RegisterModule {
 
     @Provides
-    fun provideRegisterPresenter(registerActivity: RegisterActivity,fireBaseAuthHelper: FireBaseAuthHelper) : RegisterPresenter{
-        return RegisterPresenter(registerActivity,fireBaseAuthHelper)
+    fun provideRegisterPresenter(fireBaseAuthHelper: FireBaseAuthHelper) : RegisterPresenter{
+        return RegisterPresenter(fireBaseAuthHelper)
     }
 
 }

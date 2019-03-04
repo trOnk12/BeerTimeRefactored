@@ -1,43 +1,66 @@
 package com.example.gebruiker.beertimerefactor.ui.register
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
-import android.widget.Toast
+import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
-import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
-class RegisterActivity : DaggerAppCompatActivity(),RegisterView,View.OnClickListener {
+class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
+    companion object {
+        fun createRegisterActivity(context: Context): Intent {
+            return Intent(context, RegisterActivity::class.java)
+        }
+    }
 
     @Inject
-    lateinit var  presenter: RegisterPresenter
+    lateinit var presenter: RegisterPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        presenter.attachView(this)
 
+        setUpValidator()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
         register_button.setOnClickListener(this)
     }
 
-    override fun onClick(p0: View?) {
-        presenter.register(email_et.text.toString(),password_et.text.toString())
+
+    private fun setUpValidator() {
+        presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
+    //    presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
+     //   presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
     }
 
-    override fun loginFailure() {
-        Toast.makeText(this,"Ooops, something went wrong.", Toast.LENGTH_LONG).show()
+    override fun onClick(p0: View) {
+
+        when (p0.id) {
+            R.id.register_button -> presenter.register(email_et.text.toString(), password_et.text.toString())
+            R.id.login_clickable_text -> openLoginActivity()
+        }
     }
 
-    override fun loginSuccessFull() {
-       Toast.makeText(this,"Your account has been created.", Toast.LENGTH_LONG).show()
+
+    override fun registerFailure() {
+        showToast("Register failure !")
+    }
+
+    override fun registerSuccessFull() {
+        showToast("Register succesfull")
         openLoginActivity()
     }
 
+
     private fun openLoginActivity() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        startActivity(RegisterActivity.createRegisterActivity(this))
     }
 
 }

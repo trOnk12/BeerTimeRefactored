@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_feed"
+        android:enabled="true"
+        android:icon="@drawable/ic_if_message_01_186393"
+        android:title="@string/text_feed"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_event"
+        android:enabled="true"
+        android:icon="@drawable/ic_event_black_24dp"
+        android:title="@string/text_events"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_people"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24px"
+        android:title="@string/text_people"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
