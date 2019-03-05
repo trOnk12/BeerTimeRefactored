@@ -50,7 +50,6 @@ class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
     private fun init() {
         mapsPresenter.attachView(this)
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setUpToolbar()
         setUpMap()
     }

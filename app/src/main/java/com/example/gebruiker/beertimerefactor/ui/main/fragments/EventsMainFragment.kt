@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.R
+import com.example.gebruiker.beertimerefactor.ui.filter.FilterEventsActivity
 import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
 import dagger.android.support.DaggerAppCompatDialogFragment
 import dagger.android.support.DaggerFragment
@@ -37,7 +38,8 @@ class EventsMainFragment : DaggerFragment() {
 
 
         event_options.setOption2Listener(View.OnClickListener {
-            Log.d("TEST","test1")
+            val intent = FilterEventsActivity.createFilterEventActivity(activity!!.applicationContext)
+            startActivity(intent)
         })
 
         event_options.setOption1Title(getString(R.string.event_option1_title))

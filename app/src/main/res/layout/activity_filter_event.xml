@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/place_search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Where ?" />
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/event_type_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/event_type_tv" />
+
+    <Spinner
+        android:id="@+id/event_enviroment_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_enviroment_tv" />
+
+    <TextView
+        android:id="@+id/event_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:text="Event type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_search_input" />
+
+    <TextView
+        android:id="@+id/event_enviroment_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Event enviroment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_type_options" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dog_friendly_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/alcohol_free_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/alcohol_free_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/alcohol_free_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/peacefull_icon"
+        app:layout_constraintEnd_toStartOf="@+id/dog_friendly_icon"
+        app:layout_constraintStart_toEndOf="@id/peacefull_icon"
+        app:layout_constraintTop_toTopOf="@+id/peacefull_icon" />
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/peacefull_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/alcohol_free_icon"
+        app:layout_constraintStart_toEndOf="@id/tolerant_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tolerant_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/peacefull_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_enviroment_options"
+        app:layout_constraintVertical_bias="0.247" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Dog friendly"
+        app:layout_constraintBottom_toTopOf="@+id/dog_friendly_icon"
+        app:layout_constraintEnd_toEndOf="@+id/dog_friendly_icon"
+        app:layout_constraintStart_toStartOf="@+id/dog_friendly_icon" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Tolerant"
+        app:layout_constraintBottom_toTopOf="@+id/tolerant_icon"
+        app:layout_constraintEnd_toEndOf="@+id/tolerant_icon"
+        app:layout_constraintStart_toStartOf="@+id/tolerant_icon" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Alcohol free"
+        app:layout_constraintBottom_toTopOf="@+id/alcohol_free_icon"
+        app:layout_constraintEnd_toEndOf="@+id/alcohol_free_icon"
+        app:layout_constraintStart_toStartOf="@+id/alcohol_free_icon" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Peacefull"
+        app:layout_constraintBottom_toTopOf="@+id/peacefull_icon"
+        app:layout_constraintEnd_toEndOf="@+id/peacefull_icon"
+        app:layout_constraintStart_toStartOf="@+id/peacefull_icon" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="167dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="56dp"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

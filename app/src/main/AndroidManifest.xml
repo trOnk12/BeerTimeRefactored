@@ -49,7 +49,10 @@
             android:theme="@style/AppThemeNoActionBar">
         </activity>
 
-
+        <activity
+            android:name=".ui.filter.FilterEventsActivity"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
 
 
         <meta-data
