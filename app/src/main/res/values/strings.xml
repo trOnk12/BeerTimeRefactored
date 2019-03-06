@@ -20,4 +20,20 @@
     <string name="people_option2_body">Are you looking for someone interested in music ? Or maybe hiking ?\nFind your match </string>
     <string name="title_activity_maps">Map</string>
     <string name="search_title">Address</string>
+
+
+    <string-array name="event_type_options">
+        <item>Social</item>
+        <item>Dance</item>
+        <item>Drink</item>
+        <item>Explore</item>
+    </string-array>
+
+    <string-array name="event_enviroment_options">
+        <item>Club</item>
+        <item>Bar</item>
+        <item>Outdoor</item>
+        <item>House</item>
+    </string-array>
+
 </resources>
