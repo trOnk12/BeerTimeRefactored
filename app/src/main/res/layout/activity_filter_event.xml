@@ -90,9 +90,9 @@
             <TextView
                 android:id="@+id/event_type_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="21dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="18dp"
                 android:text="Event type"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="8dp"
-                android:alpha="0.2f"
+                android:alpha="0.2"
                 app:civ_circle_background_color="@color/white"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/peacufyll"
@@ -149,8 +149,7 @@
                 app:layout_constraintStart_toEndOf="@id/tolerant_icon"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.example.gebruiker.beertimerefactor.ui.custom.CustomRoundButton
                 android:id="@+id/tolerant_icon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -159,12 +158,30 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/tolerant"
-                app:civ_circle_background_color="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/peacefull_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_enviroment_options"
-                app:layout_constraintVertical_bias="0.382" />
+                app:layout_constraintVertical_bias="0.382"
+                />
+
+      <!---->
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:id="@+id/tolerant_icon"-->
+                <!--android:layout_width="64dp"-->
+                <!--android:layout_height="64dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:src="@drawable/tolerant"-->
+                <!--app:civ_circle_background_color="@color/white"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintEnd_toStartOf="@+id/peacefull_icon"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/event_enviroment_options"-->
+                <!--app:layout_constraintVertical_bias="0.382" />-->
 
             <TextView
                 android:id="@+id/textView6"
@@ -225,23 +242,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/peacefull_icon"
-                />
+                app:layout_constraintVertical_bias="0.8" />
 
             <TextView
                 android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/round_rectangle"
                 android:fontFamily="monospace"
+                android:gravity="center"
                 android:lineSpacingExtra="12sp"
                 android:padding="18dp"
                 android:text="Explore events"
+                android:textAlignment="center"
                 android:textColor="#FFF"
                 android:textSize="24sp"
                 android:typeface="sans"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

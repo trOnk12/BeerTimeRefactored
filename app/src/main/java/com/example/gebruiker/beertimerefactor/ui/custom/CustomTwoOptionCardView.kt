@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import com.example.gebruiker.beertimerefactor.R
 import kotlinx.android.synthetic.main.custom_two_option_cards.view.*
 
-class TwoOptionCardView(context: Context,attributeSet: AttributeSet) : LinearLayout(context,attributeSet) {
+class CustomTwoOptionCardView(context: Context, attributeSet: AttributeSet) : LinearLayout(context,attributeSet) {
 
     var view : View = LinearLayout.inflate(context, R.layout.custom_two_option_cards, this)
 
