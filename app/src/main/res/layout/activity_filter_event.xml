@@ -47,18 +47,20 @@
 
 
     <LinearLayout
-        app:layout_constraintTop_toBottomOf="@id/search_city_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_city_container"
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_margin="8dp"
-            android:background="@drawable/layout_bg_blue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/layout_bg_blue">
 
             <Spinner
                 android:id="@+id/event_type_options"
@@ -67,7 +69,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                style="@style/mySpinnerItemStyle"
+                android:backgroundTint="@color/white"
                 android:entries="@array/event_type_options"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,31 +81,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                style="@style/mySpinnerItemStyle"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/white"
                 android:entries="@array/event_enviroment_options"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_enviroment_tv" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/event_type_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="96dp"
+                android:layout_marginTop="32dp"
                 android:text="Event type"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/event_enviroment_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Event enviroment"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_type_options" />
 
@@ -115,8 +117,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_baseline_account_circle_24px"
-                app:civ_border_width="2dp"
+                android:src="@drawable/dog_friendly"
                 app:layout_constraintBottom_toBottomOf="@+id/alcohol_free_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/alcohol_free_icon"
@@ -128,26 +129,28 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_baseline_account_circle_24px"
-                app:civ_border_width="2dp"
+                android:src="@drawable/alcohol_free"
                 app:layout_constraintBottom_toBottomOf="@+id/peacefull_icon"
                 app:layout_constraintEnd_toStartOf="@+id/dog_friendly_icon"
                 app:layout_constraintStart_toEndOf="@id/peacefull_icon"
                 app:layout_constraintTop_toTopOf="@+id/peacefull_icon" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/peacefull_icon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="8dp"
+                android:alpha="0.2f"
+                app:civ_circle_background_color="@color/white"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_baseline_account_circle_24px"
-                app:civ_border_width="2dp"
+                android:src="@drawable/peacufyll"
                 app:layout_constraintEnd_toStartOf="@+id/alcohol_free_icon"
                 app:layout_constraintStart_toEndOf="@id/tolerant_icon"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/tolerant_icon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -155,54 +158,54 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_baseline_account_circle_24px"
-                app:civ_border_width="2dp"
+                android:src="@drawable/tolerant"
+                app:civ_circle_background_color="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/peacefull_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_enviroment_options"
-                app:layout_constraintVertical_bias="0.247" />
+                app:layout_constraintVertical_bias="0.382" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Dog friendly"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/dog_friendly_icon"
                 app:layout_constraintEnd_toEndOf="@+id/dog_friendly_icon"
                 app:layout_constraintStart_toStartOf="@+id/dog_friendly_icon" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Tolerant"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/tolerant_icon"
                 app:layout_constraintEnd_toEndOf="@+id/tolerant_icon"
                 app:layout_constraintStart_toStartOf="@+id/tolerant_icon" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Alcohol free"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/alcohol_free_icon"
                 app:layout_constraintEnd_toEndOf="@+id/alcohol_free_icon"
                 app:layout_constraintStart_toStartOf="@+id/alcohol_free_icon" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Peacefull"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/peacefull_icon"
                 app:layout_constraintEnd_toEndOf="@+id/peacefull_icon"
                 app:layout_constraintStart_toStartOf="@+id/peacefull_icon" />
@@ -213,14 +216,35 @@
                 android:layout_width="167dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:textColor="@color/white"
-                android:layout_marginBottom="56dp"
+                android:layout_marginBottom="36dp"
                 android:text="Search"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/peacefull_icon"
+                />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/round_rectangle"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="12sp"
+                android:padding="18dp"
+                android:text="Explore events"
+                android:textColor="#FFF"
+                android:textSize="24sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 
