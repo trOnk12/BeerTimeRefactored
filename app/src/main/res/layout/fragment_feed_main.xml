@@ -27,7 +27,9 @@
         app:layout_constraintTop_toBottomOf="@+id/navigation_panel">
 
 
-        <include android:id="@+id/popular_events_rv" layout="@layout/horizontal_recycyler_view"/>
+        <include
+            android:id="@+id/popular_events_rv"
+            layout="@layout/horizontal_recycyler_view" />
 
     </ScrollView>
 
