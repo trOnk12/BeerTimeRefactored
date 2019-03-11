@@ -36,7 +36,7 @@ class PeopleMainFragment : DaggerFragment() {
 
 
         event_options.setOption2Listener(View.OnClickListener {
-            Log.d("TEST","test1")
+
         })
 
         event_options.setOption1Title(getString(R.string.people_option1_title))

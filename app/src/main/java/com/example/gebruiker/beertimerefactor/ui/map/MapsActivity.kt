@@ -11,25 +11,21 @@ import android.view.WindowManager
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import android.view.MenuInflater
 import com.example.gebruiker.beertimerefactor.R.id.search_toolbar
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLngBounds
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.custom_search_toolbar.*
 import javax.inject.Inject
 import android.support.v4.content.ContextCompat
 import android.graphics.drawable.Drawable
-import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.*
 
 
+class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView, GoogleMap.OnInfoWindowClickListener {
 
-class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
     companion object {
         fun createMapActivity(context: Context): Intent {
             return Intent(context, MapsActivity::class.java)
@@ -83,7 +79,7 @@ class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
             latLngBounds.include(eventPosition)
             mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
         }
-
+        mMap.setOnInfoWindowClickListener(this)
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds.build(),200,
                 300,40))
     }
@@ -110,4 +106,9 @@ class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView {
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
+
+    override fun onInfoWindowClick(p0: Marker?) {
+
+    }
+
 }

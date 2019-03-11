@@ -4,4 +4,7 @@
         <attr name="messageCount" format="integer" />
         <attr name="animateJump" format="boolean"/>
     </declare-styleable>
+
+
+
 </resources>
