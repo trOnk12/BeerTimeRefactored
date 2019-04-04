@@ -5,8 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <include
         app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar_container"
+        layout="@layout/custom_toolbar_" />
+
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_container"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -36,6 +42,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/event_header_background"
                         android:layout_width="match_parent"
                         android:layout_height="150dp" />
 
@@ -45,11 +52,13 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/event_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TEST" />
 
                         <TextView
+                            android:id="@+id/event_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TEST" />
@@ -73,6 +82,7 @@
                 android:layout_height="wrap_content" />
 
             <include
+                android:id="@+id/patricipiants_item_holder"
                 layout="@layout/horizontal_recycyler_view"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_description_tv"

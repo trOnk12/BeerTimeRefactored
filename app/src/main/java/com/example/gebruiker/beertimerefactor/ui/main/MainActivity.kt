@@ -13,6 +13,7 @@ import com.example.gebruiker.beertimerefactor.ui.custom.CustomChatIcon
 import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityPresenter
 import com.example.gebruiker.beertimerefactor.ui.main.di.MainActivityView
 import com.example.gebruiker.beertimerefactor.ui.dialogs.DialogsActivity
+import com.example.gebruiker.beertimerefactor.ui.main.fragments.EventDescriptionFragment
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.EventsMainFragment
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.FeedMainFragment
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.PeopleMainFragment
@@ -20,12 +21,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_toolbar_.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClickListener, BottomNavigationView.OnNavigationItemSelectedListener, EventsMainFragment.eventOnClickListener {
+
     companion object {
         fun createMainActivity(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
         }
     }
+
 
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
@@ -71,6 +74,7 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
             }
             R.id.action_event -> {
                 val eventFragment = EventsMainFragment.newInstance()
+                eventFragment.setEventClickListener(this)
                 openFragment(eventFragment)
                 return true
             }
@@ -82,6 +86,21 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
         }
         return false
     }
+
+    override fun onEventClick() {
+
+        val newFragment = EventDescriptionFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+        transaction.replace(R.id.fragment_container, newFragment)
+        transaction.addToBackStack(null)
+
+// Commit the transaction
+        transaction.commit()
+    }
+
 
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

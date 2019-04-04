@@ -48,4 +48,15 @@ class EventsMainFragment : DaggerFragment() {
         event_options.setOption2Body(getString(R.string.event_option2_body))
 
     }
+
+    lateinit var listener: EventsMainFragment.eventOnClickListener
+
+
+    fun setEventClickListener(listener:eventOnClickListener){
+        this.listener = listener
+    }
+
+    interface eventOnClickListener{
+        fun onEventClick()
+    }
 }

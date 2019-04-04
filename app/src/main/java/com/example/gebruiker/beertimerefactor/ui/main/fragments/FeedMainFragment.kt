@@ -7,16 +7,32 @@ import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.R
 import dagger.android.support.DaggerFragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.example.gebruiker.beertimerefactor.model.Coordinate
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.User
+import com.example.gebruiker.beertimerefactor.ui.event.EventDescriptionActivity
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.viewholder.HorizontalRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_feed_main.*
 import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import java.util.ArrayList
+import android.content.Intent
+import com.google.gson.Gson
 
+class FeedMainFragment : DaggerFragment(), HorizontalRecyclerAdapter.ItemOnClickListener {
 
-class FeedMainFragment : DaggerFragment() {
+    override fun onItemClick(event: Event) {
+
+        val intent = EventDescriptionActivity.createEventDescriptionActivity(activity!!.baseContext)
+
+        val gson = Gson()
+        val jsonEvent :String = gson.toJson(event)
+
+        intent.putExtra(EventDescriptionActivity.EVENT_EXTRA,jsonEvent)
+        startActivity(intent)
+
+    }
+
     companion object {
         fun newInstance(): FeedMainFragment = FeedMainFragment()
     }
@@ -29,6 +45,8 @@ class FeedMainFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = HorizontalRecyclerAdapter()
+
+        adapter.onItemOnClickListener = this
 
         val user1 = User()
 

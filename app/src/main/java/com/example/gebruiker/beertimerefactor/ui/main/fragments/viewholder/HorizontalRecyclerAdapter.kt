@@ -5,12 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.model.Event
 import android.view.LayoutInflater
+import android.widget.AdapterView
 import com.example.gebruiker.beertimerefactor.R
 import kotlinx.android.synthetic.main.horizontal_recycler_view_item.view.*
 
 class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter.ViewHolder>() {
 
     private lateinit var items: ArrayList<Event>
+
+     lateinit var onItemOnClickListener: ItemOnClickListener
+
+    interface ItemOnClickListener{
+        fun onItemClick(event : Event)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalRecyclerAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.horizontal_recycler_view_item, parent, false)
@@ -23,8 +30,9 @@ class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter
 
     override fun onBindViewHolder(holder: HorizontalRecyclerAdapter.ViewHolder, position: Int) {
 
-        val event: Event = items[position] as Event
+        val event: Event = items[position]
         holder.bind(event)
+        holder.itemView.setOnClickListener{onItemOnClickListener.onItemClick(items[position])}
 
     }
 

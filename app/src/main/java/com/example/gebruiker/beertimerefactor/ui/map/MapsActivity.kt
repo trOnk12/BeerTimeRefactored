@@ -25,7 +25,6 @@ import com.google.android.gms.maps.model.*
 
 
 class MapsActivity : DaggerAppCompatActivity(), OnMapReadyCallback,MapsView, GoogleMap.OnInfoWindowClickListener {
-
     companion object {
         fun createMapActivity(context: Context): Intent {
             return Intent(context, MapsActivity::class.java)
