@@ -1,6 +1,7 @@
 package com.example.gebruiker.beertimerefactor.ui.main.di
 
 import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
 import dagger.Module
 import dagger.Provides
 
@@ -9,7 +10,7 @@ import dagger.Provides
 class MainActivityModule {
 
     @Provides
-    fun provideMainActivityPresenter(sharedPreferencesRepository: SharedPreferencesRepository) : MainActivityPresenter{
-        return MainActivityPresenter(sharedPreferencesRepository)
+    fun provideMainActivityPresenter(userRepository: UserRepository) : MainActivityPresenter{
+        return MainActivityPresenter(userRepository)
     }
 }

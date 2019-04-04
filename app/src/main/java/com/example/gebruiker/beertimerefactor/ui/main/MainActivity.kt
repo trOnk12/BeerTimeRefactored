@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.example.gebruiker.beertimerefactor.BaseActivity
+import com.example.gebruiker.beertimerefactor.BaseToolBarActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.User
 import com.example.gebruiker.beertimerefactor.ui.custom.CustomChatIcon
@@ -21,8 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_toolbar_.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClickListener, BottomNavigationView.OnNavigationItemSelectedListener, EventsMainFragment.eventOnClickListener {
-
+class MainActivity : BaseToolBarActivity(), MainActivityView, CustomChatIcon.OnChatClickListener, BottomNavigationView.OnNavigationItemSelectedListener, EventsMainFragment.eventOnClickListener {
     companion object {
         fun createMainActivity(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
@@ -35,22 +35,16 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        init()
+        mainActivityPresenter.attachView(this)
+
+        setListeners()
 
         mainActivityPresenter.getUserAndDisplay()
     }
 
-    private fun init() {
-        setUpToolbar()
-        mainActivityPresenter.attachView(this)
-
+    private fun setListeners() {
         custom_chat.setOnChatClickListener(this)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-    }
-
-    private fun setUpToolbar() {
-        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
     }
 
     override fun displayUser(user: User) {
@@ -58,8 +52,11 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
     }
 
     override fun onChatClick() {
-        val intent = Intent(this, DialogsActivity::class.java)
-        startActivity(intent)
+        startDialogsActivity()
+    }
+
+    private fun startDialogsActivity() {
+        startActivity(DialogsActivity.createDialogsActivityIntent(this))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -86,17 +83,13 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
     }
 
     override fun onEventClick() {
+        showEventFragment()
+    }
 
-        val newFragment = EventDescriptionFragment()
-        val transaction = supportFragmentManager.beginTransaction()
+    private fun showEventFragment() {
+        val eventDescriptionFragment = EventDescriptionFragment()
 
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack if needed
-        transaction.replace(R.id.fragment_container, newFragment)
-        transaction.addToBackStack(null)
-
-// Commit the transaction
-        transaction.commit()
+        openFragment(eventDescriptionFragment)
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.gebruiker.beertimerefactor.ui.dialogs
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
@@ -16,6 +18,11 @@ import java.util.*
 
 
 class DialogsActivity : BaseActivity(), DialogsView {
+    companion object {
+        fun createDialogsActivityIntent(context: Context): Intent{
+            return  Intent(context, DialogsActivity::class.java)
+        }
+    }
 
     @Inject
     lateinit var presenter: DialogsActivityPresenter
