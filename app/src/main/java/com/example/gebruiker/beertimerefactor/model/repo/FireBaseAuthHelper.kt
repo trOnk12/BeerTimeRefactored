@@ -54,7 +54,7 @@ class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var sharedPreferencesRe
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        sharedPreferencesRepository.userLoggedIn(user!!)
+                        sharedPreferencesRepository.putUser(user!!)
 
                         callback.success()
                     }

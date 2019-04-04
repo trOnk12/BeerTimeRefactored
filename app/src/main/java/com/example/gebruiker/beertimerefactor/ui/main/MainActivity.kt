@@ -29,7 +29,6 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
         }
     }
 
-
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
 
@@ -43,7 +42,6 @@ class MainActivity : BaseActivity(), MainActivityView, CustomChatIcon.OnChatClic
 
     private fun init() {
         setUpToolbar()
-
         mainActivityPresenter.attachView(this)
 
         custom_chat.setOnChatClickListener(this)

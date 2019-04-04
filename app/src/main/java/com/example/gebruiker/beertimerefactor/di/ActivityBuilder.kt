@@ -1,6 +1,6 @@
 package com.example.gebruiker.beertimerefactor.di
 
-import com.example.gebruiker.beertimerefactor.ui.SplashActivity
+import com.example.gebruiker.beertimerefactor.ui.splash.SplashActivity
 import com.example.gebruiker.beertimerefactor.ui.chat.ChatActivity
 import com.example.gebruiker.beertimerefactor.ui.chat.di.ChatActivityModule
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
@@ -16,13 +16,14 @@ import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
 import com.example.gebruiker.beertimerefactor.ui.map.di.MapModule
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
 import com.example.gebruiker.beertimerefactor.ui.register.di.RegisterModule
+import com.example.gebruiker.beertimerefactor.ui.splash.di.SplashActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     abstract fun bindSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector(modules = [MapModule::class])

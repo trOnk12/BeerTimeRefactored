@@ -5,6 +5,7 @@ import com.example.gebruiker.beertimerefactor.MyApp
 import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
 import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
 import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -35,6 +36,12 @@ class AppModule {
     @Provides
     fun provideFireBaseRepo(sharedPreferencesRepository: SharedPreferencesRepository): FirebaseRepo {
         return FirebaseRepo(sharedPreferencesRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo): UserRepository {
+        return UserRepository(firebaseRepo,sharedPreferencesRepository)
     }
 
 }

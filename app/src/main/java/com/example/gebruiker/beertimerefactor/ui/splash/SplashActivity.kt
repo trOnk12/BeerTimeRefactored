@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.ui
+package com.example.gebruiker.beertimerefactor.ui.splash
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -9,30 +9,32 @@ import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity(), SplashActivityView {
 
     @Inject
-    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
+    lateinit var splashActivityPresenter: SplashActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        checkIfLogin()
+        splashActivityPresenter.attachView(this)
+
+        splashActivityPresenter.getUserFromCache()
         finish()
     }
 
-    private fun checkIfLogin() {
 
-        if(sharedPreferencesRepository.isUserLoggedIn())
-            launchMainActivity()
-        else{
-            launchLoginActivity()
-        }
-
+    override fun showLoginActivity() {
+        launchLoginActivity()
     }
 
+    override fun showMainActivity() {
+        launchMainActivity()
+    }
+
+
     private fun launchMainActivity() {
-       startActivity(MainActivity.createMainActivity(this))
+        startActivity(MainActivity.createMainActivity(this))
     }
 
     private fun launchLoginActivity() {
