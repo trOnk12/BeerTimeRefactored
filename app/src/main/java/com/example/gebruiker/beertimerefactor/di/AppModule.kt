@@ -14,14 +14,14 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreferencesRepository(context: Context) : SharedPreferencesRepository {
+    fun provideSharedPreferencesRepository(context: Context): SharedPreferencesRepository {
         return SharedPreferencesRepository(context)
     }
 
     @Singleton
     @Provides
-    fun provideFireBaseAuthHelper(firebaseRepo: FirebaseRepo,sharedPreferencesRepository: SharedPreferencesRepository) : FireBaseAuthHelper {
-        return FireBaseAuthHelper(firebaseRepo,sharedPreferencesRepository)
+    fun provideFireBaseAuthHelper(firebaseRepo: FirebaseRepo, sharedPreferencesRepository: SharedPreferencesRepository): FireBaseAuthHelper {
+        return FireBaseAuthHelper(firebaseRepo, sharedPreferencesRepository)
     }
 
     @Singleton
@@ -41,20 +41,20 @@ class AppModule {
     @Singleton
     @Provides
     fun provideValidationTool(): AwesomeValidation {
-        return  AwesomeValidation(ValidationStyle.BASIC)
+        return AwesomeValidation(ValidationStyle.BASIC)
     }
 
     @Singleton
     @Provides
-    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo,validationTool:AwesomeValidation): UserRepository {
-        return UserRepository(firebaseRepo,sharedPreferencesRepository,validationTool)
+    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository, firebaseRepo: FirebaseRepo): UserRepository {
+        return UserRepository(firebaseRepo, sharedPreferencesRepository)
     }
 
 
     @Singleton
     @Provides
-    fun provideDialogsRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo): DialogRepository {
-        return DialogRepository(sharedPreferencesRepository,firebaseRepo)
+    fun provideDialogsRepository(sharedPreferencesRepository: SharedPreferencesRepository, firebaseRepo: FirebaseRepo): DialogRepository {
+        return DialogRepository(sharedPreferencesRepository, firebaseRepo)
     }
 
 }

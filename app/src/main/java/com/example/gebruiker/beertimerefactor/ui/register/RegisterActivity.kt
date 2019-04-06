@@ -7,6 +7,7 @@ import android.util.Patterns
 import android.view.View
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
+import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
@@ -23,21 +24,12 @@ class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        presenter.attachView(this)
 
-        setUpValidator()
-        setUpListeners()
-    }
-
-    private fun setUpListeners() {
         register_button.setOnClickListener(this)
-    }
 
+        presenter.attachView(this)
+        presenter.setUpValidationTool(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
-    private fun setUpValidator() {
-        presenter.getValidator().addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
-    //    presenter.getValidator().addValidation(this, R.id.password_et, regexPassword, R.string.err_password)
-     //   presenter.getValidator().addValidation(this, R.id.password_et, R.id.repeat_password_et, R.string.err_password_confirmation);
     }
 
     override fun onClick(p0: View) {
@@ -47,7 +39,6 @@ class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
             R.id.login_clickable_text -> openLoginActivity()
         }
     }
-
 
     override fun registerFailure() {
         showToast("Register failure !")
@@ -60,7 +51,8 @@ class RegisterActivity : BaseActivity(), RegisterView, View.OnClickListener {
 
 
     private fun openLoginActivity() {
-        startActivity(RegisterActivity.createRegisterActivity(this))
+        startActivity(LoginActivity.createLoginActivity(this))
+        finish()
     }
 
 }

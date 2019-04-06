@@ -34,5 +34,8 @@ class UserRepository(var fireBaseRepo: FirebaseRepo, var sharedPreferencesReposi
         fireBaseRepo.loginUser(email,password,listener)
     }
 
+    fun register(email: String, password: String,listener:FireBaseAuthHelper.CallBackListener) {
+        fireBaseRepo.registerUser(email,password,listener)
+    }
 
 }
