@@ -1,7 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.main.di
 
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
-import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
 import dagger.Module
 import dagger.Provides
 

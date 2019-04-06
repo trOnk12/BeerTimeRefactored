@@ -6,15 +6,12 @@ import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.Dialog
-import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
 import com.example.gebruiker.beertimerefactor.ui.chat.ChatActivity
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter
 import javax.inject.Inject
 
 import com.stfalcon.chatkit.commons.ImageLoader
 import kotlinx.android.synthetic.main.activity_messages.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 

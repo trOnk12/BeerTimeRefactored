@@ -1,8 +1,9 @@
-package com.example.gebruiker.beertimerefactor.model.repo
+package com.example.gebruiker.beertimerefactor.model.firebase
 
 import com.google.firebase.auth.FirebaseAuth
 import android.util.Log
 import com.example.gebruiker.beertimerefactor.model.User
+import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

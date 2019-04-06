@@ -2,8 +2,8 @@ package com.example.gebruiker.beertimerefactor.ui.chat
 
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.Message
-import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
+import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

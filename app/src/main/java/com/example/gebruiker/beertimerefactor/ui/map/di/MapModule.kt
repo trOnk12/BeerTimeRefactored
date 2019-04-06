@@ -1,8 +1,7 @@
 package com.example.gebruiker.beertimerefactor.ui.map.di
 
-import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.ui.login.LoginPresenter
+import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
+import com.example.gebruiker.beertimerefactor.model.repo.remote.EventsRepository
 import com.example.gebruiker.beertimerefactor.ui.map.MapsPresenter
 import dagger.Module
 import dagger.Provides
@@ -11,8 +10,8 @@ import dagger.Provides
 class MapModule {
 
     @Provides
-    fun providePresenter(firebaseRepo: FirebaseRepo) : MapsPresenter {
-        return MapsPresenter(firebaseRepo)
+    fun providePresenter(eventsRepository: EventsRepository) : MapsPresenter {
+        return MapsPresenter(eventsRepository)
     }
 
 }

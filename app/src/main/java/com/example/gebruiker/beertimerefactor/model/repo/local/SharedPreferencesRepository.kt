@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.model.repo
+package com.example.gebruiker.beertimerefactor.model.repo.local
 
 import android.content.Context
 import com.example.gebruiker.beertimerefactor.R

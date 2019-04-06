@@ -1,8 +1,7 @@
 package com.example.gebruiker.beertimerefactor.ui.splash
 
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
-import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
 
 class SplashActivityPresenter(var userRepository: UserRepository): BasePresenter<SplashActivityView>() {
 

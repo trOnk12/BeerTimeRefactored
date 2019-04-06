@@ -1,10 +1,11 @@
-package com.example.gebruiker.beertimerefactor.model.repo
+package com.example.gebruiker.beertimerefactor.model.firebase
 
 import android.util.Log
 import com.example.gebruiker.beertimerefactor.model.Dialog
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.User
+import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

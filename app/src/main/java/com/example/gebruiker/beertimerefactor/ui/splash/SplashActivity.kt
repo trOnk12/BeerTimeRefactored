@@ -1,12 +1,9 @@
 package com.example.gebruiker.beertimerefactor.ui.splash
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.example.gebruiker.beertimerefactor.BaseActivity
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashActivityView {

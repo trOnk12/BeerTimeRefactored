@@ -1,6 +1,8 @@
 package com.example.gebruiker.beertimerefactor.ui.register.di
 
-import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
+import com.basgeekball.awesomevalidation.AwesomeValidation
+import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterPresenter
 import dagger.Module
 import dagger.Provides
@@ -9,8 +11,8 @@ import dagger.Provides
 class RegisterModule {
 
     @Provides
-    fun provideRegisterPresenter(fireBaseAuthHelper: FireBaseAuthHelper) : RegisterPresenter{
-        return RegisterPresenter(fireBaseAuthHelper)
+    fun provideRegisterPresenter(userRepository: UserRepository,validation: AwesomeValidation) : RegisterPresenter{
+        return RegisterPresenter(userRepository,validation)
     }
 
 }

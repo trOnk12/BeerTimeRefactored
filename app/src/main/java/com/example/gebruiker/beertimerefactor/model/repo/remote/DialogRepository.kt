@@ -1,11 +1,13 @@
-package com.example.gebruiker.beertimerefactor.model.repo
+package com.example.gebruiker.beertimerefactor.model.repo.remote
 
 import com.example.gebruiker.beertimerefactor.model.Dialog
+import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
+import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class DialogRepository(var sharedPreferencesRepository: SharedPreferencesRepository,var firebaseRepo: FirebaseRepo) {
+class DialogRepository(var sharedPreferencesRepository: SharedPreferencesRepository, var firebaseRepo: FirebaseRepo) {
 
 
     fun getUsersDialogs():ArrayList<Dialog>{

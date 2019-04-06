@@ -4,7 +4,12 @@ import android.content.Context
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.MyApp
-import com.example.gebruiker.beertimerefactor.model.repo.*
+import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
+import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.repo.remote.DialogRepository
+import com.example.gebruiker.beertimerefactor.model.repo.remote.EventsRepository
+import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -55,6 +60,13 @@ class AppModule {
     @Provides
     fun provideDialogsRepository(sharedPreferencesRepository: SharedPreferencesRepository, firebaseRepo: FirebaseRepo): DialogRepository {
         return DialogRepository(sharedPreferencesRepository, firebaseRepo)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideEventsRepository(firebaseRepo: FirebaseRepo): EventsRepository {
+        return EventsRepository(firebaseRepo)
     }
 
 }

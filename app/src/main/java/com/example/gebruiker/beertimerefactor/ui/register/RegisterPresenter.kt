@@ -2,11 +2,9 @@ package com.example.gebruiker.beertimerefactor.ui.register
 
 import android.app.Activity
 import com.basgeekball.awesomevalidation.AwesomeValidation
-import com.basgeekball.awesomevalidation.ValidationStyle
-import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
 import java.util.regex.Pattern
 
 class RegisterPresenter(var userRepository: UserRepository, var validationTool: AwesomeValidation) : BasePresenter<RegisterView>() {

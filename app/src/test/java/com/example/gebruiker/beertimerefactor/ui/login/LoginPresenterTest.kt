@@ -1,6 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.login
 
-import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
 import org.junit.Assert
 import org.junit.Test
 
