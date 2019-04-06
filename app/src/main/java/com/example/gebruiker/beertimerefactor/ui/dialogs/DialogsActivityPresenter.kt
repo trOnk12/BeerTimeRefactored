@@ -4,36 +4,17 @@ import com.example.gebruiker.beertimerefactor.R.id.dialogsList
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.Dialog
 import com.example.gebruiker.beertimerefactor.model.Message
+import com.example.gebruiker.beertimerefactor.model.repo.DialogRepository
 import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
 import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class DialogsActivityPresenter(var sharedPreferencesRepository: SharedPreferencesRepository, var firebaseRepo: FirebaseRepo) : BasePresenter<DialogsView>() {
+class DialogsActivityPresenter(var dialogsRepository: DialogRepository) : BasePresenter<DialogsView>() {
 
-    fun getDialogsForUser() {
-
-        val dialogsList: ArrayList<Dialog> = ArrayList()
-        val dialogsID = sharedPreferencesRepository.getUser()!!.dialogs
-
-        for (dialogID in dialogsID) {
-
-            firebaseRepo.getDialogs(dialogID, object : ValueEventListener {
-
-                override fun onCancelled(p0: DatabaseError) {
-
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    val dialog = p0.getValue(Dialog::class.java)
-                    dialogsList.add(dialog!!)
-                    getView().displayViews(dialogsList)
-                }
-
-            })
-
-        }
+    fun getUsersDialogs() {
+        getView().displayDialogs(dialogsRepository.getUsersDialogs())
     }
 
 }

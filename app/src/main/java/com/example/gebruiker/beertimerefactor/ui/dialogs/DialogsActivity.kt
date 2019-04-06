@@ -15,6 +15,7 @@ import javax.inject.Inject
 import com.stfalcon.chatkit.commons.ImageLoader
 import kotlinx.android.synthetic.main.activity_messages.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DialogsActivity : BaseActivity(), DialogsView {
@@ -27,55 +28,31 @@ class DialogsActivity : BaseActivity(), DialogsView {
     @Inject
     lateinit var presenter: DialogsActivityPresenter
 
-    @Inject
-    lateinit var  firebaseRepo: FirebaseRepo
-
-    @Inject
-    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
-
-    lateinit var dialogsAdapterr: DialogsListAdapter<Dialog>
+    private lateinit var dialogsAdapterr: DialogsListAdapter<Dialog>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messages)
-        init()
 
-        presenter.getDialogsForUser()
+        setUpDialogsAdapter()
+        setUpPresenter()
 
     }
 
-    private fun init() {
+    private fun setUpPresenter() {
         presenter.attachView(this)
+        presenter.getUsersDialogs()
+    }
 
-        dialogsAdapterr = DialogsListAdapter(ImageLoader { imageView, url, payload -> })
-
+    private fun setUpDialogsAdapter() {
+        dialogsAdapterr = DialogsListAdapter(ImageLoader { _, _, _ -> })
         dialogsAdapterr.setOnDialogClickListener {
-
-//            val message = Message()
-//            val user = User()
-//            user.id= sharedPreferencesRepository.getUser()!!.id
-//            user.name = "trOnk12"
-//            user.avatar= "null"
-//
-//            message.setUser(user)
-//
-//            val date = Date()
-//            date.time = System.currentTimeMillis()
-//            message.setCreaedAt(date)
-//            message.text = "DUPA JASIA TEST"
-//            message.id = firebaseRepo.fireBaseDataBase.reference.push().key
-//
-//
-//            firebaseRepo.addMessage(it.id,message)
-          //  presenter.openDialogMessages(it.id)
-
             openChatActivity(it.id)
         }
-
     }
 
-    override fun displayViews(list: ArrayList<Dialog>) {
-        dialogsAdapterr.setItems(list)
+    override fun displayDialogs(usersDialogs: ArrayList<Dialog>) {
+        dialogsAdapterr.setItems(usersDialogs)
         dialogsList.setAdapter(dialogsAdapterr)
     }
 
@@ -85,6 +62,5 @@ class DialogsActivity : BaseActivity(), DialogsView {
 
         startActivity(intent)
     }
-
 
 }

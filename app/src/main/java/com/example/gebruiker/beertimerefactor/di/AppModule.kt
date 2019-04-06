@@ -2,10 +2,7 @@ package com.example.gebruiker.beertimerefactor.di
 
 import android.content.Context
 import com.example.gebruiker.beertimerefactor.MyApp
-import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
-import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import com.example.gebruiker.beertimerefactor.model.repo.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -42,6 +39,13 @@ class AppModule {
     @Provides
     fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo): UserRepository {
         return UserRepository(firebaseRepo,sharedPreferencesRepository)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideDialogsRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo): DialogRepository {
+        return DialogRepository(sharedPreferencesRepository,firebaseRepo)
     }
 
 }

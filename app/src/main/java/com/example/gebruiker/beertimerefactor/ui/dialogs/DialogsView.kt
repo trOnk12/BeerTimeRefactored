@@ -5,5 +5,5 @@ import com.example.gebruiker.beertimerefactor.model.Dialog
 import com.example.gebruiker.beertimerefactor.model.Message
 
 interface DialogsView : BaseView {
-    fun displayViews(list: ArrayList<Dialog>)
+    fun displayDialogs(usersDialogs: ArrayList<Dialog>)
 }
