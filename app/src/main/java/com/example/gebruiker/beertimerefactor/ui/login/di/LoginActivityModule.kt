@@ -1,6 +1,8 @@
 package com.example.gebruiker.beertimerefactor.ui.login.di
 
+import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
 import com.example.gebruiker.beertimerefactor.ui.login.LoginPresenter
 import dagger.Module
 import dagger.Provides
@@ -9,8 +11,8 @@ import dagger.Provides
 class LoginActivityModule {
 
     @Provides
-    fun providePresenter(fireBaseAuthHelper: FireBaseAuthHelper) : LoginPresenter {
-        return LoginPresenter(fireBaseAuthHelper)
+    fun providePresenter(userRepository: UserRepository,validationTool:AwesomeValidation) : LoginPresenter {
+        return LoginPresenter(userRepository,validationTool)
     }
 
 }

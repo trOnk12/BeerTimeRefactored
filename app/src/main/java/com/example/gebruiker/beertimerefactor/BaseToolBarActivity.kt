@@ -6,11 +6,10 @@ import dagger.android.support.DaggerAppCompatActivity
 
 open class BaseToolBarActivity: DaggerAppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         setUpToolbar()
     }
-
 
     private fun setUpToolbar() {
         setSupportActionBar(findViewById(R.id.toolbar))

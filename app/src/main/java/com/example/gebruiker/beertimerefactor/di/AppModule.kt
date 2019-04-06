@@ -1,6 +1,8 @@
 package com.example.gebruiker.beertimerefactor.di
 
 import android.content.Context
+import com.basgeekball.awesomevalidation.AwesomeValidation
+import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.MyApp
 import com.example.gebruiker.beertimerefactor.model.repo.*
 import dagger.Module
@@ -35,10 +37,17 @@ class AppModule {
         return FirebaseRepo(sharedPreferencesRepository)
     }
 
+
     @Singleton
     @Provides
-    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo): UserRepository {
-        return UserRepository(firebaseRepo,sharedPreferencesRepository)
+    fun provideValidationTool(): AwesomeValidation {
+        return  AwesomeValidation(ValidationStyle.BASIC)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository,firebaseRepo: FirebaseRepo,validationTool:AwesomeValidation): UserRepository {
+        return UserRepository(firebaseRepo,sharedPreferencesRepository,validationTool)
     }
 
 

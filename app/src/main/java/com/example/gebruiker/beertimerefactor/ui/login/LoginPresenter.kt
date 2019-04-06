@@ -1,45 +1,33 @@
 package com.example.gebruiker.beertimerefactor.ui.login
 
+import android.app.Activity
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.repo.FireBaseAuthHelper
+import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import java.util.regex.Pattern
 
-class LoginPresenter(private var fireBaseAuthHelper: FireBaseAuthHelper) : BasePresenter<LoginActivityView>() {
+class LoginPresenter(private var userRepository: UserRepository, var validationTool: AwesomeValidation) : BasePresenter<LoginActivityView>() {
 
-    private var mAwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
-
-    private var UserLoggedIn: Boolean? = null
-
-    fun loggedIn(): Boolean? {
-        return UserLoggedIn
+    fun setUpValidationTool(loginActivity: Activity, nickname_input: Int, emaiL_ADDRESS: Pattern?, err_email: Int) {
+        validationTool.addValidation(loginActivity, nickname_input, emaiL_ADDRESS, err_email)
     }
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String) {
 
-        if (validateCredentials()) {
-            fireBaseAuthHelper.loginUser(email, password, object : FireBaseAuthHelper.CallBackListener {
-
+        if (validationTool.validate())
+            userRepository.loginUser(email, password, object : FireBaseAuthHelper.CallBackListener {
                 override fun success() {
-                    UserLoggedIn = true
                     getView().loginSuccessFull()
                 }
 
                 override fun error() {
-                    UserLoggedIn = false
                     getView().loginFailure()
                 }
+
             })
-        }
     }
 
-
-    fun getValidator(): AwesomeValidation {
-        return mAwesomeValidation
-    }
-
-    private fun validateCredentials(): Boolean {
-        return mAwesomeValidation.validate()
-    }
 
 }

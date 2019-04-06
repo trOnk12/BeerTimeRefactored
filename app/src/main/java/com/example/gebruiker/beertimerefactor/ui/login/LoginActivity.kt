@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import com.basgeekball.awesomevalidation.AwesomeValidation
+import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
@@ -13,11 +15,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(), View.OnClickListener, LoginActivityView {
-companion object {
-    fun createLoginActivity(context: Context): Intent {
-        return Intent(context, LoginActivity::class.java)
+    companion object {
+        fun createLoginActivity(context: Context): Intent {
+            return Intent(context, LoginActivity::class.java)
+        }
     }
-}
 
     @Inject
     lateinit var presenter: LoginPresenter
@@ -26,21 +28,12 @@ companion object {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setUpValidator()
-        setUpListeners()
-
-        presenter.attachView(this)
-
-    }
-
-    private fun setUpListeners() {
         login_button.setOnClickListener(this)
         login_clickable_text.setOnClickListener(this)
-    }
 
-    private fun setUpValidator() {
-        presenter.getValidator().addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
-       // presenter.getValidator().addValidation(this, R.id.password_input, regexPassword, R.string.err_password)
+        presenter.attachView(this)
+        presenter.setUpValidationTool(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
+
     }
 
     override fun onClick(view: View) {
@@ -53,16 +46,16 @@ companion object {
 
     private fun openRegisterActivity() {
         startActivity(RegisterActivity.createRegisterActivity(this))
+        finish()
     }
 
     private fun openMainActivity() {
         startActivity(MainActivity.createMainActivity(this))
+        finish()
     }
 
     override fun loginSuccessFull() {
         openMainActivity()
-        showToast("Login successfull")
-
     }
 
     override fun loginFailure() {

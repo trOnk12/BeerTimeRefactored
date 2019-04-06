@@ -1,21 +1,21 @@
 package com.example.gebruiker.beertimerefactor.ui.main.di
 
-import android.util.Log
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.repo.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.User
+import com.example.gebruiker.beertimerefactor.model.repo.FirebaseRepo
 import com.example.gebruiker.beertimerefactor.model.repo.UserRepository
+import com.google.firebase.database.DataSnapshot
 
 class MainActivityPresenter(var userRepository: UserRepository)  : BasePresenter<MainActivityView>() {
 
     fun getUserAndDisplay() {
-        val user = userRepository.getUser()
+       userRepository.getUser(object : FirebaseRepo.DataSnapShotListener  {
+            override fun onDatSnapShotReceived(dataSnapShot: DataSnapshot) {
+               val user = dataSnapShot.getValue(User::class.java)
+                getView().displayUser(user!!)
+            }
 
-        if(user!=null){
-            getView().displayUser(user)
-        }
-        else{
-           throw Exception("No user existing")
-        }
+        })
     }
 
 }
