@@ -6,10 +6,10 @@ import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.MyApp
 import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
 import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
-import com.example.gebruiker.beertimerefactor.model.repo.remote.DialogRepository
-import com.example.gebruiker.beertimerefactor.model.repo.remote.EventsRepository
-import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
+import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSource
+import com.example.gebruiker.beertimerefactor.model.source.remote.DialogRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.EventsRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.UserRemoteSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,14 +19,14 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreferencesRepository(context: Context): SharedPreferencesRepository {
-        return SharedPreferencesRepository(context)
+    fun provideSharedPreferencesRepository(context: Context): UserCachedSource {
+        return UserCachedSource(context)
     }
 
     @Singleton
     @Provides
-    fun provideFireBaseAuthHelper(firebaseRepo: FirebaseRepo, sharedPreferencesRepository: SharedPreferencesRepository): FireBaseAuthHelper {
-        return FireBaseAuthHelper(firebaseRepo, sharedPreferencesRepository)
+    fun provideFireBaseAuthHelper(firebaseRepo: FirebaseRepo, userCachedSource: UserCachedSource): FireBaseAuthHelper {
+        return FireBaseAuthHelper(firebaseRepo, userCachedSource)
     }
 
     @Singleton
@@ -38,8 +38,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFireBaseRepo(sharedPreferencesRepository: SharedPreferencesRepository): FirebaseRepo {
-        return FirebaseRepo(sharedPreferencesRepository)
+    fun provideFireBaseRepo(userCachedSource: UserCachedSource): FirebaseRepo {
+        return FirebaseRepo(userCachedSource)
     }
 
 
@@ -51,15 +51,15 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(sharedPreferencesRepository: SharedPreferencesRepository, firebaseRepo: FirebaseRepo): UserRepository {
-        return UserRepository(firebaseRepo, sharedPreferencesRepository)
+    fun provideUserRepository(userCachedSource: UserCachedSource, firebaseRepo: FirebaseRepo): UserRemoteSource {
+        return UserRemoteSource(firebaseRepo, userCachedSource)
     }
 
 
     @Singleton
     @Provides
-    fun provideDialogsRepository(sharedPreferencesRepository: SharedPreferencesRepository, firebaseRepo: FirebaseRepo): DialogRepository {
-        return DialogRepository(sharedPreferencesRepository, firebaseRepo)
+    fun provideDialogsRepository(userCachedSource: UserCachedSource, firebaseRepo: FirebaseRepo): DialogRepository {
+        return DialogRepository(userCachedSource, firebaseRepo)
     }
 
 

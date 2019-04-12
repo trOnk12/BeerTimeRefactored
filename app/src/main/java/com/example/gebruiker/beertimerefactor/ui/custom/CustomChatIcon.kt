@@ -18,7 +18,7 @@ class CustomChatIcon(context : Context, attrs: AttributeSet) : ConstraintLayout(
     var isAnimate : Boolean = false
     var view : View = inflate(context, R.layout.chat_icon, this)
 
-    interface OnChatClickListener {
+    public interface OnChatClickListener {
         fun onChatClick()
     }
 

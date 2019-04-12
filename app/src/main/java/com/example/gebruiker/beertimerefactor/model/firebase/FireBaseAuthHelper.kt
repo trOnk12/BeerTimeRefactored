@@ -3,13 +3,13 @@ package com.example.gebruiker.beertimerefactor.model.firebase
 import com.google.firebase.auth.FirebaseAuth
 import android.util.Log
 import com.example.gebruiker.beertimerefactor.model.User
-import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 
-class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var sharedPreferencesRepository: SharedPreferencesRepository) {
+class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var userCachedSource: UserCachedSource) {
 
     interface CallBackListener {
         fun success()
@@ -55,7 +55,7 @@ class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var sharedPreferencesRe
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        sharedPreferencesRepository.putUser(user!!)
+                        userCachedSource.putUser(user!!)
 
                         callback.success()
                     }

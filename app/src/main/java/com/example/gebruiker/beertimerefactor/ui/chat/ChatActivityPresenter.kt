@@ -3,13 +3,13 @@ package com.example.gebruiker.beertimerefactor.ui.chat
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import java.util.*
 
-class ChatActivityPresenter(var sharedPreferencesRepository: SharedPreferencesRepository, var firebaseRepo: FirebaseRepo) : BasePresenter<ChatAcitivtyView>() {
+class ChatActivityPresenter(var userCachedSource: UserCachedSource, var firebaseRepo: FirebaseRepo) : BasePresenter<ChatAcitivtyView>() {
 
 
     fun getChatHistory(dialogID: String?) {
@@ -38,7 +38,7 @@ class ChatActivityPresenter(var sharedPreferencesRepository: SharedPreferencesRe
     fun addMessage(input: CharSequence?, dialogID: String) {
         val message = Message()
 
-        message.setUser(sharedPreferencesRepository.getUser())
+        message.setUser(userCachedSource.getUser())
         message.id = firebaseRepo.fireBaseDataBase.reference.push().key
         message.text = input.toString()
 

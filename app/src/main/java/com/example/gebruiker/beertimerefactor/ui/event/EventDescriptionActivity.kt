@@ -13,14 +13,13 @@ import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import android.support.v7.widget.LinearLayoutManager
 
 
-
 class EventDescriptionActivity : DaggerAppCompatActivity() {
-    lateinit var event:Event
-
     companion object {
         var EVENT_EXTRA = "EVENT"
-        fun createEventDescriptionActivity(context: Context): Intent {
-            return Intent(context, EventDescriptionActivity::class.java)
+        fun createEventDescriptionActivity(context: Context, event: Event?): Intent {
+            val intent = Intent(context, EventDescriptionActivity::class.java)
+            intent.putExtra(Gson().toJson(event), EVENT_EXTRA)
+            return intent
         }
     }
 
@@ -29,29 +28,24 @@ class EventDescriptionActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_event_description)
-        retrieveEventFromIntent()
+
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        patricipiants_item_holder.rv.layoutManager = linearLayoutManager
+        patricipiants_item_holder.rv.setHasFixedSize(true)
+
+        setView(retrieveEventFromIntent())
     }
 
-    private fun retrieveEventFromIntent() {
+    private fun retrieveEventFromIntent(): Event? {
         val jsonEvent = intent.getStringExtra(EventDescriptionActivity.EVENT_EXTRA)
-        event = Gson().fromJson(jsonEvent,Event::class.java)
-
-        setView(event)
+        return Gson().fromJson(jsonEvent, Event::class.java)
     }
 
     private fun setView(event: Event?) {
         event_title.text = event!!.name
 
         adapter.setItems(event.participants!!)
-
-        patricipiants_item_holder.rv.setHasFixedSize(true)
-
-        val linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        patricipiants_item_holder.rv.layoutManager=linearLayoutManager
-
         patricipiants_item_holder.rv.adapter = adapter
-
-        adapter.notifyDataSetChanged()
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,12 +12,63 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:background="@drawable/blue_rectangle_fill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:tint="@color/white"
+                android:src="@drawable/ic_beer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:background="@drawable/blue_rectangle_fill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:tint="@color/white"
+                android:src="@drawable/peacufyll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:background="@drawable/blue_rectangle_fill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:tint="@color/white"
+                android:src="@drawable/ic_beer_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ScrollView
+
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,10 +76,55 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navigation_panel">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-        <include
-            android:id="@+id/popular_events_rv"
-            layout="@layout/horizontal_recycyler_view" />
+            <LinearLayout
+                android:background="@drawable/blue_rectangle_fill"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+
+                android:id="@+id/upcoming_events_container"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popular_events_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <include
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/upcoming_events_rv"
+                layout="@layout/horizontal_recycyler_view"
+                android:layout_height="130dp"
+                android:layout_width="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/blue_rectangle_fill"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/popular_events_container"
+                app:layout_constraintBottom_toTopOf="@id/upcoming_events_container"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/popular_events_rv"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                layout="@layout/horizontal_recycyler_view"
+                android:layout_height="130dp"
+                android:layout_width="match_parent" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
 

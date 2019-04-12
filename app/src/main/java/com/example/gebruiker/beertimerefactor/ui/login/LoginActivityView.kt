@@ -5,6 +5,6 @@ import com.example.gebruiker.beertimerefactor.baseMVP.BaseView
 interface LoginActivityView : BaseView{
 
     fun loginSuccessFull()
-    fun loginFailure()
+    fun loginFailure(error:String)
 
 }

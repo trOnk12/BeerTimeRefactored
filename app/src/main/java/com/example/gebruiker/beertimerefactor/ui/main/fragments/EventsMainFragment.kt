@@ -1,15 +1,14 @@
 package com.example.gebruiker.beertimerefactor.ui.main.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.filter.FilterEventsActivity
 import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
-import dagger.android.support.DaggerAppCompatDialogFragment
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.custom_two_option_cards.view.*
 import kotlinx.android.synthetic.main.fragment_event_main.*
 
 class EventsMainFragment : DaggerFragment() {
@@ -23,40 +22,25 @@ class EventsMainFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initOptionsCard()
+        initializeView()
     }
 
-    private fun initOptionsCard() {
-
-        event_options.setOption1Listener(View.OnClickListener {
-            it.id = R.id.option_1
-
+    private fun initializeView() {
+        events_two_options.option1_body.setOnClickListener {
             val intent = MapsActivity.createMapActivity(activity!!.applicationContext)
-             startActivity(intent)
-        })
+            startActivity(intent)
+        }
 
-
-        event_options.setOption2Listener(View.OnClickListener {
+        events_two_options.option2_body.setOnClickListener {
             val intent = FilterEventsActivity.createFilterEventActivity(activity!!.applicationContext)
             startActivity(intent)
-        })
+        }
 
-        event_options.setOption1Title(getString(R.string.event_option1_title))
-        event_options.setOption1Body(getString(R.string.event_option1_body))
+        events_two_options.option1_title.text = getString(R.string.event_option1_title)
+        events_two_options.option1_body.text = getString(R.string.event_option1_body)
 
-        event_options.setOption2Title(getString(R.string.event_option2_title))
-        event_options.setOption2Body(getString(R.string.event_option2_body))
-
+        events_two_options.option2_title.text = getString(R.string.event_option2_title)
+        events_two_options.option2_body.text = getString(R.string.event_option2_body)
     }
 
-    lateinit var listener: EventsMainFragment.eventOnClickListener
-
-
-    fun setEventClickListener(listener:eventOnClickListener){
-        this.listener = listener
-    }
-
-    interface eventOnClickListener{
-        fun onEventClick()
-    }
 }

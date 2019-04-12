@@ -5,5 +5,4 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseFilterActivity : DaggerAppCompatActivity() {
 
-
 }

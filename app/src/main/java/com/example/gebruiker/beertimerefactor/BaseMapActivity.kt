@@ -28,9 +28,6 @@ abstract class BaseMapActivity: DaggerAppCompatActivity(), OnMapReadyCallback, M
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
-     override fun onInfoWindowClick(p0: Marker?) {
-
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

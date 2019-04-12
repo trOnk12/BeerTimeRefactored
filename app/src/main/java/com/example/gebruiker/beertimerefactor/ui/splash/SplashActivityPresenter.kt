@@ -1,16 +1,16 @@
 package com.example.gebruiker.beertimerefactor.ui.splash
 
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
+import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 
 class SplashActivityPresenter(var userRepository: UserRepository): BasePresenter<SplashActivityView>() {
 
-    fun getUserFromCache(){
-        if(userRepository.getUserCached() == null){
-            getView().showLoginActivity()
+    fun getUser(){
+        if(userRepository.getUser() == null){
+            getView().launchLoginActivity()
         }
         else{
-            getView().showMainActivity()
+            getView().launchMainActivity()
         }
     }
 

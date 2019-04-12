@@ -1,8 +1,8 @@
 package com.example.gebruiker.beertimerefactor
 
-import android.os.Bundle
+import android.content.Intent
 import android.widget.Toast
-import com.example.gebruiker.beertimerefactor.baseMVP.BaseView
+import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
@@ -11,5 +11,9 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         Toast.makeText(this, mMessage, Toast.LENGTH_SHORT).show()
     }
 
+    fun launchActivityWithFinish(intent: Intent){
+        launchActivityWithFinish(intent)
+        finish()
+    }
 
 }

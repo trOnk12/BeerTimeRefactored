@@ -5,7 +5,7 @@ import com.example.gebruiker.beertimerefactor.baseMVP.BaseView
 
 interface SplashActivityView:BaseView{
 
-    fun showLoginActivity()
-    fun showMainActivity()
+    fun launchLoginActivity()
+    fun launchMainActivity()
 
 }

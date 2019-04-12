@@ -23,48 +23,36 @@ class ChatActivity : DaggerAppCompatActivity(), ChatAcitivtyView {
         }
     }
 
-    lateinit var dialogID : String
+    lateinit var dialogID: String
 
     @Inject
     lateinit var presenter: ChatActivityPresenter
 
-    var chatHistory: ArrayList<Message> = ArrayList()
     lateinit var chatAdapter: MessagesListAdapter<Message>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        init()
 
-        retrieveDialogID()
-    }
-
-    private fun retrieveDialogID() {
-        dialogID = intent.getStringExtra(EXTRA_DIALOG_ID)
-        presenter.getChatHistory(dialogID)
-    }
-
-    private fun init() {
-        presenter.attachView(this)
         chatAdapter = MessagesListAdapter(senderId, ImageLoader { imageView, url, payload -> });
-
         input.setInputListener { input ->
-            presenter.addMessage(input,dialogID)
+            presenter.addMessage(input, dialogID)
             true
         }
-    }
 
+        messagesList.setAdapter(chatAdapter)
+
+        presenter.attachView(this)
+        presenter.getChatHistory(intent.getStringExtra(EXTRA_DIALOG_ID))
+    }
 
 
     override fun displayChatHistory(messageList: ArrayList<Message>) {
         chatAdapter.addToEnd(messageList, true)
-        messagesList.setAdapter(chatAdapter)
     }
 
     override fun displayNewMessage(message: Message) {
-        chatHistory.add(message)
-        chatAdapter.addToStart(message,true)
+        chatAdapter.addToStart(message, true)
     }
 
 

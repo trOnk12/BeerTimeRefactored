@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.model.repo.remote
+package com.example.gebruiker.beertimerefactor.model.source.remote
 
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo

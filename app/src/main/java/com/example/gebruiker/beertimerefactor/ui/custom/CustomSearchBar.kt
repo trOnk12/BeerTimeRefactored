@@ -20,17 +20,12 @@ class CustomSearchBar(context: Context, attrs: AttributeSet) : ConstraintLayout(
 
     val searchIcon: ImageView = findViewById(R.id.search_icon)
     val searchInput: TextInputLayout = findViewById(R.id.text_input)
-    private lateinit var googleService: GoogleService
 
     init {
-        //googleService = GoogleService(context)
-
         searchIcon.setOnClickListener {
             showSearchInput()
-//            googleService.getAutoComplete()
         }
     }
-
 
     private fun showSearchInput() {
 
@@ -98,12 +93,10 @@ class CustomSearchBar(context: Context, attrs: AttributeSet) : ConstraintLayout(
                                             }
                                         })
                             }
+
                         })
             }
-
         })
-
         widthAnimator.start()
-
     }
 }

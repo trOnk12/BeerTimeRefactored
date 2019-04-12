@@ -15,8 +15,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_filter_event.*
 
 class FilterEventsActivity : DaggerAppCompatActivity(), View.OnClickListener {
-
-
     companion object {
         fun createFilterEventActivity(context: Context): Intent {
             return Intent(context, FilterEventsActivity::class.java)
@@ -51,8 +49,8 @@ class FilterEventsActivity : DaggerAppCompatActivity(), View.OnClickListener {
     private fun switchButton(view: View?) {
         val button = view as CircleImageView
 
-        if (view.tag == "on") {
-            button.animate()
+        when (view.tag) {
+            "on" -> button.animate()
                     .alpha(1.0f)
                     .setDuration(200)
                     .setListener(object : AnimatorListenerAdapter() {
@@ -60,9 +58,7 @@ class FilterEventsActivity : DaggerAppCompatActivity(), View.OnClickListener {
                             button.tag = "off"
                         }
                     })
-
-        } else {
-            button.animate()
+            "off" -> button.animate()
                     .alpha(0.3f)
                     .setDuration(200)
                     .setListener(object : AnimatorListenerAdapter() {

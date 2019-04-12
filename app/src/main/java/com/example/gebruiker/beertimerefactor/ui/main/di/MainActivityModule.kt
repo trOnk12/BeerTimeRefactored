@@ -1,6 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.main.di
 
-import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.UserRemoteSource
 import dagger.Module
 import dagger.Provides
 
@@ -9,7 +9,7 @@ import dagger.Provides
 class MainActivityModule {
 
     @Provides
-    fun provideMainActivityPresenter(userRepository: UserRepository) : MainActivityPresenter{
-        return MainActivityPresenter(userRepository)
+    fun provideMainActivityPresenter(userRemoteSource: UserRemoteSource) : MainActivityPresenter{
+        return MainActivityPresenter(userRemoteSource)
     }
 }

@@ -13,10 +13,10 @@ class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter
 
     private lateinit var items: ArrayList<Event>
 
-     lateinit var onItemOnClickListener: ItemOnClickListener
+    lateinit var onItemOnClickListener: ItemOnClickListener
 
-    interface ItemOnClickListener{
-        fun onItemClick(event : Event)
+    interface ItemOnClickListener {
+        fun onItemClick(event: Event)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalRecyclerAdapter.ViewHolder {
@@ -32,7 +32,7 @@ class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter
 
         val event: Event = items[position]
         holder.bind(event)
-        holder.itemView.setOnClickListener{onItemOnClickListener.onItemClick(items[position])}
+        holder.itemView.setOnClickListener { onItemOnClickListener.onItemClick(items[position]) }
 
     }
 

@@ -4,19 +4,15 @@ import android.app.Activity
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.firebase.FireBaseAuthHelper
-import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.UserRemoteSource
 import java.util.regex.Pattern
 
-class LoginPresenter(private var userRepository: UserRepository, var validationTool: AwesomeValidation) : BasePresenter<LoginActivityView>() {
-
-    fun setUpValidationTool(loginActivity: Activity, nickname_input: Int, emaiL_ADDRESS: Pattern?, err_email: Int) {
-        validationTool.addValidation(loginActivity, nickname_input, emaiL_ADDRESS, err_email)
-    }
+class LoginPresenter(private var userRemoteSource: UserRemoteSource, var validationTool: AwesomeValidation) : BasePresenter<LoginActivityView>() {
 
     fun login(email: String, password: String) {
 
         if (validationTool.validate())
-            userRepository.loginUser(email, password, object : FireBaseAuthHelper.CallBackListener {
+            userRemoteSource.loginUser(email, password, object : FireBaseAuthHelper.CallBackListener {
                 override fun success() {
                     getView().loginSuccessFull()
                 }

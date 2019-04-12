@@ -1,7 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.map.di
 
-import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
-import com.example.gebruiker.beertimerefactor.model.repo.remote.EventsRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.EventsRepository
 import com.example.gebruiker.beertimerefactor.ui.map.MapsPresenter
 import dagger.Module
 import dagger.Provides

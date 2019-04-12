@@ -1,6 +1,6 @@
 package com.example.gebruiker.beertimerefactor.ui.splash.di
 
-import com.example.gebruiker.beertimerefactor.model.repo.remote.UserRepository
+import com.example.gebruiker.beertimerefactor.model.source.remote.UserRemoteSource
 import com.example.gebruiker.beertimerefactor.ui.splash.SplashActivityPresenter
 import dagger.Module
 import dagger.Provides
@@ -9,7 +9,7 @@ import dagger.Provides
 class SplashActivityModule {
 
     @Provides
-    fun provideSplashActivityPresenter(userRepository: UserRepository) : SplashActivityPresenter {
-        return SplashActivityPresenter(userRepository)
+    fun provideSplashActivityPresenter(userRemoteSource: UserRemoteSource) : SplashActivityPresenter {
+        return SplashActivityPresenter(userRemoteSource)
     }
 }

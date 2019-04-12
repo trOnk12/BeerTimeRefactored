@@ -5,7 +5,7 @@ import com.example.gebruiker.beertimerefactor.model.Dialog
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.User
-import com.example.gebruiker.beertimerefactor.model.repo.local.SharedPreferencesRepository
+import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,10 +13,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class FirebaseRepo(var sharedPreferencesRepository: SharedPreferencesRepository) {
+class FirebaseRepo(var userCachedSource: UserCachedSource) {
 
     interface DataSnapShotListener {
         fun onDatSnapShotReceived(dataSnapShot: DataSnapshot)
+        fun onDataSnapShotInterrupted()
     }
 
     var fireBaseDataBase = FirebaseDatabase.getInstance()
@@ -76,7 +77,7 @@ class FirebaseRepo(var sharedPreferencesRepository: SharedPreferencesRepository)
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        sharedPreferencesRepository.putUser(user!!)
+                        userCachedSource.putUser(user!!)
                         callback.success()
                     }
 

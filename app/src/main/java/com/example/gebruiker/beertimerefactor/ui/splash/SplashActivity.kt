@@ -13,29 +13,18 @@ class SplashActivity : BaseActivity(), SplashActivityView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         splashActivityPresenter.attachView(this)
 
-        splashActivityPresenter.getUserFromCache()
-        finish()
+        splashActivityPresenter.getUser()
     }
 
 
-    override fun showLoginActivity() {
-        launchLoginActivity()
+    override fun launchMainActivity() {
+        launchActivityWithFinish(MainActivity.createMainActivity(this))
     }
 
-    override fun showMainActivity() {
-        launchMainActivity()
-    }
-
-
-    private fun launchMainActivity() {
-        startActivity(MainActivity.createMainActivity(this))
-    }
-
-    private fun launchLoginActivity() {
-        startActivity(LoginActivity.createLoginActivity(this))
+    override fun launchLoginActivity() {
+        launchActivityWithFinish(LoginActivity.createLoginActivity(this))
     }
 
 }

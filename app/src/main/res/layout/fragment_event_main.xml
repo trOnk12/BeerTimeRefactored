@@ -3,10 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.gebruiker.beertimerefactor.ui.custom.CustomTwoOptionCardView
-        android:id="@+id/event_options"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.example.gebruiker.beertimerefactor.ui.custom.CustomTwoOptionCardView>
+    <include
+        android:id="@+id/events_two_options"
+        layout="@layout/custom_two_option_cards"
+        />
+
+    <!--<com.example.gebruiker.beertimerefactor.ui.custom.CustomTwoOptionCardView-->
+        <!--android:id="@+id/event_options"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</com.example.gebruiker.beertimerefactor.ui.custom.CustomTwoOptionCardView>-->
 
 </android.support.constraint.ConstraintLayout>

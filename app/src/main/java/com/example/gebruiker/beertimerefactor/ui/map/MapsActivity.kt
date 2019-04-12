@@ -8,17 +8,15 @@ import com.example.gebruiker.beertimerefactor.R
 
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.google.android.gms.maps.*
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.custom_search_toolbar.*
 import javax.inject.Inject
-import android.support.v4.content.ContextCompat
 import com.example.gebruiker.beertimerefactor.BaseMapActivity
+import com.example.gebruiker.beertimerefactor.ui.event.EventDescriptionActivity
 import com.google.android.gms.maps.model.*
 
 
 class MapsActivity : BaseMapActivity() {
-
     companion object {
         fun createMapActivity(context: Context): Intent {
             return Intent(context, MapsActivity::class.java)
@@ -26,6 +24,7 @@ class MapsActivity : BaseMapActivity() {
     }
 
     private lateinit var mMap: GoogleMap
+    var markerHashMap = HashMap<String,Event>()
 
     @Inject
     lateinit var mapsPresenter: MapsPresenter
@@ -55,7 +54,8 @@ class MapsActivity : BaseMapActivity() {
         for (event in eventList) {
             val eventPosition = LatLng(event.coordinate!!.longtitude, event.coordinate!!.latitude)
             latLngBounds.include(eventPosition)
-            mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
+            val marker = mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
+            markerHashMap[marker.id] = event
         }
 
         mMap.setOnInfoWindowClickListener(this)
@@ -71,6 +71,11 @@ class MapsActivity : BaseMapActivity() {
 
         mapsPresenter.getEvents()
 
+    }
+
+
+    override fun onInfoWindowClick(p0: Marker?) {
+        startActivity(EventDescriptionActivity.createEventDescriptionActivity(this, markerHashMap[p0!!.id]))
     }
 
 }
