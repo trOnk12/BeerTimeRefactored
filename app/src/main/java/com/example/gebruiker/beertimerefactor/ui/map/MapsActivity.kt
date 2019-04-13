@@ -32,7 +32,6 @@ class MapsActivity : BaseMapActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-
         mapsPresenter.attachView(this)
 
         setSupportActionBar(findViewById(R.id.search_bar))

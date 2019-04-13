@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import com.example.gebruiker.beertimerefactor.BaseFragmentActivity
 import com.example.gebruiker.beertimerefactor.R
@@ -29,13 +33,14 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.On
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
 
+    lateinit var pagerAdapter: ScreenSlidePagerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         mainActivityPresenter.attachView(this)
 
-        custom_chat.setOnChatClickListener(object:CustomChatIcon.OnChatClickListener{
+        custom_chat.setOnChatClickListener(object : CustomChatIcon.OnChatClickListener {
             override fun onChatClick() {
                 launchActivityWithFinish(DialogsActivity.createDialogsActivityIntent(applicationContext))
             }
@@ -43,15 +48,10 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.On
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
 
+        pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
+        view_pager.adapter = pagerAdapter
+
         mainActivityPresenter.getUser()
-
-        val feedFragment = FeedMainFragment.newInstance()
-        openFragment(feedFragment)
-
-    }
-
-    override fun displayUser(user: User) {
-        user_name.text = user.name
     }
 
     override fun onChatClick() {
@@ -62,22 +62,23 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.On
 
         when (item.itemId) {
             R.id.action_feed -> {
-                val feedFragment = FeedMainFragment.newInstance()
-                openFragment(feedFragment)
+                view_pager.currentItem = 0
                 return true
             }
             R.id.action_event -> {
-                val eventFragment = EventsMainFragment.newInstance()
-                openFragment(eventFragment)
+                view_pager.currentItem = 1
                 return true
             }
             R.id.action_people -> {
-                val peopleFragment = PeopleMainFragment.newInstance()
-                openFragment(peopleFragment)
+                view_pager.currentItem = 2
                 return true
             }
         }
         return false
+    }
+
+    override fun displayUser(user: User) {
+        user_name.text = user.name
     }
 
 }

@@ -28,14 +28,15 @@ class FilterEventsActivity : DaggerAppCompatActivity(), View.OnClickListener {
         event_enviroment_options.viewTreeObserver.addOnGlobalLayoutListener { (event_enviroment_options.selectedView as TextView).setTextColor(Color.WHITE) }
         event_type_options.viewTreeObserver.addOnGlobalLayoutListener { (event_type_options.selectedView as TextView).setTextColor(Color.WHITE) }
 
+        //TODO refactor to customview with VieWModel
         tolerant_icon.setOnClickListener(this)
         peacefull_icon.setOnClickListener(this)
         alcohol_free_icon.setOnClickListener(this)
         dog_friendly_icon.setOnClickListener(this)
-
     }
 
 
+    //TODO refactor to customview with VieWModel
     override fun onClick(v: View?) {
 
         when (v!!.id) {

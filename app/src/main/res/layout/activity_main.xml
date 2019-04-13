@@ -10,15 +10,14 @@
         android:id="@+id/toolbar_container"
         layout="@layout/custom_toolbar_" />
 
-    <LinearLayout
-        android:id="@+id/fragment_container"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@id/toolbar_container">
-
-    </LinearLayout>
+    </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

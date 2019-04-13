@@ -18,7 +18,6 @@ class PeopleMainFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_people_main, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,15 +28,8 @@ class PeopleMainFragment : DaggerFragment() {
 
     private fun initializeView() {
 
-        events_two_options.option1_body.setOnClickListener {
-            val intent = MapsActivity.createMapActivity(activity!!.applicationContext)
-            startActivity(intent)
-        }
-
-        events_two_options.option2_body.setOnClickListener {
-            val intent = FilterEventsActivity.createFilterEventActivity(activity!!.applicationContext)
-            startActivity(intent)
-        }
+        events_two_options.option1_body.setOnClickListener { startActivity( MapsActivity.createMapActivity(activity!!.applicationContext)) }
+        events_two_options.option2_body.setOnClickListener { startActivity(FilterEventsActivity.createFilterEventActivity(activity!!.applicationContext)) }
 
         events_two_options.option1_title.text = getString(R.string.people_option1_body)
         events_two_options.option1_body.text = getString(R.string.people_option1_body)

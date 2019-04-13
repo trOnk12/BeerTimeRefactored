@@ -34,15 +34,18 @@ class LoginActivity : BaseActivity(),LoginActivityView {
 
         login_button.setOnClickListener{ presenter.login(nickname_input.text.toString(),password_input.text.toString()) }
         login_clickable_text.setOnClickListener{ launchActivityWithFinish(RegisterActivity.createRegisterActivity(this)) }
-
     }
 
-    override fun loginSuccessFull() {
-
+    override fun loginSuccessFullMessage() {
+        showToast("Login succesfull")
     }
 
-    override fun loginFailure(error: String) {
+    override fun loginFailureMessage(error: String) {
+        showToast(error)
+    }
 
+    override fun launchMainActivity() {
+        launchActivityWithFinish(MainActivity.createMainActivity(this))
     }
 
 }

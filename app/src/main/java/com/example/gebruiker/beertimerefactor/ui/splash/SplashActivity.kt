@@ -2,6 +2,8 @@ package com.example.gebruiker.beertimerefactor.ui.splash
 
 import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.BaseActivity
+import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
+import com.example.gebruiker.beertimerefactor.baseMVP.BaseView
 import com.example.gebruiker.beertimerefactor.ui.login.LoginActivity
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import javax.inject.Inject

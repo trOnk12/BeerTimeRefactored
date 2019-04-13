@@ -24,28 +24,24 @@ class RegisterActivity : BaseActivity(), RegisterView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
         presenter.attachView(this)
+
         presenter.validationTool.addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
         login_clickable_text.setOnClickListener { launchLoginActivity() }
         register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString()) }
-
     }
 
-    private fun launchLoginActivity() {
+    override fun launchLoginActivity() {
         launchActivityWithFinish(LoginActivity.createLoginActivity(this))
     }
 
-    override fun registerFailure() {
+    override fun registerFailureMessage() {
         showToast("Something went wrong ...")
     }
 
-    override fun registerSuccessFull() {
+    override fun registerSuccessFullMessage() {
         showToast("Registration succesfull")
-        launchLoginActivity()
     }
-
-
 
 }
