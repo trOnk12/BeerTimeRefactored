@@ -17,47 +17,33 @@ import kotlin.collections.ArrayList
 
 class DialogsActivity : BaseActivity(), DialogsView {
     companion object {
-        fun createDialogsActivityIntent(context: Context): Intent{
-            return  Intent(context, DialogsActivity::class.java)
+        fun createDialogsActivityIntent(context: Context): Intent {
+            return Intent(context, DialogsActivity::class.java)
         }
     }
 
     @Inject
     lateinit var presenter: DialogsActivityPresenter
+    private lateinit var dialogsAdapter: DialogsListAdapter<Dialog>
 
-    private lateinit var dialogsAdapterr: DialogsListAdapter<Dialog>
+    override fun attachPresenter() {
+        presenter.attachView(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messages)
 
-        setUpDialogsAdapter()
-        setUpPresenter()
-
-    }
-
-    private fun setUpPresenter() {
-        presenter.attachView(this)
+        dialogsAdapter = DialogsListAdapter(ImageLoader { _, _, _ -> })
+        dialogsAdapter.setOnDialogClickListener {
+            startActivity(ChatActivity.createChatActivity(this, it.id))
+        }
         presenter.getUsersDialogs()
     }
 
-    private fun setUpDialogsAdapter() {
-        dialogsAdapterr = DialogsListAdapter(ImageLoader { _, _, _ -> })
-        dialogsAdapterr.setOnDialogClickListener {
-            openChatActivity(it.id)
-        }
-    }
-
     override fun displayDialogs(usersDialogs: ArrayList<Dialog>) {
-        dialogsAdapterr.setItems(usersDialogs)
-        dialogsList.setAdapter(dialogsAdapterr)
-    }
-
-     private fun openChatActivity(dialogID: String) {
-        val intent = ChatActivity.createChatActivity(this)
-        intent.putExtra(ChatActivity.EXTRA_DIALOG_ID,dialogID)
-
-        startActivity(intent)
+        dialogsAdapter.setItems(usersDialogs)
+        dialogsList.setAdapter(dialogsAdapter)
     }
 
 }

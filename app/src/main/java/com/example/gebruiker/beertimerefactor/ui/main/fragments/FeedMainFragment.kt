@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import java.util.ArrayList
 import com.google.gson.Gson
 
-class FeedMainFragment : DaggerFragment(), HorizontalRecyclerAdapter.ItemOnClickListener {
+class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickListener {
     companion object {
         fun newInstance(): FeedMainFragment = FeedMainFragment()
     }
@@ -26,9 +26,7 @@ class FeedMainFragment : DaggerFragment(), HorizontalRecyclerAdapter.ItemOnClick
         return inflater.inflate(R.layout.fragment_feed_main, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun initializeLayout() {
         val adapter = HorizontalRecyclerAdapter()
 
         adapter.onItemOnClickListener = this
@@ -115,7 +113,9 @@ class FeedMainFragment : DaggerFragment(), HorizontalRecyclerAdapter.ItemOnClick
         adapter.notifyDataSetChanged()
     }
 
+
     override fun onItemClick(event: Event) {
       startActivity(EventDescriptionActivity.createEventDescriptionActivity(activity!!.baseContext, event))
     }
+
 }

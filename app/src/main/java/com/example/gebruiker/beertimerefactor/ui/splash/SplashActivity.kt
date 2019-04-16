@@ -13,9 +13,12 @@ class SplashActivity : BaseActivity(), SplashActivityView {
     @Inject
     lateinit var splashActivityPresenter: SplashActivityPresenter
 
+    override fun attachPresenter() {
+        splashActivityPresenter.attachView(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        splashActivityPresenter.attachView(this)
 
         splashActivityPresenter.getUser()
     }

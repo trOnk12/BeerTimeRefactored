@@ -27,7 +27,6 @@ class UserRemoteSource : BaseRemoteSource() {
         })
     }
 
-
     fun loginUser(email: String, password: String, listener: OnCompleteListener<AuthResult>) {
         fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(listener)
     }

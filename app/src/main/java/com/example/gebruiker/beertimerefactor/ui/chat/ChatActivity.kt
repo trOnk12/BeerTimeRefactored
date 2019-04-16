@@ -3,6 +3,7 @@ package com.example.gebruiker.beertimerefactor.ui.chat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.stfalcon.chatkit.commons.ImageLoader
@@ -10,16 +11,17 @@ import com.stfalcon.chatkit.messages.MessagesListAdapter
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_chat.*
 import javax.inject.Inject
-import com.stfalcon.chatkit.messages.MessageInput
 
 
-class ChatActivity : DaggerAppCompatActivity(), ChatAcitivtyView {
+class ChatActivity : BaseActivity(), ChatAcitivtyView {
     companion object {
         const val EXTRA_DIALOG_ID = "EXTRA_ID"
         const val senderId = "0"
 
-        fun createChatActivity(context: Context): Intent {
-            return Intent(context, ChatActivity::class.java)
+        fun createChatActivity(context: Context, dialogID: String): Intent {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra(ChatActivity.EXTRA_DIALOG_ID, dialogID)
+            return intent
         }
     }
 
@@ -29,6 +31,11 @@ class ChatActivity : DaggerAppCompatActivity(), ChatAcitivtyView {
     lateinit var presenter: ChatActivityPresenter
 
     lateinit var chatAdapter: MessagesListAdapter<Message>
+
+    override fun attachPresenter() {
+        presenter.attachView(this)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +48,6 @@ class ChatActivity : DaggerAppCompatActivity(), ChatAcitivtyView {
         }
 
         messagesList.setAdapter(chatAdapter)
-
-        presenter.attachView(this)
         presenter.getChatHistory(intent.getStringExtra(EXTRA_DIALOG_ID))
     }
 

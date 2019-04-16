@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_toolbar_.*
 import javax.inject.Inject
 
-class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.OnChatClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseFragmentActivity(), MainActivityView, BottomNavigationView.OnNavigationItemSelectedListener {
     companion object {
         fun createMainActivity(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
@@ -32,13 +32,15 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.On
 
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
+    private lateinit var pagerAdapter: ScreenSlidePagerAdapter
 
-    lateinit var pagerAdapter: ScreenSlidePagerAdapter
+    override fun attachPresenter() {
+        mainActivityPresenter.attachView(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainActivityPresenter.attachView(this)
 
         custom_chat.setOnChatClickListener(object : CustomChatIcon.OnChatClickListener {
             override fun onChatClick() {
@@ -52,10 +54,6 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, CustomChatIcon.On
         view_pager.adapter = pagerAdapter
 
         mainActivityPresenter.getUser()
-    }
-
-    override fun onChatClick() {
-        startActivity(DialogsActivity.createDialogsActivityIntent(this))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

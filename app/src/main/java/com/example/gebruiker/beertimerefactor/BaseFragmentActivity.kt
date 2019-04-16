@@ -1,6 +1,7 @@
 package com.example.gebruiker.beertimerefactor
 
 import android.content.Intent
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
@@ -8,9 +9,16 @@ import com.example.gebruiker.beertimerefactor.ui.main.fragments.EventsMainFragme
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.FeedMainFragment
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.PeopleMainFragment
 
-open class BaseFragmentActivity: BaseToolBarActivity() {
+abstract class BaseFragmentActivity: BaseToolBarActivity() {
 
-     fun openFragment(fragment: Fragment) {
+    abstract fun attachPresenter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        attachPresenter()
+    }
+
+    fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
         transaction.replace(R.id.fragment_container, fragment)

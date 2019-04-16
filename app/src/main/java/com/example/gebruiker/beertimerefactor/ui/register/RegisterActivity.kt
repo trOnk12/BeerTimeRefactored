@@ -21,10 +21,13 @@ class RegisterActivity : BaseActivity(), RegisterView {
     @Inject
     lateinit var presenter: RegisterPresenter
 
+    override fun attachPresenter() {
+        presenter.attachView(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        presenter.attachView(this)
 
         presenter.validationTool.addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 

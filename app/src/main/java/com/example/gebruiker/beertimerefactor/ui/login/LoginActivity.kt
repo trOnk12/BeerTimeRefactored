@@ -25,10 +25,13 @@ class LoginActivity : BaseActivity(),LoginActivityView {
     @Inject
     lateinit var presenter: LoginPresenter
 
+    override fun attachPresenter() {
+        presenter.attachView(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        presenter.attachView(this)
 
         presenter.validationTool.addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
@@ -37,7 +40,7 @@ class LoginActivity : BaseActivity(),LoginActivityView {
     }
 
     override fun loginSuccessFullMessage() {
-        showToast("Login succesfull")
+        showToast(getString(R.string.login_success))
     }
 
     override fun loginFailureMessage(error: String) {

@@ -3,14 +3,14 @@ package com.example.gebruiker.beertimerefactor.ui.chat
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.Message
 import com.example.gebruiker.beertimerefactor.model.firebase.FirebaseRepo
+import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import java.util.*
 
-class ChatActivityPresenter(var userCachedSource: UserCachedSource, var firebaseRepo: FirebaseRepo) : BasePresenter<ChatAcitivtyView>() {
-
+class ChatActivityPresenter(userRepository: UserRepository,chatRepository:ChatRe) : BasePresenter<ChatAcitivtyView>() {
 
     fun getChatHistory(dialogID: String?) {
 

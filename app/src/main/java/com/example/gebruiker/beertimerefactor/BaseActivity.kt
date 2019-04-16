@@ -9,11 +9,10 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity(),BaseView {
 
-    lateinit var basePresenter:BasePresenter<BaseView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        basePresenter.attachView(this)
+        attachPresenter()
     }
 
     fun showToast(mMessage: String) {
@@ -24,5 +23,7 @@ abstract class BaseActivity : DaggerAppCompatActivity(),BaseView {
         launchActivityWithFinish(intent)
         finish()
     }
+
+    abstract fun attachPresenter()
 
 }

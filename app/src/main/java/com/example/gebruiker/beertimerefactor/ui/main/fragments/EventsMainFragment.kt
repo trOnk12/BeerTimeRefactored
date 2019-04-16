@@ -11,7 +11,9 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.custom_two_option_cards.view.*
 import kotlinx.android.synthetic.main.fragment_event_main.*
 
-class EventsMainFragment : DaggerFragment() {
+class EventsMainFragment : BaseFragment() {
+
+
     companion object {
         fun newInstance(): EventsMainFragment = EventsMainFragment()
     }
@@ -20,14 +22,7 @@ class EventsMainFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_event_main, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        initializeView()
-    }
-
-    private fun initializeView() {
-
+    override fun initializeLayout() {
         events_two_options.option1_body.setOnClickListener { startActivity(MapsActivity.createMapActivity(activity!!.applicationContext)) }
         events_two_options.option2_body.setOnClickListener { startActivity(FilterEventsActivity.createFilterEventActivity(activity!!.applicationContext)) }
 
@@ -36,7 +31,6 @@ class EventsMainFragment : DaggerFragment() {
 
         events_two_options.option2_title.text = getString(R.string.event_option2_title)
         events_two_options.option2_body.text = getString(R.string.event_option2_body)
-
     }
 
 }
