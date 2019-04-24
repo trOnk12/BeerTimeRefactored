@@ -55,7 +55,7 @@ class FireBaseAuthHelper(var fireBaseRepo: FirebaseRepo, var userCachedSource: U
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        userCachedSource.putUser(user!!)
+                        userCachedSource.putData(user!!)
 
                         callback.success()
                     }

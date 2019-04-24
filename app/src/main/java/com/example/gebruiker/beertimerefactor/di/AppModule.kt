@@ -10,6 +10,7 @@ import com.example.gebruiker.beertimerefactor.model.source.local.UserCachedSourc
 import com.example.gebruiker.beertimerefactor.model.source.remote.DialogRepository
 import com.example.gebruiker.beertimerefactor.model.source.remote.EventsRepository
 import com.example.gebruiker.beertimerefactor.model.source.remote.UserRemoteSource
+import com.example.gebruiker.beertimerefactor.util.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,8 +20,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreferencesRepository(context: Context): UserCachedSource {
-        return UserCachedSource(context)
+    fun provideSharedPreferencesRepository(sharedPreferencesManager: SharedPreferencesManager): UserCachedSource {
+        return UserCachedSource(sharedPreferencesManager)
     }
 
     @Singleton
@@ -51,8 +52,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(userCachedSource: UserCachedSource, firebaseRepo: FirebaseRepo): UserRemoteSource {
-        return UserRemoteSource(firebaseRepo, userCachedSource)
+    fun provideUserRepository(): UserRemoteSource {
+        return UserRemoteSource()
     }
 
 

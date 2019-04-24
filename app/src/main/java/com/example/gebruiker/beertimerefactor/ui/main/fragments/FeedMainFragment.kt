@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gebruiker.beertimerefactor.R
-import dagger.android.support.DaggerFragment
 import android.support.v7.widget.LinearLayoutManager
+import com.example.gebruiker.beertimerefactor.BaseFragment
 import com.example.gebruiker.beertimerefactor.model.Coordinate
 import com.example.gebruiker.beertimerefactor.model.Event
 import com.example.gebruiker.beertimerefactor.model.User
@@ -15,7 +15,6 @@ import com.example.gebruiker.beertimerefactor.ui.main.fragments.viewholder.Horiz
 import kotlinx.android.synthetic.main.fragment_feed_main.*
 import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import java.util.ArrayList
-import com.google.gson.Gson
 
 class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickListener {
     companion object {

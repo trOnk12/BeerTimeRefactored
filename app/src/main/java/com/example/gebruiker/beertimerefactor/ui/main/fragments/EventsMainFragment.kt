@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.gebruiker.beertimerefactor.BaseFragment
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.ui.filter.FilterEventsActivity
 import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.custom_two_option_cards.view.*
 import kotlinx.android.synthetic.main.fragment_event_main.*
 

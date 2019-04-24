@@ -77,7 +77,7 @@ class FirebaseRepo(var userCachedSource: UserCachedSource) {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        userCachedSource.putUser(user!!)
+                        userCachedSource.putData(user!!)
                         callback.success()
                     }
 

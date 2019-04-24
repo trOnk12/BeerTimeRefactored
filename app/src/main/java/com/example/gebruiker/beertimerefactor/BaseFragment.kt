@@ -1,4 +1,4 @@
-package com.example.gebruiker.beertimerefactor.ui.main.fragments
+package com.example.gebruiker.beertimerefactor
 
 import android.os.Bundle
 import dagger.android.support.DaggerFragment
