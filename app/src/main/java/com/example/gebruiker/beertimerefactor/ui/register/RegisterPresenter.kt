@@ -9,12 +9,10 @@ import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 class RegisterPresenter(var userRepository: UserRepository, var validationTool: AwesomeValidation) : BasePresenter<RegisterView>() {
 
     fun register(email: String, password: String) {
-       // if (validationTool.validate())
             userRepository.registerUser(email, password, object : IBaseRepository<Boolean> {
                 override fun onDataReceived(data: Boolean) {
                     if(data){
-                        getView().registerSuccessFullMessage()
-                        getView().launchLoginActivity()
+                        getView().registrationSuccessfull()
                     }
                 }
             })

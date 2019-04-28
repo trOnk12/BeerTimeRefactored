@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_feed_main.*
 import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import java.util.ArrayList
 
-class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickListener {
+class FeedMainFragment : BaseFragment(){
     companion object {
         fun newInstance(): FeedMainFragment = FeedMainFragment()
     }
@@ -28,8 +28,29 @@ class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickLi
     override fun initializeLayout() {
         val adapter = HorizontalRecyclerAdapter()
 
-        adapter.onItemOnClickListener = this
+        adapter.onItemOnClickListener = object:HorizontalRecyclerAdapter.ItemOnClickListener{
+            override fun onItemClick(event: Event) {
+                val intent = EventDescriptionActivity.createEventDescriptionActivity(activity!!.applicationContext, event)
+                startActivity(intent)
+            }
+        }
 
+       setFakeAdapter(adapter)
+
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        popular_events_rv.rv.layoutManager = layoutManager
+        popular_events_rv.rv.adapter = adapter
+        popular_events_rv.title_tv.text = "Popular events"
+
+        val layoutManager1 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        upcoming_events_rv.rv.layoutManager = layoutManager1
+        upcoming_events_rv.rv.adapter = adapter
+        upcoming_events_rv.title_tv.text = "Upcoming events"
+
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun setFakeAdapter(adapter: HorizontalRecyclerAdapter) {
         val user1 = User()
 
         user1.name = "trOnk12"
@@ -87,6 +108,7 @@ class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickLi
         val fakeEvent8 = Event("test2", "Warszawa", "Poland", "Test event", contributor, userList, latLng2)
 
         val eventList = ArrayList<Event>()
+
         eventList.add(fakeEvent)
         eventList.add(fakeEvent1)
         eventList.add(fakeEvent2)
@@ -97,24 +119,8 @@ class FeedMainFragment : BaseFragment(), HorizontalRecyclerAdapter.ItemOnClickLi
         eventList.add(fakeEvent7)
         eventList.add(fakeEvent8)
 
-        adapter.setData(eventList)
-
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        popular_events_rv.rv.layoutManager = layoutManager
-        popular_events_rv.rv.adapter = adapter
-        popular_events_rv.title_tv.text = "Popular events"
-
-        val layoutManager1 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        upcoming_events_rv.rv.layoutManager = layoutManager1
-        upcoming_events_rv.rv.adapter = adapter
-        upcoming_events_rv.title_tv.text = "Upcoming events"
-
-        adapter.notifyDataSetChanged()
+        adapter.items=eventList
     }
 
-
-    override fun onItemClick(event: Event) {
-      startActivity(EventDescriptionActivity.createEventDescriptionActivity(activity!!.baseContext, event))
-    }
 
 }

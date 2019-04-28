@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.custom_two_option_cards.view.*
 import kotlinx.android.synthetic.main.fragment_event_main.*
 
 class EventsMainFragment : BaseFragment() {
-
-
     companion object {
         fun newInstance(): EventsMainFragment = EventsMainFragment()
     }

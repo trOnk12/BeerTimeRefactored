@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
 class RegisterActivity : BaseActivity(), RegisterView {
-    companion object {
+companion object {
         fun createRegisterActivity(context: Context): Intent {
             return Intent(context, RegisterActivity::class.java)
         }
@@ -39,12 +39,9 @@ class RegisterActivity : BaseActivity(), RegisterView {
         launchActivityWithFinish(LoginActivity.createLoginActivity(this))
     }
 
-    override fun registerFailureMessage() {
-        showToast("Something went wrong ...")
-    }
-
-    override fun registerSuccessFullMessage() {
-        showToast("Registration succesfull")
+    override fun registrationSuccessfull() {
+        showToast("Registration successfull")
+        launchLoginActivity()
     }
 
 }

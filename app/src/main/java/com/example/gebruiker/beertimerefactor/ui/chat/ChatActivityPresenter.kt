@@ -9,7 +9,6 @@ class ChatActivityPresenter(userRepository: UserRepository, chatRepository: Chat
     fun getChatHistory(dialogID: String?) {
 
 
-
 //
 //
 //

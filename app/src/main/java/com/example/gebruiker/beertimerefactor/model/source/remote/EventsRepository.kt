@@ -8,14 +8,26 @@ import com.google.firebase.database.ValueEventListener
 
 class EventsRepository(private var firebaseRepo: FirebaseRepo) {
 
-    fun getEvents(dataSnapShotListener: FirebaseRepo.DataSnapShotListener) {
+    interface OnDataRetrievedListener{
+        fun onDataRetrieved(data:ArrayList<Event>)
+    }
+
+    fun getEvents(dataSnapShotListener: OnDataRetrievedListener) {
         firebaseRepo.getEvents(object : ValueEventListener {
 
             override fun onCancelled(p0: DatabaseError) {
             }
 
-            override fun onDataChange(p0: DataSnapshot) {
-                dataSnapShotListener.onDatSnapShotReceived(p0)
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+
+                val eventsList: java.util.ArrayList<Event> = java.util.ArrayList()
+
+                for (children in dataSnapShot.children) {
+                    val event = children.getValue(Event::class.java)
+                    eventsList.add(event!!)
+                }
+
+                dataSnapShotListener.onDataRetrieved(eventsList)
             }
         })
     }

@@ -42,10 +42,15 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, BottomNavigationV
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setView()
 
+        mainActivityPresenter.getUser()
+    }
+
+    private fun setView() {
         custom_chat.setOnChatClickListener(object : CustomChatIcon.OnChatClickListener {
             override fun onChatClick() {
-                launchActivityWithFinish(DialogsActivity.createDialogsActivityIntent(applicationContext))
+                startActivity(DialogsActivity.createDialogsActivityIntent(applicationContext))
             }
         })
 
@@ -53,8 +58,6 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, BottomNavigationV
 
         pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
         view_pager.adapter = pagerAdapter
-
-        mainActivityPresenter.getUser()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

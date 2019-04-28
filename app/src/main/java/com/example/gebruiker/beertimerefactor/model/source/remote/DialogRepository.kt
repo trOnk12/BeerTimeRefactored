@@ -12,8 +12,10 @@ class DialogRepository(var userCachedSource: UserCachedSource, var firebaseRepo:
     fun getUsersDialogs():ArrayList<Dialog>{
         val dialogsList: ArrayList<Dialog> = ArrayList()
 
-        val dialogsID = userCachedSource.getData()!!.dialogs
+        val user = userCachedSource.getData()!!
+        val dialogsID = user.dialogs
 
+        if(dialogsID!=null)
         for (dialogID in dialogsID) {
 
             firebaseRepo.getDialogs(dialogID, object : ValueEventListener {
@@ -28,8 +30,8 @@ class DialogRepository(var userCachedSource: UserCachedSource, var firebaseRepo:
                 }
 
             })
-
         }
+
         return dialogsList
     }
 

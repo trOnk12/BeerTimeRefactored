@@ -17,6 +17,11 @@ import com.google.gson.Gson
 
 class UserRepository(val userCachedSource: UserCachedSource, val userRemoteSource: UserRemoteSource) : IUserRepository {
 
+
+    override fun addUser(user: User) {
+        userRemoteSource.addUser(user)
+    }
+
     override fun getUser(): User? {
         return userCachedSource.getData()
     }
@@ -30,44 +35,37 @@ class UserRepository(val userCachedSource: UserCachedSource, val userRemoteSourc
 
             override fun onDatSnapShotReceived(dataSnapShot: DataSnapshot) {
                 val user = dataSnapShot.getValue(User::class.java)
-                dataListener.onLoginSucce(user!!)
+                dataListener.onDataReceived(user!!)
             }
         })
     }
 
     override fun loginUser(email: String, password: String, onSuccessListener: IBaseRepository<Boolean>) {
-//        userRemoteSource.loginUser(email, password, OnCompleteListener { onSuccessListener.onDataReceived(true) })
         userRemoteSource.loginUser(email, password,object:UserRemoteSource.LoggedUserListener{
             override fun onLoggedUserListener(fireBaseUser: FirebaseUser) {
                 val user = User()
-
                 user.id=fireBaseUser.uid
                 user.email=fireBaseUser.email
 
                userCachedSource.putData(user)
 
-                onSuccessListener.onLoginSucce(true)
+               onSuccessListener.onDataReceived(true)
             }
-
-
         })
     }
 
     override fun registerUser(email: String, password: String, onSuccessListener: IBaseRepository<Boolean>) {
-        userRemoteSource.registerUser(email, password,object:OnCompleteListener<AuthResult>{
-            override fun onComplete(p0: Task<AuthResult>) {
-
-                if (!p0.isSuccessful) {
-                    val e = p0.exception as FirebaseAuthException
-                    Log.d("TEST",e.message)
-                    return
-                }
-
-                if(p0.isSuccessful){
-                    onSuccessListener.onLoginSucce(true)
-                }
+        userRemoteSource.registerUser(email, password, OnCompleteListener { p0 ->
+            if (!p0.isSuccessful) {
+                val e = p0.exception as FirebaseAuthException
+                Log.d("TEST",e.message)
+                return@OnCompleteListener
             }
 
+            if(p0.isSuccessful){
+
+                onSuccessListener.onDataReceived(true)
+            }
         })
     }
 

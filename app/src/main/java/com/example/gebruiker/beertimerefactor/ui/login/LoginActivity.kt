@@ -35,20 +35,26 @@ class LoginActivity : BaseActivity(),LoginActivityView {
 
         presenter.validationTool.addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
-        login_button.setOnClickListener{ presenter.login(nickname_input.text.toString(),password_input.text.toString()) }
         login_clickable_text.setOnClickListener{ launchActivityWithFinish(RegisterActivity.createRegisterActivity(this)) }
+        login_button.setOnClickListener{ presenter.login(nickname_input.text.toString(),password_input.text.toString()) }
+
     }
 
-    override fun loginSuccessFullMessage() {
+    override fun isLoading(isLoading: Boolean) {
+
+        if(isLoading){
+            progressBar.visibility=View.VISIBLE
+        }
+        else{
+            progressBar.visibility=View.GONE
+        }
+
+    }
+
+    override fun loginSuccessFull() {
         showToast(getString(R.string.login_success))
-    }
-
-    override fun loginFailureMessage(error: String) {
-        showToast(error)
-    }
-
-    override fun launchMainActivity() {
         launchActivityWithFinish(MainActivity.createMainActivity(this))
     }
+
 
 }

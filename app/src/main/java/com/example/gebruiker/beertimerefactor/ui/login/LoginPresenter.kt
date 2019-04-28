@@ -8,14 +8,13 @@ import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 class LoginPresenter(var userRepository: UserRepository, var validationTool: AwesomeValidation) : BasePresenter<LoginActivityView>() {
 
     fun login(email: String, password: String) {
-
-        //if (validationTool.validate())
+        getView().isLoading(true)
             userRepository.loginUser(email, password, object : IBaseRepository<Boolean> {
 
                 override fun onDataReceived(data: Boolean) {
                     if (data) {
-                        getView().loginSuccessFullMessage()
-                        getView().launchMainActivity()
+                        getView().isLoading(false)
+                        getView().loginSuccessFull()
                     }
                 }
             })

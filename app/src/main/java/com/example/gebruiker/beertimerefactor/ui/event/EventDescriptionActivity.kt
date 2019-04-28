@@ -12,13 +12,13 @@ import kotlinx.android.synthetic.main.fragment_event_description.*
 import kotlinx.android.synthetic.main.horizontal_recycyler_view.view.*
 import android.support.v7.widget.LinearLayoutManager
 
-
 class EventDescriptionActivity : DaggerAppCompatActivity() {
     companion object {
-        var EVENT_EXTRA = "EVENT"
+        var EVENT_EXTRA = "EVENT_EXTRA"
         fun createEventDescriptionActivity(context: Context, event: Event?): Intent {
             val intent = Intent(context, EventDescriptionActivity::class.java)
-            intent.putExtra(Gson().toJson(event), EVENT_EXTRA)
+            val jsonEvent = Gson().toJson(event)
+            intent.putExtra(jsonEvent, EVENT_EXTRA)
             return intent
         }
     }
@@ -28,24 +28,24 @@ class EventDescriptionActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_event_description)
-
-        val linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        patricipiants_item_holder.rv.layoutManager = linearLayoutManager
-        patricipiants_item_holder.rv.setHasFixedSize(true)
-
-        setView(retrieveEventFromIntent())
+        setView(getEventFromMainActivity())
     }
 
-    private fun retrieveEventFromIntent(): Event? {
+    private fun getEventFromMainActivity(): Event? {
         val jsonEvent = intent.getStringExtra(EventDescriptionActivity.EVENT_EXTRA)
         return Gson().fromJson(jsonEvent, Event::class.java)
     }
 
     private fun setView(event: Event?) {
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        patricipiants_item_holder.rv.layoutManager = linearLayoutManager
+        patricipiants_item_holder.rv.setHasFixedSize(true)
+
         event_title.text = event!!.name
 
         adapter.setItems(event.participants!!)
         patricipiants_item_holder.rv.adapter = adapter
     }
+
 }

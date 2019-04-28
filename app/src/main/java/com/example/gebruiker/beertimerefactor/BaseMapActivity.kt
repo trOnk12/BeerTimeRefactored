@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseMapActivity: DaggerAppCompatActivity(), OnMapReadyCallback, MapsView, GoogleMap.OnInfoWindowClickListener  {
+abstract class BaseMapActivity: DaggerAppCompatActivity(), MapsView{
 
     fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)

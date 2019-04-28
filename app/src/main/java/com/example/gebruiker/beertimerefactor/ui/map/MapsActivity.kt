@@ -24,7 +24,7 @@ class MapsActivity : BaseMapActivity() {
     }
 
     private lateinit var mMap: GoogleMap
-    var markerHashMap = HashMap<String,Event>()
+    var markersHashMap = HashMap<String,Event>()
 
     @Inject
     lateinit var mapsPresenter: MapsPresenter
@@ -32,49 +32,42 @@ class MapsActivity : BaseMapActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+        setView()
+
         mapsPresenter.attachView(this)
 
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync { googleMap ->
+            mMap = googleMap!!
+            mMap.setOnMapClickListener { search_toolbar.closeSearchInput() }
+
+            mapsPresenter.getMarkers()
+        }
+
+    }
+
+    private fun setView() {
         setSupportActionBar(findViewById(R.id.search_bar))
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
         search_bar.navigationIcon!!.setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
     }
 
-
     override fun displayEventsOnMap(eventList: ArrayList<Event>) {
-
         val latLngBounds = LatLngBounds.Builder()
 
         for (event in eventList) {
             val eventPosition = LatLng(event.coordinate!!.longtitude, event.coordinate!!.latitude)
             latLngBounds.include(eventPosition)
             val marker = mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
-            markerHashMap[marker.id] = event
+            markersHashMap[marker.id] = event
         }
 
-        mMap.setOnInfoWindowClickListener(this)
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 200,
-                300, 40))
-
+        mMap.setOnInfoWindowClickListener{ marker-> startActivity(EventDescriptionActivity.createEventDescriptionActivity(this, markersHashMap[marker!!.id]))}
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 200, 300, 40))
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-
-        mMap = googleMap
-        mMap.setOnMapClickListener { search_toolbar.closeSearchInput() }
-
-        mapsPresenter.getEvents()
-
-    }
-
-
-    override fun onInfoWindowClick(p0: Marker?) {
-        startActivity(EventDescriptionActivity.createEventDescriptionActivity(this, markerHashMap[p0!!.id]))
-    }
 
 }

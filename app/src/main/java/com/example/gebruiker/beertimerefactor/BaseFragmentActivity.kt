@@ -26,7 +26,7 @@ abstract class BaseFragmentActivity: BaseToolBarActivity() {
     }
 
     fun launchActivityWithFinish(intent: Intent){
-        launchActivityWithFinish(intent)
+        startActivity(intent)
         finish()
     }
 

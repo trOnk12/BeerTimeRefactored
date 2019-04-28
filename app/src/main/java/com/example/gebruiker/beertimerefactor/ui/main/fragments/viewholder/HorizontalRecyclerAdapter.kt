@@ -11,8 +11,7 @@ import kotlinx.android.synthetic.main.horizontal_recycler_view_item.view.*
 
 class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter.ViewHolder>() {
 
-    private lateinit var items: ArrayList<Event>
-
+    lateinit var items: ArrayList<Event>
     lateinit var onItemOnClickListener: ItemOnClickListener
 
     interface ItemOnClickListener {
@@ -34,10 +33,6 @@ class HorizontalRecyclerAdapter : RecyclerView.Adapter<HorizontalRecyclerAdapter
         holder.bind(event)
         holder.itemView.setOnClickListener { onItemOnClickListener.onItemClick(items[position]) }
 
-    }
-
-    fun setData(items: ArrayList<Event>) {
-        this.items = items
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {

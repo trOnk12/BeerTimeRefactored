@@ -25,21 +25,24 @@ class ChatActivity : BaseActivity(), ChatAcitivtyView {
         }
     }
 
-    lateinit var dialogID: String
-
     @Inject
     lateinit var presenter: ChatActivityPresenter
-
     lateinit var chatAdapter: MessagesListAdapter<Message>
+    lateinit var dialogID: String
 
     override fun attachPresenter() {
         presenter.attachView(this)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        setView()
+
+        presenter.getChatHistory(intent.getStringExtra(EXTRA_DIALOG_ID))
+    }
+
+    private fun setView() {
 
         chatAdapter = MessagesListAdapter(senderId, ImageLoader { imageView, url, payload -> });
         input.setInputListener { input ->
@@ -48,7 +51,6 @@ class ChatActivity : BaseActivity(), ChatAcitivtyView {
         }
 
         messagesList.setAdapter(chatAdapter)
-        presenter.getChatHistory(intent.getStringExtra(EXTRA_DIALOG_ID))
     }
 
 

@@ -23,6 +23,7 @@ abstract class BaseActivity : DaggerAppCompatActivity(),BaseView {
         finish()
     }
 
+
     abstract fun attachPresenter()
 
 }
