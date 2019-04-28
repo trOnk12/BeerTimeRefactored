@@ -29,12 +29,14 @@ class LoginActivity : BaseActivity(),LoginActivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setView()
+    }
 
+    private fun setView() {
         presenter.validationTool.addValidation(this, R.id.email_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
         login_clickable_text.setOnClickListener{ startActivity(RegisterActivity.createRegisterActivity(this)) }
         login_button.setOnClickListener{ presenter.login(email_input.text.toString(),password_input.text.toString()) }
-
     }
 
     override fun isLoading(isLoading: Boolean) {

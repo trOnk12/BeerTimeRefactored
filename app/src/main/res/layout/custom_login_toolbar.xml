@@ -28,13 +28,13 @@
         app:layout_constraintStart_toStartOf="@+id/explore_event_tv" />
 
     <TextView
-
+        android:layout_marginTop="8dp"
         android:id="@+id/explore_event_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:lineSpacingExtra="12sp"
-        android:text="It's beer time ..."
+        android:text="It's Beer Time ..."
         android:textAlignment="viewStart"
         android:textColor="#FFF"
         android:textSize="23sp"

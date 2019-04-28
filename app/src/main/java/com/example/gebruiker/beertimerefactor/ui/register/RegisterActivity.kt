@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
 class RegisterActivity : BaseActivity(), RegisterView {
-companion object {
+    companion object {
         fun createRegisterActivity(context: Context): Intent {
             return Intent(context, RegisterActivity::class.java)
         }
@@ -28,16 +28,29 @@ companion object {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        setView()
+    }
 
+    private fun setView() {
         presenter.validationTool.addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
-        login_clickable_text.setOnClickListener { startActivity(LoginActivity.createLoginActivity(this))}
-        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString())}
+        login_clickable_text.setOnClickListener { startActivity(LoginActivity.createLoginActivity(this)) }
+        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString()) }
+    }
+
+    override fun isLoading(isLoading: Boolean) {
+        if (isLoading) {
+            loading.visibility = View.VISIBLE
+        } else {
+            loading.visibility = View.GONE
+        }
     }
 
     override fun registrationSuccessful() {
         showToast("Registration successful")
         startActivity(LoginActivity.createLoginActivity(this))
     }
+
+
 
 }
