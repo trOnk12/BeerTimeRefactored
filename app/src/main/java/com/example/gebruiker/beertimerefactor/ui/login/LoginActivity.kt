@@ -5,11 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import com.basgeekball.awesomevalidation.AwesomeValidation
-import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.gebruiker.beertimerefactor.BaseActivity
 import com.example.gebruiker.beertimerefactor.R
-import com.example.gebruiker.beertimerefactor.R.string.err_email
 import com.example.gebruiker.beertimerefactor.ui.main.MainActivity
 import com.example.gebruiker.beertimerefactor.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -33,10 +30,10 @@ class LoginActivity : BaseActivity(),LoginActivityView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        presenter.validationTool.addValidation(this, R.id.nickname_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
+        presenter.validationTool.addValidation(this, R.id.email_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
-        login_clickable_text.setOnClickListener{ launchActivityWithFinish(RegisterActivity.createRegisterActivity(this)) }
-        login_button.setOnClickListener{ presenter.login(nickname_input.text.toString(),password_input.text.toString()) }
+        login_clickable_text.setOnClickListener{ startActivity(RegisterActivity.createRegisterActivity(this)) }
+        login_button.setOnClickListener{ presenter.login(email_input.text.toString(),password_input.text.toString()) }
 
     }
 
@@ -53,7 +50,7 @@ class LoginActivity : BaseActivity(),LoginActivityView {
 
     override fun loginSuccessFull() {
         showToast(getString(R.string.login_success))
-        launchActivityWithFinish(MainActivity.createMainActivity(this))
+        startActivity(MainActivity.createMainActivity(this))
     }
 
 

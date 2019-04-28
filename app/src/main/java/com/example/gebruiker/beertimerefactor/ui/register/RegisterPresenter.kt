@@ -12,7 +12,7 @@ class RegisterPresenter(var userRepository: UserRepository, var validationTool: 
             userRepository.registerUser(email, password, object : IBaseRepository<Boolean> {
                 override fun onDataReceived(data: Boolean) {
                     if(data){
-                        getView().registrationSuccessfull()
+                        getView().registrationSuccessful()
                     }
                 }
             })

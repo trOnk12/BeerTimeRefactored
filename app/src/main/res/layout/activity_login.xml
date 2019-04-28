@@ -5,11 +5,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <include
+        android:id="@+id/toolbar_container"
+        layout="@layout/custom_login_toolbar" />
 
     <ProgressBar
         android:visibility="gone"
         tools:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,27 +22,22 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/nickname_input"
+        android:id="@+id/email_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_tv"
+        app:layout_constraintBottom_toTopOf="@id/password_tv"
+       />
 
     <EditText
         android:id="@+id/password_input"
+        app:layout_constraintBottom_toTopOf="@id/login_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,11 +47,6 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
         />
 
     <com.gc.materialdesign.views.ButtonRectangle
@@ -96,15 +89,15 @@
         android:layout_marginBottom="64dp"
         android:clickable="true"
         android:focusable="true"
-        android:text="Click here to register ! "
+        android:text="Click here to sign up "
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/email_tv"
+        app:layout_constraintVertical_chainStyle="packed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -114,14 +107,14 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="E-mail address"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintBottom_toTopOf="@+id/nickname_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/email_input"
+        />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/password_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -131,41 +124,11 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/password_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname_input" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="64dp"
-        android:background="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="it's beer time..."
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:typeface="monospace"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/password_input"
+      />
 
 
 </android.support.constraint.ConstraintLayout>

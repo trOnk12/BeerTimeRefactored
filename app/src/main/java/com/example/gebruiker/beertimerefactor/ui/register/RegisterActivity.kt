@@ -31,17 +31,13 @@ companion object {
 
         presenter.validationTool.addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
-        login_clickable_text.setOnClickListener { launchLoginActivity() }
-        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString()) }
+        login_clickable_text.setOnClickListener { startActivity(LoginActivity.createLoginActivity(this))}
+        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString())}
     }
 
-    override fun launchLoginActivity() {
-        launchActivityWithFinish(LoginActivity.createLoginActivity(this))
-    }
-
-    override fun registrationSuccessfull() {
-        showToast("Registration successfull")
-        launchLoginActivity()
+    override fun registrationSuccessful() {
+        showToast("Registration successful")
+        startActivity(LoginActivity.createLoginActivity(this))
     }
 
 }
