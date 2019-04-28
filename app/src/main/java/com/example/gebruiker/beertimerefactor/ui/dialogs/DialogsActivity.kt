@@ -13,6 +13,7 @@ import com.example.gebruiker.beertimerefactor.R.id.dialogsList
 import com.example.gebruiker.beertimerefactor.R.id.empty_inbox_message
 import com.example.gebruiker.beertimerefactor.model.Dialog
 import com.example.gebruiker.beertimerefactor.ui.chat.ChatActivity
+import com.example.gebruiker.beertimerefactor.ui.friends.FriendsListActivity
 import com.google.android.libraries.places.internal.it
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter
 import javax.inject.Inject
@@ -47,7 +48,7 @@ class DialogsActivity : BaseActivity(), DialogsView {
     }
 
     private fun setView() {
-        message_toolbar_container.chat_toolbar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
+        message_toolbar_container.chat_toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
         message_toolbar_container.chat_toolbar.title = ""
         setSupportActionBar(message_toolbar_container.chat_toolbar)
 
@@ -55,6 +56,9 @@ class DialogsActivity : BaseActivity(), DialogsView {
         dialogsListAdapter.setOnDialogClickListener { dialog ->
             startActivity(ChatActivity.createChatActivity(this, dialog.id))
         }
+
+        new_message_button.setOnClickListener { startActivity(FriendsListActivity.createFriendListIntent(this)) }
+
     }
 
     override fun displayDialogs(usersDialogs: ArrayList<Dialog>?) {

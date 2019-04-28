@@ -11,6 +11,8 @@ import com.example.gebruiker.beertimerefactor.ui.dialogs.DialogsActivity
 import com.example.gebruiker.beertimerefactor.ui.dialogs.di.DialogsActivityModule
 import com.example.gebruiker.beertimerefactor.ui.event.EventDescriptionActivity
 import com.example.gebruiker.beertimerefactor.ui.filter.FilterEventsActivity
+import com.example.gebruiker.beertimerefactor.ui.friends.FriendListActivityModule
+import com.example.gebruiker.beertimerefactor.ui.friends.FriendsListActivity
 import com.example.gebruiker.beertimerefactor.ui.main.fragments.di.FragmenstProvider
 import com.example.gebruiker.beertimerefactor.ui.map.MapsActivity
 import com.example.gebruiker.beertimerefactor.ui.map.di.MapModule
@@ -49,6 +51,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindEventsDescriptionActivity(): EventDescriptionActivity
+
+    @ContributesAndroidInjector(modules = [FriendListActivityModule::class])
+    abstract fun bindFriendListActivity(): FriendsListActivity
 
 }
 

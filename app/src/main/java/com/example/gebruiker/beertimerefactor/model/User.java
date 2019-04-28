@@ -11,49 +11,75 @@ public class User implements IUser {
     @Nullable
     public String email;
 
-    public User(){
+    public User() {
 
-	}
-	private String Id;
+    }
 
-	private String Name;
+    public User(String email, String Id) {
+        this.email = email;
+        this.Id = Id;
+    }
 
-	private String Avatar;
 
-	private ArrayList<String> dialogs;
+    private String Id;
 
-	public ArrayList<String> getDialogs() {
-		return dialogs;
-	}
+    private String Name;
 
-	public void setDialogs(ArrayList<String> dialogs) {
-		this.dialogs = dialogs;
-	}
+    private String Avatar;
 
-	public void setId(String id) {
-		Id = id;
-	}
+    private ArrayList<String> dialogs;
 
-	public void setName(String name) {
-		Name = name;
-	}
+    @Nullable
+    public String getEmail() {
+        return email;
+    }
 
-	public void setAvatar(String avatar) {
-		Avatar = avatar;
-	}
+    public void setEmail(@Nullable String email) {
+        this.email = email;
+    }
 
-	@Override
-	public String getId() {
-		return Id;
-	}
+    public ArrayList<String> getFriendsID() {
+        return friends;
+    }
 
-	@Override
-	public String getName() {
-		return Name;
-	}
+    public void setFriendID(ArrayList<String> friends) {
+        this.friends = friends;
+    }
 
-	@Override
-	public String getAvatar() {
-		return Avatar;
-	}
+    private ArrayList<String> friends;
+
+    public ArrayList<String> getDialogs() {
+        return dialogs;
+    }
+
+    public void setDialogs(ArrayList<String> dialogs) {
+        this.dialogs = dialogs;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
+    }
+
+    @Override
+    public String getId() {
+        return Id;
+    }
+
+    @Override
+    public String getName() {
+        return Name;
+    }
+
+    @Override
+    public String getAvatar() {
+        return Avatar;
+    }
 }

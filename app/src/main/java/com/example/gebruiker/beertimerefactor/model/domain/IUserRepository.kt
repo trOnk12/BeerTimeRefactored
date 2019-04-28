@@ -9,5 +9,6 @@ interface IUserRepository{
     fun registerUser(email:String,password:String,onSuccessListener: IBaseRepository<Boolean>)
     fun getUser(): User?
     fun addUser(user:User)
+    fun getUserFriends():ArrayList<User>?
 
 }
