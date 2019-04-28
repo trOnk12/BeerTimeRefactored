@@ -34,20 +34,17 @@ class LoginActivity : BaseActivity(),LoginActivityView {
 
     private fun setView() {
         presenter.validationTool.addValidation(this, R.id.email_input, Patterns.EMAIL_ADDRESS, R.string.err_email)
-
         login_clickable_text.setOnClickListener{ startActivity(RegisterActivity.createRegisterActivity(this)) }
         login_button.setOnClickListener{ presenter.login(email_input.text.toString(),password_input.text.toString()) }
     }
 
     override fun isLoading(isLoading: Boolean) {
-
         if(isLoading){
             progressBar.visibility=View.VISIBLE
         }
         else{
             progressBar.visibility=View.GONE
         }
-
     }
 
     override fun loginSuccessFull() {

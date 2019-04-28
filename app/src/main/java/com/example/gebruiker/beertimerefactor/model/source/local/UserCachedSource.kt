@@ -21,4 +21,8 @@ class UserCachedSource(var sharedPreferencesManager: SharedPreferencesManager) :
         return Gson().fromJson(sharedPreferencesManager.getData(USER_KEY), User::class.java)
     }
 
+    override fun empty(): Boolean {
+        return sharedPreferencesManager.clearData()
+    }
+
 }

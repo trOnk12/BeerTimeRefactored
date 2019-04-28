@@ -18,4 +18,9 @@ class SharedPreferencesManager(var context: Context) {
         return sharedPref.getString(key, "")
     }
 
+    fun clearData(): Boolean {
+        editor.clear()
+        return editor.commit()
+    }
+
 }

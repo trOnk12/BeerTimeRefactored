@@ -6,4 +6,6 @@ import com.example.gebruiker.beertimerefactor.model.User
 interface MainActivityView : BaseView {
 
     fun displayUser(user: User)
+    fun logoutSuccessful()
+    fun logoutFailure()
 }

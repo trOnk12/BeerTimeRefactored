@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.gebruiker.beertimerefactor.R
 import com.example.gebruiker.beertimerefactor.model.Event
-import com.example.gebruiker.beertimerefactor.ui.event.viewholder.PatricipiantsViewHolder
+import com.example.gebruiker.beertimerefactor.ui.event.viewholder.ParticipantsAdapter
 import com.google.gson.Gson
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.fragment_event_description.*
@@ -23,7 +23,7 @@ class EventDescriptionActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private val adapter = PatricipiantsViewHolder()
+    private val adapter = ParticipantsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

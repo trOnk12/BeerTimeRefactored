@@ -11,6 +11,10 @@ import com.google.firebase.auth.FirebaseUser
 
 class UserRepository(val userCachedSource: UserCachedSource, private val userRemoteSource: UserRemoteSource) : IUserRepository {
 
+    override fun logout(): Boolean {
+       return userCachedSource.empty()
+    }
+
     override fun addUser(user: User) {
         userRemoteSource.addUser(user)
     }

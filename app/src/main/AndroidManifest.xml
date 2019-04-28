@@ -23,6 +23,7 @@
 
         <activity
             android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan"
             android:name=".ui.register.RegisterActivity"
             android:theme="@style/AppThemeNoActionBar" />
 
@@ -47,6 +48,7 @@
 
         <activity
             android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan"
             android:name=".ui.login.LoginActivity"
             android:theme="@style/AppThemeNoActionBar">
         </activity>
@@ -56,6 +58,10 @@
             android:theme="@style/AppThemeNoActionBar">
         </activity>
 
+        <activity
+            android:theme="@style/AppThemeNoActionBar"
+            android:name=".ui.friends.FriendsListActivity">
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

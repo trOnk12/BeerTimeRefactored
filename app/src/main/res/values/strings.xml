@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeerTimeRefactor</string>
+    <string name="app_name">BeerTime</string>
     <string name="err_email">Check your email</string>
     <string name="err_password">Wrong password form</string>
     <string name="err_password_confirmation">Passwords are not the same</string>

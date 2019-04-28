@@ -61,7 +61,7 @@ class MapsActivity : BaseMapActivity() {
         for (event in eventList) {
             val eventPosition = LatLng(event.coordinate!!.longtitude, event.coordinate!!.latitude)
             latLngBounds.include(eventPosition)
-            val marker = mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_map)))
+            val marker = mMap.addMarker(MarkerOptions().position(eventPosition).title(event.name).icon(bitmapDescriptorFromVector(this, R.drawable.ic_beer_white)))
             markersHashMap[marker.id] = event
         }
 

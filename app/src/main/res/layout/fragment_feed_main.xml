@@ -58,7 +58,7 @@
 
             <ImageView
                 android:tint="@color/white"
-                android:src="@drawable/ic_beer_map"
+                android:src="@drawable/ic_beer_white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp" />

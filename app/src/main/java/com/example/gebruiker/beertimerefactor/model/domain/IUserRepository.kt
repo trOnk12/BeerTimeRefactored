@@ -10,5 +10,6 @@ interface IUserRepository{
     fun getUser(): User?
     fun addUser(user:User)
     fun getUserFriends():ArrayList<User>?
+    fun logout(): Boolean
 
 }

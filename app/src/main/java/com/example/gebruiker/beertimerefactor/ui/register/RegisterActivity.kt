@@ -35,7 +35,7 @@ class RegisterActivity : BaseActivity(), RegisterView {
         presenter.validationTool.addValidation(this, R.id.email_et, Patterns.EMAIL_ADDRESS, R.string.err_email)
 
         login_clickable_text.setOnClickListener { startActivity(LoginActivity.createLoginActivity(this)) }
-        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_et.text.toString()) }
+        register_button.setOnClickListener { presenter.register(email_et.text.toString(), password_register_et.text.toString()) }
     }
 
     override fun isLoading(isLoading: Boolean) {

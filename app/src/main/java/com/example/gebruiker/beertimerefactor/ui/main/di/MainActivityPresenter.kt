@@ -9,4 +9,13 @@ class MainActivityPresenter(var userRepository: UserRepository)  : BasePresenter
         getView().displayUser(userRepository.getUser()!!)
     }
 
+    fun logout() {
+        if(userRepository.logout()){
+            getView().logoutSuccessful()
+        }
+        else{
+            getView().logoutFailure()
+        }
+    }
+
 }

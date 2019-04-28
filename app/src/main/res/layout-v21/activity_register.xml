@@ -12,18 +12,16 @@
         layout="@layout/custom_login_toolbar" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:padding="20dp"
-
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        app:civ_border_width="0.5dp"
+        app:civ_border_color="@color/white"
         android:src="@drawable/launch_beer_icon"
         android:elevation="22dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_container" />
-
-
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
@@ -36,7 +34,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="monospace"
         android:text="REGISTER"
@@ -47,14 +45,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:typeface="sans"
         android:id="@+id/repeat_password_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
         android:text="Repeat password"
         android:textColor="@color/white"
+        android:textSize="11sp"
+        android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@id/repeat_password_et"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_register_et" />
@@ -91,27 +91,31 @@
         tools:ignore="UnusedAttribute" />
 
     <TextView
-        android:typeface="sans"
-        android:layout_marginStart="8dp"
         android:id="@+id/password_register_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
         android:text="Password"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@id/password_register_et"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_et" />
 
     <TextView
-        android:typeface="sans"
-        android:textColor="@color/white"
-        android:layout_marginStart="8dp"
         android:id="@+id/email_register_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
         android:text="E-mail address"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@id/email_et"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_container"
@@ -136,46 +140,40 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="215dp"
         android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
         android:text="Register"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textView"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeat_password_et" />
 
 
     <TextView
-        android:textColor="@color/white"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Already having an account ?"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/login_clickable_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
 
     <TextView
-        android:textColor="@color/white"
         android:id="@+id/login_clickable_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="52dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Click here to login "
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
