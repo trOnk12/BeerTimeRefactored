@@ -1,13 +1,17 @@
 package com.example.gebruiker.beertimerefactor.model.source.remote
 
+import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 class UserRemoteSource : BaseRemoteSource() {
-    fun getUserById(id:String,listener: DataSnapShotListener) {
+    fun getUserById(id: String, listener: DataSnapShotListener) {
 
         fireBaseDataBase.getReference("users").child(id).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -21,13 +25,34 @@ class UserRemoteSource : BaseRemoteSource() {
         })
     }
 
-    fun loginUser(email: String, password: String, listener: OnCompleteListener<AuthResult>) {
-        fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(listener)
+    fun loginUser(email: String, password: String, listener: LoggedUserListener) {
+        // fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { listener.onLoggedUserListener(fireBaseAuth.currentUser!!) }
+        fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(object : OnCompleteListener<AuthResult> {
+            override fun onComplete(p0: Task<AuthResult>) {
+
+                if (!p0.isSuccessful) {
+                    val e = p0.exception as FirebaseAuthException
+                    Log.d("TEST", e.message)
+                    return
+                }
+
+                if (p0.isSuccessful) {
+                    listener.onLoggedUserListener(fireBaseAuth.currentUser!!)
+                }
+
+            }
+
+        })
     }
 
 
     fun registerUser(email: String, password: String, listener: OnCompleteListener<AuthResult>) {
         fireBaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(listener)
+    }
+
+
+    interface LoggedUserListener {
+        fun onLoggedUserListener(fireBaseUser: FirebaseUser)
     }
 
 }

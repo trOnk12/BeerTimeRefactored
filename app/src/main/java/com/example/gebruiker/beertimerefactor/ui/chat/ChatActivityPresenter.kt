@@ -2,9 +2,9 @@ package com.example.gebruiker.beertimerefactor.ui.chat
 
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
 import com.example.gebruiker.beertimerefactor.model.repository.ChatRepository
-import com.example.gebruiker.beertimerefactor.model.repository.IUserRepository
+import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 
-class ChatActivityPresenter(userRepository: IUserRepository, chatRepository: ChatRepository) : BasePresenter<ChatAcitivtyView>() {
+class ChatActivityPresenter(userRepository: UserRepository, chatRepository: ChatRepository) : BasePresenter<ChatAcitivtyView>() {
 
     fun getChatHistory(dialogID: String?) {
 

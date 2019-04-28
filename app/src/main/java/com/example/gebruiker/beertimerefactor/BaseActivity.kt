@@ -9,7 +9,6 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity(),BaseView {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         attachPresenter()
@@ -20,7 +19,7 @@ abstract class BaseActivity : DaggerAppCompatActivity(),BaseView {
     }
 
     fun launchActivityWithFinish(intent: Intent){
-        launchActivityWithFinish(intent)
+        startActivity(intent)
         finish()
     }
 

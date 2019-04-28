@@ -1,9 +1,9 @@
 package com.example.gebruiker.beertimerefactor.ui.splash
 
 import com.example.gebruiker.beertimerefactor.baseMVP.BasePresenter
-import com.example.gebruiker.beertimerefactor.model.repository.IUserRepository
+import com.example.gebruiker.beertimerefactor.model.repository.UserRepository
 
-class SplashActivityPresenter(var userRepository: IUserRepository): BasePresenter<SplashActivityView>() {
+class SplashActivityPresenter(var userRepository:UserRepository): BasePresenter<SplashActivityView>() {
 
     fun getUser(){
         if(userRepository.getUser() == null){

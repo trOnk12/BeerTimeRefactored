@@ -2,11 +2,16 @@ package com.example.gebruiker.beertimerefactor.model;
 
 import com.stfalcon.chatkit.commons.models.IUser;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 public class User implements IUser {
 
-	public User(){
+    @Nullable
+    public String email;
+
+    public User(){
 
 	}
 	private String Id;

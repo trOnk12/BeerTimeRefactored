@@ -32,6 +32,7 @@ class MainActivity : BaseFragmentActivity(), MainActivityView, BottomNavigationV
 
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
+
     private lateinit var pagerAdapter: ScreenSlidePagerAdapter
 
     override fun attachPresenter() {

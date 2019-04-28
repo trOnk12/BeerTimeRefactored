@@ -48,6 +48,11 @@ class MapsPresenter(var eventsRepository: EventsRepository) : BasePresenter<Maps
         eventsRepository.addEvent(fakeEvent2)
 
         eventsRepository.getEvents(object : FirebaseRepo.DataSnapShotListener {
+
+            override fun onDataSnapShotInterrupted() {
+
+            }
+
             override fun onDatSnapShotReceived(dataSnapShot: DataSnapshot) {
 
                 val eventsList: java.util.ArrayList<Event> = java.util.ArrayList()

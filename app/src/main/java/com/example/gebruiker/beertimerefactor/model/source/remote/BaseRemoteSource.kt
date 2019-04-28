@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 abstract class BaseRemoteSource {
 
+
     interface DataSnapShotListener {
         fun onDatSnapShotReceived(dataSnapShot: DataSnapshot)
         fun onDataSnapShotInterrupted()
