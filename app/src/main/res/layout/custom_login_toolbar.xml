@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:layout_marginTop="2dp"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/white"
@@ -28,7 +29,6 @@
         app:layout_constraintStart_toStartOf="@+id/explore_event_tv" />
 
     <TextView
-        android:layout_marginTop="8dp"
         android:id="@+id/explore_event_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:text="It's Beer Time ..."
         android:textAlignment="viewStart"
         android:textColor="#FFF"
-        android:textSize="23sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
