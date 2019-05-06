@@ -39,14 +39,18 @@ public class User implements IUser {
     }
 
     public ArrayList<String> getFriendsID() {
-        return friends;
+        return friendsID;
     }
 
     public void setFriendID(ArrayList<String> friends) {
-        this.friends = friends;
+        this.friendsID = friends;
     }
 
-    private ArrayList<String> friends;
+    public void setFriendsID(ArrayList<String> friendsID) {
+        this.friendsID = friendsID;
+    }
+
+    private ArrayList<String> friendsID;
 
     public ArrayList<String> getDialogs() {
         return dialogs;

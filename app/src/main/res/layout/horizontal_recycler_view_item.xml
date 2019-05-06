@@ -1,22 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:orientation="vertical">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="92dp"
+    android:layout_height="92dp"
+    android:layout_margin="2dp"
+    android:background="@drawable/blue_rectangle_thin"
+    android:orientation="vertical"
+  >
 
-    <ImageView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="8dp"
-        android:background="@color/white" />
+    <android.support.v7.widget.CardView
 
-    <TextView
-        android:id="@+id/item_title_tv"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TEST name"
-        android:textAlignment="center" />
+        android:layout_width="wrap_content"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp">
+
+        <android.support.constraint.ConstraintLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/option1_background_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:scaleType="centerCrop"
+                android:src="@drawable/travelling_airplane"
+                android:tint="@color/white"
+                card_view:layout_constraintBottom_toTopOf="@id/item_title_tv"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="@string/find_event"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/option1_background_image" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

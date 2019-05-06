@@ -6,4 +6,5 @@ import com.example.gebruiker.beertimerefactor.model.User
 interface FriendsListView : BaseView {
     fun showUserFriends(userFriends: ArrayList<User>?)
     fun showNoFriendsMessage()
+    fun isLoading(b: Boolean)
 }

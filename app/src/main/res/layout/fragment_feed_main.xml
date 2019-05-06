@@ -4,71 +4,140 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/navigation_panel"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/navigation_header"
+            android:layout_width="match_parent"
+            android:padding="2dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/navigation"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/navigation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="Take the initiative"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_margin="1dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintLeft_toLeftOf="@id/navigation_title"
+                app:layout_constraintRight_toRightOf="@id/navigation_title"
+                app:layout_constraintTop_toBottomOf="@id/navigation_title" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
-            android:layout_margin="4dp"
-            android:background="@drawable/blue_rectangle_fill"
+            android:id="@+id/navigation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="160dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navigation_header">
 
-            <ImageView
-                android:tint="@color/white"
-                android:src="@drawable/ic_beer"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="4dp" />
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/create_event_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="Create event"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:background="@drawable/blue_rectangle_fill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_beer"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/create_event_tv" />
 
-            <ImageView
-                android:tint="@color/white"
-                android:src="@drawable/peacufyll"
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="4dp" />
 
-        </LinearLayout>
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle">
 
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:background="@drawable/blue_rectangle_fill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                <TextView
+                    android:id="@+id/find_people_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="Find People"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
-            <ImageView
-                android:tint="@color/white"
-                android:src="@drawable/ic_beer_white"
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:src="@drawable/peacufyll"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/find_people_tv" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="4dp" />
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle">
+
+                <TextView
+                    android:id="@+id/friends_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="Friends"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_beer_white"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/friends_tv" />
+
+            </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <ScrollView
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,47 +150,39 @@
             android:layout_height="0dp">
 
             <LinearLayout
-                android:background="@drawable/blue_rectangle_fill"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-
                 android:id="@+id/upcoming_events_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/popular_events_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <include
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:id="@+id/upcoming_events_rv"
-                layout="@layout/horizontal_recycyler_view"
-                android:layout_height="130dp"
-                android:layout_width="match_parent" />
+                app:layout_constraintTop_toBottomOf="@id/popular_events_container">
+
+                <include
+                    android:id="@+id/upcoming_events_rv"
+                    layout="@layout/horizontal_recycyler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/blue_rectangle_fill"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:id="@+id/popular_events_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 app:layout_constraintBottom_toTopOf="@id/upcoming_events_container"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toTopOf="parent">
 
-            <include
-                android:id="@+id/popular_events_rv"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                layout="@layout/horizontal_recycyler_view"
-                android:layout_height="130dp"
-                android:layout_width="match_parent" />
+                <include
+                    android:id="@+id/popular_events_rv"
+                    layout="@layout/horizontal_recycyler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>

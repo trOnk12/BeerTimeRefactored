@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 class UserRepository(val userCachedSource: UserCachedSource, private val userRemoteSource: UserRemoteSource) : IUserRepository {
 
     override fun logout(): Boolean {
-       return userCachedSource.empty()
+        return userCachedSource.empty()
     }
 
     override fun addUser(user: User) {
@@ -23,8 +23,8 @@ class UserRepository(val userCachedSource: UserCachedSource, private val userRem
         return userCachedSource.getData()
     }
 
-    override fun getUserFriends(): ArrayList<User>? {
-        return userRemoteSource.getUserFriends(userCachedSource.getData()!!.friendsID)
+    override fun getUserFriends(userFriendsListener: UserRemoteSource.UserFriendsListener){
+        return userRemoteSource.getUserFriends(userCachedSource.getData()!!.friendsID,userFriendsListener)
     }
 
     override fun getUserById(id: String, dataListener: IBaseRepository<User>) {
@@ -43,11 +43,23 @@ class UserRepository(val userCachedSource: UserCachedSource, private val userRem
 
     override fun loginUser(email: String, password: String, onSuccessListener: IBaseRepository<Boolean>) {
         userRemoteSource.loginUser(email, password, object : UserRemoteSource.UserAuthenticationListener.UserLoginListener {
-            override fun onUserLoginListener(fireBaseUser: FirebaseUser) {
-                val user = User(fireBaseUser.email,fireBaseUser.uid)
-                userCachedSource.putData(user)
 
-                onSuccessListener.onDataReceived(true)
+            override fun onUserLoginListener(fireBaseUser: FirebaseUser) {
+
+                userRemoteSource.getUserById(fireBaseUser.uid, object : BaseRemoteSource.DataSnapShotListener {
+
+                    override fun onDatSnapShotReceived(dataSnapShot: DataSnapshot) {
+                        val user = dataSnapShot.getValue(User::class.java)
+                        userCachedSource.putData(user!!)
+                        onSuccessListener.onDataReceived(true)
+                    }
+
+                    override fun onDataSnapShotInterrupted() {
+
+                    }
+
+                })
+
             }
         })
     }
@@ -56,12 +68,20 @@ class UserRepository(val userCachedSource: UserCachedSource, private val userRem
         userRemoteSource.registerUser(email, password, object : UserRemoteSource.UserAuthenticationListener.RegisterListener {
 
             override fun onUserRegisterListener(fireBaseUser: FirebaseUser) {
-                val user = User(fireBaseUser.email,fireBaseUser.uid)
+                val user = User(fireBaseUser.email, fireBaseUser.uid)
+
+                val friendList = ArrayList<String>()
+                friendList.add("6Qxo8rpqkdN2OcBG552s4QLd10C2")
+                friendList.add("H7uBcYISx7b5Ie40SdznJpnueg02")
+                friendList.add("b2h4orZxK8UK5YTy2MiWkUSRHK82")
+                friendList.add("jP5Czf7NaaX8e0BMewQidjLLoML2")
+
+                user.setFriendID(friendList)
+
                 userRemoteSource.addUser(user)
 
                 onSuccessListener.onDataReceived(true)
             }
-
         })
     }
 

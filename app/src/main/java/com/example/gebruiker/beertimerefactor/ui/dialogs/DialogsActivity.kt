@@ -46,12 +46,12 @@ class DialogsActivity : BaseActivity(), DialogsView {
         setSupportActionBar(message_toolbar_container.chat_toolbar)
 
         dialogsListAdapter = DialogsListAdapter(ImageLoader { _, _, _ -> })
+
         dialogsListAdapter.setOnDialogClickListener { dialog ->
             startActivity(ChatActivity.createChatActivity(this, dialog.id))
         }
 
         new_message_button.setOnClickListener { startActivity(FriendsListActivity.createFriendListIntent(this)) }
-
     }
 
     override fun displayDialogs(usersDialogs: ArrayList<Dialog>?) {
@@ -63,7 +63,6 @@ class DialogsActivity : BaseActivity(), DialogsView {
         dialogsList.visibility = View.GONE
         empty_inbox_message.visibility = View.VISIBLE
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

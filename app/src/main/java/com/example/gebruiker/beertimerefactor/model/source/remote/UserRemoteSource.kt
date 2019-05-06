@@ -20,12 +20,16 @@ class UserRemoteSource : BaseRemoteSource() {
         }
     }
 
+    interface UserFriendsListener{
+        fun onUserFriendsRetrieved(friendList:ArrayList<User>)
+    }
+
     fun addUser(user: User) {
         fireBaseDataBase.getReference("users").child(user.id).setValue(user)
     }
 
 
-    fun getUserFriends(usersID:ArrayList<String>): ArrayList<User> {
+    fun getUserFriends(usersID:ArrayList<String>,userFriendsListener: UserFriendsListener){
         val friendsList: ArrayList<User> = ArrayList()
 
         for(userID in usersID){
@@ -33,7 +37,12 @@ class UserRemoteSource : BaseRemoteSource() {
                 override fun onDataChange(p0: DataSnapshot) {
                     val user = p0.getValue(User::class.java)
                     friendsList.add(user!!)
-            }
+
+                    if(friendsList.size==usersID.size){
+                        userFriendsListener.onUserFriendsRetrieved(friendsList)
+                    }
+
+                }
 
                 override fun onCancelled(p0: DatabaseError) {
 
@@ -42,7 +51,6 @@ class UserRemoteSource : BaseRemoteSource() {
             })
         }
 
-        return friendsList
     }
 
     fun getUserById(id: String, listener: DataSnapShotListener) {

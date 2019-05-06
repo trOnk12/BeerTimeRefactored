@@ -16,9 +16,9 @@ class UserCachedSource(var sharedPreferencesManager: SharedPreferencesManager) :
         sharedPreferencesManager.putData(USER_KEY, Gson().toJson(data))
     }
 
-
     override fun getData(): User? {
-        return Gson().fromJson(sharedPreferencesManager.getData(USER_KEY), User::class.java)
+        val user = Gson().fromJson(sharedPreferencesManager.getData(USER_KEY), User::class.java)
+        return user
     }
 
     override fun empty(): Boolean {

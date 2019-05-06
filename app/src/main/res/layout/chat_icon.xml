@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/chat_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/ic_if_message_01_186393"
         app:layout_constraintBottom_toBottomOf="@id/toolbar"
         app:layout_constraintRight_toRightOf="parent"
